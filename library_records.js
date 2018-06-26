@@ -15,41 +15,50 @@ Library.prototype.addBook = function (book) {
   return this._bookShelf.push(book) > 0;
 };
 
-Library.prototype.removeBookByTitle = function (title) {
+Library.prototype.removeBookTitle = function (title) {
   //we need to check title of book object against each book in this._bookShelf through an iteration
   //removeBookByTitle needs to remove an object from library (this._bookShelf)
   //needs to return true if removed and false if not in library to remove
-  for(var i = 0; i<this.bookShelf.length; i++){
-    if (this._bookShelf[i].title.indexOf(book.title) > -1) {
-      this.bookShelf.splice(i,1);
+  for(var i = 0; i<this._bookShelf.length; i++){
+    if (this._bookShelf[i].title.indexOf(title) > -1) {
+      this._bookShelf.splice(i,1);
       return true;
     }
   }
   return false;
 };
 
-Library.prototype.removeBookBYAuthor = function (authorName) {
+Library.prototype.removeBookAuthor = function (authorName) {
   //we need to check author of book object against each book in this._bookShelf through an iteration
   //removeBookByAuthor needs to remove an object from library (this._bookShelf)
   //needs to return true if removed and false if not in library to remove
-  for(var i = 0; i<this.bookShelf.length; i++){
-    if (this._bookShelf[i].author.indexOf(book.author)>-1);
-      this.bookShelf.splice(i,1);
+  for(var i = 0; i<this._bookShelf.length; i++){
+    if (this._bookShelf[i].author.indexOf(authorName)>-1)
+      this._bookShelf.splice(i,1);
       return true;
   }
   return false;
 };
 
 Library.prototype.getRandomBook = function () {
-
+  var rand = this._bookShelf[Math.floor(Math.random() * this._bookShelf.length)];
+  return rand;
 };
+  return false;
 
 Library.prototype.getBookByTitle = function (title) {
-
+  for(var i = 0; i<this._bookShelf.length; i++){
+    if (this._bookShelf[i].title === title)
+      return this._bookShelf[i];
 };
+  return false;
 
 Library.prototype.getBooksByAuthor = function (authorName) {
-
+  for(var i = 0; i<this._bookShelf.length; i++){
+    if (this._bookShelf[i].authorName === title)
+      return this._bookShelf[i];
+  };
+  return false;
 };
 
 Library.prototype.addBooks = function (books) {
@@ -74,68 +83,9 @@ var Book = function(title, author, numberOfPages, publishDate){
 
 document.addEventListener("DOMContentLoaded", function() {
   window.gLibrary = new Library();
-  window.gLibrary.addBook(new Book (bookList));
+  window.gbookOne = new Book ("IT", "Stephen King", 1138, "9-15-1986");
+  window.gbookTwo = new Book ("The Shining", "Stephen King", 447, "1-28-1977");
+  window.gbookThree = new Book ("The Big Four", "Agatha Christie", 282, "1-27-1927");
+  window.gbookFour = new Book ("A Thousand Acres", "Jane Smiley", 367, "10-23-1991");
+  window.gbookFive = new Book ("To Kill a Mockingbird", "Harper Lee", 281, "7-11-1960");
 });
-
-//Library of Books from Brett - has dups of titles and authors for testing
-var bookList = [{
-  title: "Harry Potter",
-  author: "JK Rowling",
-  numberOfPage: 300,
-  publishDate: new Date()
-},
-{
-  title:"Spot",
-  author:"Jane",
-  numberOfPages: 20,
-  publishDate: new Date()
-},
-{
-  title:"This is a book title",
-  author:"book writer",
-  numberOfPages: 50,
-  publishDate: new Date()
-},
-{
-  title:"This is another book title",
-  author:"Frank",
-  numberOfPages:235,
-  publishDate: new Date()
-},
-{
-  title:"World of Books",
-  author:"Atlas",
-  numberOfPages:132,
-  publishDate: new Date()
-},
-{
-  title:"World of Books",
-  author:"Atlas",
-  numberOfPages:132,
-  publishDate: new Date()
-},
-{
-  title:"World of Books",
-  author:"Atlas",
-  numberOfPages:132,
-  publishDate: new Date()
-},
-{
-  title: "Harry Potter Two",
-  author: "JK Rowling",
-  numberOfPages: 200,
-  publishDate: new Date()
-},
-{
-  title: "Harry Potter Three",
-  author: "JK Rowling",
-  numberOfPages: 300,
-  publishDate: new Date()
-},
-{
-  title: "Harry Potter Four",
-  author: "JK Rowling",
-  numberOfPages: 400,
-  publishDate: new Date()
-}]
-//["IT", "The Great Gatsby", "Catcher in the Rye"]
