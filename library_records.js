@@ -23,18 +23,22 @@ Library.prototype.removeBookTitle = function (title) {
 };
 
 Library.prototype.removeBookAuthor = function (authorName) {
-  for(var i = 0; i<this._bookShelf.length; i++){
-    if (this._bookShelf[i].author.indexOf(authorName)>-1) {
-      this._bookShelf.splice(i,1);
-      return true;
-    }
-  return false;
+   var authors = [];
+   for(var i = 0; i<this._bookShelf.length; i++) {
+     authors.push(this._bookShelf[i].indexOf(authorName));
+     console.log(authors);
   }
+   this._bookShelf = this._bookShelf.filter(i => authors.indexOf(i) == -1);
+   return this._bookShelf;
+  // for(var i = 0; i<this._bookShelf.length; i++){
+  //   if (this._bookShelf[i].author.indexOf(authorName)>-1) {
+  //     this._bookShelf.splice(i,1);
+  //     return true;
 };
 
 Library.prototype.getRandomBook = function () {
-  var rand = this._bookShelf[Math.floor(Math.random() * this._bookShelf.length)];
-  return rand;
+  // var rand = this._bookShelf[Math.floor(Math.random() * this._bookShelf.length)];
+  return (this._bookShelf[Math.floor(Math.random() * this._bookShelf.length)]);
 };
 
 //This is not working properly
@@ -42,7 +46,6 @@ Library.prototype.getBookByTitle = function (title) {
   var booksbytitle = [];
   for(var i = 0; i<this._bookShelf.length; i++){
     if (this._bookShelf[i].title === title) {
-      console.log(this._bookShelf[i]);
       booksbytitle.push(this._bookShelf[i]);
     }
   }
@@ -50,38 +53,43 @@ Library.prototype.getBookByTitle = function (title) {
     return ("There are no books by that title");
   }
   else {
-    return booksbytitle;
+    return ("The following books in the library have the title " + title + ": " + booksbytitle);
   }
 };
 
 Library.prototype.getBooksByAuthor = function (authorName) {
-  var randAuthor = [];
+  var booksByAuthor = [];
   for(var i = 0; i<this._bookShelf.length; i++){
     if (this._bookShelf[i].author === authorName) {
-      randAuthor.push(this._bookShelf[i].title);
+      booksByAuthor.push(this._bookShelf[i].title);
     }
   }
-  return ("The library has the following books by " + authorName +": " + randAuthor);
+  return ("The library has the following books by " + authorName +": " + booksByAuthor);
+
 };
 
-Library.prototype.addBooks = function (books) {
-
+Library.prototype.addBooks = function () {
+  var originalLength = this._bookShelf.length;
+  for (var i = 0; i < newBooks.length; i++) {
+    // this.addBook(newBooks[i]);
+    this._bookShelf.push(newBooks[i]);
+  }
+  // var newBookShelf = new Set(this._bookShelf);
+  return (this._bookShelf - originalLength + " books were added to the library");
 };
 
 Library.prototype.getDistinctAuthors = function () {
-  var authors = this._bookShelf.author;
-    
-  // for(var i = 0; i<this._bookShelf.length; i++){
-  //   if(distinctAuthors.indexOf(this._bookShelf[i]) == -1){
-  //       distinctAuthors.push(this._bookShelf[i].author)
-  //   }
-  // }
-    return distinctAuthors;
+  var authors = [];
+  for(var i = 0; i<this._bookShelf.length; i++){
+    authors.push(this._bookShelf[i].author);
+  }
+  var distinctAuthors = new Set(authors);
+  return distinctAuthors;
 };
 
 Library.prototype.getRandomAuthorNames = function () {
-  var rand = this._bookShelf[Math.floor(Math.random() * this._bookShelf.length)];
-  return rand.author;
+  if (this._bookShelf.length == 0) {return ("Null");}
+  else {return this.getRandomBook().author;}
 };
 
 // Create book as object
@@ -92,6 +100,7 @@ var Book = function(title, author, numberOfPages, publishDate){
   this.publishDate= new Date(publishDate);
 }
 
+//Beginning Library
 function booksInLibrary (){
     gLibrary.addBook(book1)
     gLibrary.addBook(book2)
@@ -102,6 +111,16 @@ function booksInLibrary (){
     gLibrary.addBook(book7)
     return gLibrary;
   }
+
+//Added _books
+var newBooks = [
+  ("Catcher in the Rye", "J.D. Salinger", 277, "7-16-1951"),
+  ("The Undoing Project", "Michael Lewis", 368, "12-6-2016"),
+  ("The Graveyard Book", "Neil Gaiman", 312, "9-30-2008"),
+  ("The New New Thing", "Michael Lewis", 349, "10-17-1999"),
+  ("The Shining", "Petra", 501, "9-28-1997")
+]
+
 
 document.addEventListener("DOMContentLoaded", function() {
   window.gLibrary = new Library();
