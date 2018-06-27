@@ -4,9 +4,6 @@ var Library = function(){
 
 
 Library.prototype.addBook = function (book) {
-  //we need to check title of book object against each book in this._bookShelf through an iteration
-  //addBook needs to add an object coming from my book param to my array (this._bookShelf)
-  //needs to return true if added and false if not added
   for (var i = 0; i < this._bookShelf.length; i++) {
     if (this._bookShelf[i].title.indexOf(book.title)>-1){
       return false;
@@ -16,9 +13,6 @@ Library.prototype.addBook = function (book) {
 };
 
 Library.prototype.removeBookTitle = function (title) {
-  //we need to check title of book object against each book in this._bookShelf through an iteration
-  //removeBookByTitle needs to remove an object from library (this._bookShelf)
-  //needs to return true if removed and false if not in library to remove
   for(var i = 0; i<this._bookShelf.length; i++){
     if (this._bookShelf[i].title.indexOf(title) > -1) {
       this._bookShelf.splice(i,1);
@@ -29,35 +23,36 @@ Library.prototype.removeBookTitle = function (title) {
 };
 
 Library.prototype.removeBookAuthor = function (authorName) {
-  //we need to check author of book object against each book in this._bookShelf through an iteration
-  //removeBookByAuthor needs to remove an object from library (this._bookShelf)
-  //needs to return true if removed and false if not in library to remove
   for(var i = 0; i<this._bookShelf.length; i++){
-    if (this._bookShelf[i].author.indexOf(authorName)>-1)
+    if (this._bookShelf[i].author.indexOf(authorName)>-1) {
       this._bookShelf.splice(i,1);
       return true;
-  }
+    }
   return false;
+  }
 };
 
 Library.prototype.getRandomBook = function () {
   var rand = this._bookShelf[Math.floor(Math.random() * this._bookShelf.length)];
   return rand;
 };
-  return false;
+  // return false;
 
 Library.prototype.getBookByTitle = function (title) {
   for(var i = 0; i<this._bookShelf.length; i++){
-    if (this._bookShelf[i].title === title)
+    if (this._bookShelf[i].title === title) {
       return this._bookShelf[i];
-};
+    }
   return false;
+  }
+};
 
 Library.prototype.getBooksByAuthor = function (authorName) {
   for(var i = 0; i<this._bookShelf.length; i++){
-    if (this._bookShelf[i].authorName === title)
+    if (this._bookShelf[i].author === authorName) {
       return this._bookShelf[i];
-  };
+    }
+  }
   return false;
 };
 
