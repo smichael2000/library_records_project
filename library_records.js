@@ -11,9 +11,9 @@ Library.prototype.addBook = function (book) {
     // console.log('typeof this._bookShelf[i] is:', typeof(this._bookShelf[i]))
     // console.log('this._bookShelf[i] is:', this._bookShelf[i])
     // console.log('book is:', book);
-    // if (this._bookShelf[i].indexOf(book)>-1)
+    if (this._bookShelf[i].title.indexOf(book)>-1) {
   //***********************************************************
-    if (this._bookShelf[i] ===book){
+    // if (this._bookShelf[i] ===book){
       return false;
     }
   }
@@ -64,7 +64,8 @@ Library.prototype.getBookByTitle = function (title) {
   //Return: array of book objects if you find books with matching titles, empty array if no books are found
   var booksbytitle = [];
   for(var i = 0; i<this._bookShelf.length; i++){
-    if (this._bookShelf[i].title === title) {
+    if (this._bookShelf[i].title.indexOf(title)>-1) {
+    // if (this._bookShelf[i].title === title) {
       booksbytitle.push(this._bookShelf[i]);
     }
   }
@@ -77,13 +78,14 @@ Library.prototype.getBookByTitle = function (title) {
   }
 };
 
-//works for entire match of author's name - not partial
 Library.prototype.getBooksByAuthor = function (authorName) {
 //Purpose: Finds all books where the author’s name partially or completely matches the authorName argument passed
 //to the function.
   var booksByAuthor = [];
   for(var i = 0; i<this._bookShelf.length; i++){
-    if (this._bookShelf[i].author === authorName) {
+    if (this._bookShelf[i].author.indexOf(authorName)>-1){
+    // if (this._bookShelf[i].author === authorName) {
+
       booksByAuthor.push(this._bookShelf[i].title);
     }
   }
@@ -152,19 +154,20 @@ var newBooks = [
   new Book("The Graveyard Book", "Neil Gaiman", 312, "9-30-2008"),
   new Book("The New New Thing", "Michael Lewis", 349, "10-17-1999"),
   new Book("The Shining", "Petra", 501, "9-28-1997")
-]
+];
 //test array - books already in library
 // var newBooks = [
 //   new Book ("The Big Four", "Agatha Christie", 282, "1-27-1927");
-//   new Book ("A Thousand Acres", "Jane Smiley", 367, "10-23-1991");]
+//   new Book ("A Thousand Acres", "Jane Smiley", 367, "10-23-1991");
+// ]
 //*******************Local Storage**********************
-//// Retrieve library from locaStorage
-// var saveData = JSON.parse(localStorage.saveData || null) || {};
+//Stores data as strings - need to parse to convert back to objects when retireve
 
-// function saveLocalStorage (this._bookShelf) {
-//     saveData.this._bookShelf = this._bookShelf;
-//     localStorage.saveData = JSON.stringify(saveData);
-// }
+var JSONReadyLibrary = JSON.stringify(this._bookShelf);
+localStorage.setItem("books", )
+
+JSON.parse(localStorage.books).find(book=>this._bookShelf.author==='Petra' && this._bookShelf.title ==='The Shining')
+
 
 document.addEventListener("DOMContentLoaded", function() {
   window.gLibrary = new Library();
