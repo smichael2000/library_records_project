@@ -7,7 +7,7 @@ Library.prototype.addBook = function (book) {
   //Purpose: Add a book object to your books array.
   //Return:boolean true if it is not already added, false if it is already added
   for (var i = 0; i < this._bookShelf.length; i++) {
-  //error finding ********************************************
+  //error debugging ********************************************
     // console.log('typeof this._bookShelf[i] is:', typeof(this._bookShelf[i]))
     // console.log('this._bookShelf[i] is:', this._bookShelf[i])
     // console.log('book is:', book);
@@ -27,7 +27,7 @@ Library.prototype.removeBookByTitle = function (title) {
   for(var i = 0; i<this._bookShelf.length; i++){
     if (this._bookShelf[i].title.indexOf(title) > -1) {
       this._bookShelf.splice(i,1);
-      --i; // Correct the index value
+      --i; // Correct the index value due to splice()
     }
   }
   if (originalLength != this._bookShelf.length) {
@@ -38,14 +38,14 @@ Library.prototype.removeBookByTitle = function (title) {
 
 Library.prototype.removeBookByAuthor = function (authorName) {
   //Remove a specific book from your books array by the author name.
-  //Return: booleantrue if the book(s) were removed, false if no books match
+  //Return: boolean true if the book(s) were removed, false if no books match
   var originalLength = this._bookShelf.length;
   //Removes all books by specific author
   //Need to figure out iterator ******************************************
   for(var i = 0; i<this._bookShelf.length; i++){
     if (this._bookShelf[i].author.indexOf(authorName)>-1) {
       this._bookShelf.splice(i,1);
-      --i; // Correct the index value
+      --i; // Correct the index value due to splice()
     }
   }
   if (originalLength != this._bookShelf.length) {return true;}
@@ -59,7 +59,6 @@ Library.prototype.getRandomBook = function () {
   return (this._bookShelf[Math.floor(Math.random() * this._bookShelf.length)]);
 };
 
-//This is not working properly
 Library.prototype.getBookByTitle = function (title) {
   //Purpose: Return all books that completely or partially matches the string title passed into the function
   //Return: array of book objects if you find books with matching titles, empty array if no books are found
@@ -78,6 +77,7 @@ Library.prototype.getBookByTitle = function (title) {
   }
 };
 
+//works for entire match of author's name - not partial
 Library.prototype.getBooksByAuthor = function (authorName) {
 //Purpose: Finds all books where the author’s name partially or completely matches the authorName argument passed
 //to the function.
@@ -94,17 +94,16 @@ Library.prototype.getBooksByAuthor = function (authorName) {
 Library.prototype.addBooks = function (book) {
   //Purpose: Takes multiple books, in the form of an array of book objects, and adds the objects to your books array.
   //Return: number number of books successfully added, 0 if no books were added
-  // if (Array.isArray(newBooks)) {
-    var bookCount = 0;
+  if (Array.isArray(newBooks)) {
+    var addedBooks = 0;
     for (var i = 0; i < newBooks.length; i++) {
       if (this.addBook(newBooks[i])) {
-        bookCount ++;
+        addedBooks ++;
       }
     }
-  // }
-  // var newBookShelf = new Set(this._bookShelf);
+  }
   // console.log(this._bookShelf);
-  return (bookCount + " books were added to the library.");
+  return (addedBooks + " books were added to the library.");
 };
 
 Library.prototype.getDistinctAuthors = function () {
@@ -154,9 +153,13 @@ var newBooks = [
   new Book("The New New Thing", "Michael Lewis", 349, "10-17-1999"),
   new Book("The Shining", "Petra", 501, "9-28-1997")
 ]
+//test array - books already in library
+// var newBooks = [
+//   new Book ("The Big Four", "Agatha Christie", 282, "1-27-1927");
+//   new Book ("A Thousand Acres", "Jane Smiley", 367, "10-23-1991");]
 //*******************Local Storage**********************
 //// Retrieve library from locaStorage
-var saveData = JSON.parse(localStorage.saveData || null) || {};
+// var saveData = JSON.parse(localStorage.saveData || null) || {};
 
 // function saveLocalStorage (this._bookShelf) {
 //     saveData.this._bookShelf = this._bookShelf;
@@ -173,5 +176,5 @@ document.addEventListener("DOMContentLoaded", function() {
   window.book6 = new Book ("The Shining", "Petra", 501, "9-28-1997");
   window.book7 = new Book ("Holden Reincarnated", "Collin Taylor", 104, "4-16-2001");
   //************local storage*******************
-  window.localStorage;
+  // window.localStorage;
 });
