@@ -137,17 +137,18 @@ Library.prototype.saveBooks = function () {
 }
 
 Library.prototype.retrieveBooks = function () {
-  var JSON.parse(localStorage.getItem('books'));
-  for (var i = 0; i < books.length; i++) {
-    books[i]
-  }
-  console.log((JSON.parse(localStorage.getItem('books'))));
+  var lib = JSON.parse(localStorage.getItem('books'));
+  console.log(lib);
+  var books = Object.keys(lib).forEach(function(key) {
+  console.log(key, lib[key]);
+});
+  // return books;
 }
 //*******************Search Function*********************
 //Purpose: Add a more robust search function to your app to allow you to filter by one or more book properties ○n the search function
 //Return: an array of book instances
 Library.prototype.robustSearch = function () {
-
+}
 
 //*******************Singleton****************************
 //Purpose: Make your library a singleton
