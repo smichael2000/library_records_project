@@ -11,13 +11,13 @@ Library.prototype.addBook = function (book) {
     // console.log('typeof this._bookShelf[i] is:', typeof(this._bookShelf[i]))
     // console.log('this._bookShelf[i] is:', this._bookShelf[i])
     // console.log('book is:', book);
-    if (this._bookShelf[i].title.indexOf(book)>-1) {
+    if (this._bookShelf[i].title.indexOf(book.title) >-1) {
   //***********************************************************
-    // if (this._bookShelf[i] ===book){
+    // if (this._bookShelf[i] === book){
       return false;
     }
   }
-  return this._bookShelf.push(book);
+    return this._bookShelf.push(book);
 };
 
 Library.prototype.removeBookByTitle = function (title) {
@@ -56,7 +56,10 @@ Library.prototype.getRandomBook = function () {
   //Purpose: Return a random book object from your books array
   //Return: book object if you find a book, null if there are no books
   // var rand = this._bookShelf[Math.floor(Math.random() * this._bookShelf.length)];
-  return (this._bookShelf[Math.floor(Math.random() * this._bookShelf.length)]);
+  if (this._bookShelf.length == 0) {return null;}
+  else {
+    return (this._bookShelf[Math.floor(Math.random() * this._bookShelf.length)]);
+  }
 };
 
 Library.prototype.getBookByTitle = function (title) {
@@ -93,19 +96,18 @@ Library.prototype.getBooksByAuthor = function (authorName) {
 
 };
 
-Library.prototype.addBooks = function (book) {
+Library.prototype.addBooks = function (books) {
   //Purpose: Takes multiple books, in the form of an array of book objects, and adds the objects to your books array.
   //Return: number number of books successfully added, 0 if no books were added
-  if (Array.isArray(newBooks)) {
-    var addedBooks = 0;
-    for (var i = 0; i < newBooks.length; i++) {
-      if (this.addBook(newBooks[i])) {
-        addedBooks ++;
+  if (Array.isArray(books)) {
+    var originalLength = this._bookShelf.length;
+    for (var i = 0; i < books.length; i++) {
+      if (this.addBook(books[i])) {
       }
     }
   }
   // console.log(this._bookShelf);
-  return (addedBooks + " books were added to the library.");
+  return (this._bookShelf.length - originalLength + " books were added to the library.");
 };
 
 Library.prototype.getDistinctAuthors = function () {
@@ -126,6 +128,30 @@ Library.prototype.getRandomAuthorNames = function () {
   else {return this.getRandomBook().author;}
 };
 
+//*******************Local Storage**********************
+//Stores data as strings - need to parse to convert back to objects when retrieve
+//Purpose: Use localstorage and JSON.stringify to save the state of your library
+Library.prototype.saveBooks = function () {
+  console.log(this._bookShelf);
+  localStorage.setItem('books', JSON.stringify(this._bookShelf));
+}
+
+Library.prototype.retrieveBooks = function () {
+  var JSON.parse(localStorage.getItem('books'));
+  for (var i = 0; i < books.length; i++) {
+    books[i]
+  }
+  console.log((JSON.parse(localStorage.getItem('books'))));
+}
+//*******************Search Function*********************
+//Purpose: Add a more robust search function to your app to allow you to filter by one or more book properties ○n the search function
+//Return: an array of book instances
+Library.prototype.robustSearch = function () {
+
+
+//*******************Singleton****************************
+//Purpose: Make your library a singleton
+//Note: A prototyped book class should also be made, with each ‘book’ in your library being an instance of the book class.
 
 // Create book as object
 var Book = function(title, author, numberOfPages, publishDate){
@@ -152,22 +178,8 @@ var newBooks = [
   new Book("Catcher in the Rye", "J.D. Salinger", 277, "7-16-1951"),
   new Book("The Undoing Project", "Michael Lewis", 368, "12-6-2016"),
   new Book("The Graveyard Book", "Neil Gaiman", 312, "9-30-2008"),
-  new Book("The New New Thing", "Michael Lewis", 349, "10-17-1999"),
-  new Book("The Shining", "Petra", 501, "9-28-1997")
+  new Book("The New New Thing", "Michael Lewis", 349, "10-17-1999")
 ];
-//test array - books already in library
-// var newBooks = [
-//   new Book ("The Big Four", "Agatha Christie", 282, "1-27-1927");
-//   new Book ("A Thousand Acres", "Jane Smiley", 367, "10-23-1991");
-// ]
-//*******************Local Storage**********************
-//Stores data as strings - need to parse to convert back to objects when retireve
-
-var JSONReadyLibrary = JSON.stringify(this._bookShelf);
-localStorage.setItem("books", )
-
-JSON.parse(localStorage.books).find(book=>this._bookShelf.author==='Petra' && this._bookShelf.title ==='The Shining')
-
 
 document.addEventListener("DOMContentLoaded", function() {
   window.gLibrary = new Library();
