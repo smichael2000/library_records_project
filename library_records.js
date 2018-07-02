@@ -9,8 +9,8 @@ Library.prototype.addBook = function (book) {
   //Return:boolean true if it is not already added, false if it is already added
   for (var i = 0; i < this._booksInLibrary.length; i++) {
   //error debugging ********************************************
-    // console.log('typeof this._bookShelf[i] is:', typeof(this._bookShelf[i]))
-    // console.log('this._bookShelf[i] is:', this._bookShelf[i])
+    // console.log('typeof this._booksInLibrary[i] is:', typeof(this._booksInLibrary[i]))
+    // console.log('this.__booksInLibrary is:', this._booksInLibrary[i])
     // console.log('book is:', book);
     if (this._booksInLibrary[i].title.indexOf(book.title) >-1) {
   //***********************************************************
