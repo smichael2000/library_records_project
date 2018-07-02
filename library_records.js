@@ -17,7 +17,8 @@ Library.prototype.addBook = function (book) {
       return false;
     }
   }
-    return this._booksInLibrary.push(book);
+    this._booksInLibrary.push((book));
+      return true;
 };
 
 Library.prototype.removeBookByTitle = function (title) {
@@ -144,7 +145,7 @@ Library.prototype.retrieveBooks = function () {
   //   libraryBooks.push(new Book (key, books[key])); //this line not doing what I want it to
   // })
   for (var i = 0; i < books.length; i++) {
-    libraryBooks.push(new Book(books[i].title, books[i].author, books[i].numberOfPages, books[i].pubDate));
+    libraryBooks.push(new Book(books[i].title,books[i].author,books[i].numberOfPages, books[i].pubDate));
     // console.log(libraryBooks);
   }
   return libraryBooks;
@@ -167,7 +168,7 @@ Library.prototype.robustSearch = function () {
 //     var instance;
 //
 //     // Singleton
-//     librarySingleton = function() {
+//     window.librarySingleton = function() {
 //         return instance;
 //     };
 //
@@ -181,6 +182,8 @@ Library.prototype.robustSearch = function () {
 //     instance.constructor = librarySingleton;
 //
 //     return instance;
+       // this._booksInLibrary = [];
+//    };
 
 //*************** Create book as object ***********************
 var Book = function(title, author, numberOfPages, publishDate){
@@ -190,7 +193,10 @@ var Book = function(title, author, numberOfPages, publishDate){
   this.publishDate = new Date(publishDate);
 }
 //************* Books to add to library **********************
-//************* Use .addBooks fuxn ***************************
+//************* Use gLibrary.addBook(newBook) or .addBooks(newBooks) ***************************
+var newBook = [
+  new Book("Of Mice and Men", "John Steinbech", 132, "2-25-1939"),
+]
 var newBooks = [
   new Book("Catcher in the Rye", "J.D. Salinger", 277, "7-16-1951"),
   new Book("The Undoing Project", "Michael Lewis", 368, "12-6-2016"),
