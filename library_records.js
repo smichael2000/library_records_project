@@ -134,14 +134,14 @@ Library.prototype.saveBooks = function () {
 Library.prototype.retrieveBooks = function () {
 //loop through JSON array and get keys and values
 //************** Not Working*******************************
-//not instantiating books as book objects in foreach loop
+//not instantiating books as book objects in foreach loop or in for loop
 //also need to link new array to booksInLibrary
   var libraryBooks = [];
   var books = JSON.parse(localStorage.getItem('books'));
   //
   // Object.keys(books).forEach(function(key){
   //   console.log(key, books[key]);
-  //   libraryBooks.push(new Book (key, books[key]));
+  //   libraryBooks.push(new Book (key, books[key])); //this line not doing what I want it to
   // })
   for (var i = 0; i < books.length; i++) {
     libraryBooks.push(new Book(books[i].title, books[i].author, books[i].numberOfPages, books[i].pubDate));
@@ -201,7 +201,7 @@ var newBooks = [
   new Book ("The Big Four", "Agatha Christie", 282, "1-27-1927"),
   new Book ("A Thousand Acres", "Jane Smiley", 367, "10-23-1991"),
   new Book ("To Kill a Mockingbird", "Harper Lee", 281, "7-11-1960"),
-  new Book ("The Shining", "Petra", 501, "9-28-1997"),
+  new Book ("The Shining", "Petra", 501, "9-28-1997"),//not adding as only unique titles incouded in library
   new Book ("Holden Reincarnated", "Collin Taylor", 104, "4-16-2001")
 ];
 
