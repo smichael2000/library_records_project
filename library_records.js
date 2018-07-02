@@ -14,7 +14,6 @@ Library.prototype.addBook = function (book) {
     // console.log('book is:', book);
     if (this._booksInLibrary[i].title.indexOf(book.title) >-1) {
   //***********************************************************
-    // if (this._bookShelf[i] === book){
       return false;
     }
   }
@@ -41,8 +40,6 @@ Library.prototype.removeBookByAuthor = function (authorName) {
   //Remove a specific book from your books array by the author name.
   //Return: boolean true if the book(s) were removed, false if no books match
   var originalLength = this._booksInLibrary.length;
-  //Removes all books by specific author
-  //Need to figure out iterator ******************************************
   for(var i = 0; i<this._booksInLibrary.length; i++){
     if (this._booksInLibrary[i].author.indexOf(authorName)>-1) {
       this._booksInLibrary.splice(i,1);
@@ -56,7 +53,6 @@ Library.prototype.removeBookByAuthor = function (authorName) {
 Library.prototype.getRandomBook = function () {
   //Purpose: Return a random book object from your books array
   //Return: book object if you find a book, null if there are no books
-  // var rand = this._bookShelf[Math.floor(Math.random() * this._bookShelf.length)];
   if (this._booksInLibrary.length == 0) {return null;}
   else {
     return (this._booksInLibrary[Math.floor(Math.random() * this._booksInLibrary.length)]);
@@ -77,7 +73,6 @@ Library.prototype.getBookByTitle = function (title) {
     return ("There are no books by that title");
   }
   else {
-    console.log("There are " + booksbytitle.length + " books with the title, " + title + ": ")
     return booksbytitle;
   }
 };
@@ -107,7 +102,6 @@ Library.prototype.addBooks = function (books) {
       }
     }
   }
-  // console.log(this._bookShelf);
   return (this._booksInLibrary.length - originalLength + " books were added to the library.");
 };
 
@@ -139,18 +133,21 @@ Library.prototype.saveBooks = function () {
 
 Library.prototype.retrieveBooks = function () {
 //loop through JSON array and get keys and values
+//************** Not Working*******************************
+//not instantiating books as book objects in foreach loop
+//also need to link new array to booksInLibrary
   var libraryBooks = [];
   var books = JSON.parse(localStorage.getItem('books'));
-  Object.entries(books).map/forEach(([key, value]) => console.log(key, value));
+  //
   // Object.keys(books).forEach(function(key){
   //   console.log(key, books[key]);
   //   libraryBooks.push(new Book (key, books[key]));
   // })
-  // for (var i = 0; i < book.length; i++) {
-  //   libraryBooks.push(new Book(JSON.parse(localStorage.getItem(book[i].title, book[i].author, book[i].numberOfPages, book[i].pubDate))));
-  //   console.log(libraryBooks);
-  // // }
-  // return libraryBooks;
+  for (var i = 0; i < books.length; i++) {
+    libraryBooks.push(new Book(books[i].title, books[i].author, books[i].numberOfPages, books[i].pubDate));
+    // console.log(libraryBooks);
+  }
+  return libraryBooks;
 };
 
 //*******************Search Function*********************
@@ -171,6 +168,7 @@ var Book = function(title, author, numberOfPages, publishDate){
   this.publishDate = new Date(publishDate);
 }
 //************* Books to add to library **********************
+//************* Use .addBooks fuxn ***************************
 var newBooks = [
   new Book("Catcher in the Rye", "J.D. Salinger", 277, "7-16-1951"),
   new Book("The Undoing Project", "Michael Lewis", 368, "12-6-2016"),
