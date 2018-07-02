@@ -1,3 +1,5 @@
+//To Do:  tolowercase, search
+
 //**************** Constructor*************
 var Library = function(){
   this._booksInLibrary = new Array();
@@ -136,7 +138,6 @@ Library.prototype.retrieveBooks = function () {
 //loop through JSON array and get keys and values
 //************** Not Working*******************************
 //not instantiating books as book objects in foreach loop or in for loop
-//also need to link new array to booksInLibrary
   var libraryBooks = [];
   var books = JSON.parse(localStorage.getItem('books'));
   //
@@ -168,7 +169,7 @@ Library.prototype.robustSearch = function () {
 //     var instance;
 //
 //     // Singleton
-//     window.librarySingleton = function() {
+//     window.librarySingleton = function() {  // Added window. during code reviews
 //         return instance;
 //     };
 //
@@ -181,7 +182,6 @@ Library.prototype.robustSearch = function () {
 //     // reset the constructor pointer
 //     instance.constructor = librarySingleton;
 //
-//     return instance;
        // this._booksInLibrary = [];
 //    };
 
@@ -195,7 +195,7 @@ var Book = function(title, author, numberOfPages, publishDate){
 //************* Books to add to library **********************
 //************* Use gLibrary.addBook(newBook) or .addBooks(newBooks) ***************************
 var newBook = [
-  new Book("Of Mice and Men", "John Steinbech", 132, "2-25-1939"),
+  new Book("Of Mice and Men", "John Steinbeck", 132, "2-25-1939"),
 ]
 var newBooks = [
   new Book("Catcher in the Rye", "J.D. Salinger", 277, "7-16-1951"),
@@ -207,7 +207,7 @@ var newBooks = [
   new Book ("The Big Four", "Agatha Christie", 282, "1-27-1927"),
   new Book ("A Thousand Acres", "Jane Smiley", 367, "10-23-1991"),
   new Book ("To Kill a Mockingbird", "Harper Lee", 281, "7-11-1960"),
-  new Book ("The Shining", "Petra", 501, "9-28-1997"),//not adding as only unique titles incouded in library
+  new Book ("The Shining", "Petra", 501, "9-28-1997"),//not adding as only unique titles included in library
   new Book ("Holden Reincarnated", "Collin Taylor", 104, "4-16-2001")
 ];
 
