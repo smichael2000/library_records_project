@@ -162,25 +162,25 @@ Library.prototype.robustSearch = function () {
 //This is not complete - I understand the basic singleton design pattern, but I am challenged by the creation of a prototyped
 //book class
 
-function librarySingleton() {
-    // instance stores as reference to Singleton
-    var instance;
-
-    // Singleton
-    librarySingleton = function() {
-        return instance;
-    };
-
-    // carry over the prototype
-    librarySingleton.prototype = this;
-
-    // the instance
-    instance = new librarySingleton();
-
-    // reset the constructor pointer
-    instance.constructor = librarySingleton;
-
-    return instance;
+// function librarySingleton() {
+//     // instance stores as reference to Singleton
+//     var instance;
+//
+//     // Singleton
+//     librarySingleton = function() {
+//         return instance;
+//     };
+//
+//     // carry over the prototype
+//     librarySingleton.prototype = this;
+//
+//     // the instance
+//     instance = new librarySingleton();
+//
+//     // reset the constructor pointer
+//     instance.constructor = librarySingleton;
+//
+//     return instance;
 
 //*************** Create book as object ***********************
 var Book = function(title, author, numberOfPages, publishDate){
