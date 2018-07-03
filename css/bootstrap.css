@@ -1,0 +1,11 @@
+.secondary-header {
+  padding-top: 2%;
+  border-top: 2% solid #768f3a;
+}
+
+.menu-item {
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 1px;
+  font-weight: normal;
+  font-size: 11px;
+}
