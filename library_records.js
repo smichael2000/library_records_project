@@ -45,7 +45,7 @@ Library.prototype.removeBookByAuthor = function (authorName) {
   //Return: boolean true if the book(s) were removed, false if no books match
   var originalLength = this._booksInLibrary.length;
   for(var i = 0; i<this._booksInLibrary.length; i++){
-    if (this._booksInLibrary[i].author.toLowerCase().indexOf(authorName)>-1) {
+    if (this._booksInLibrary[i].author.toLowerCase().indexOf(authorName.toLowerCase())>-1) {
       this._booksInLibrary.splice(i,1);
       --i; // Correct the index value due to splice()
     }
@@ -89,10 +89,9 @@ Library.prototype.getBooksByAuthor = function (authorName) {
     if (this._booksInLibrary[i].author.toLowerCase().indexOf(authorName.toLowerCase())>-1){
     // if (this._bookShelf[i].author === authorName) {
 
-      booksByAuthor.push(this._booksInLibrary[i].title);
+      booksByAuthor.push(this._booksInLibrary[i]);
     }
   }
-  // return "The library has the following books by " + authorName +": " + booksByAuthor;
   return booksByAuthor;
 };
 
@@ -138,7 +137,7 @@ Library.prototype.saveBooks = function () {
 Library.prototype.retrieveBooks = function () {
 //loop through JSON array and get keys and values
 //************** Not Working in Firefox*******************************
-//not instantiating books as book objects in foreach loop or in for loop
+//not instantiating books as book objects in foreach loop or in for loop - works in Chrome
   var libraryBooks = [];
   var books = JSON.parse(localStorage.getItem('books'));
   //
