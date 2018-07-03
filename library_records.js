@@ -1,4 +1,4 @@
-//To Do:  tolowercase, search
+
 
 //**************** Constructor*************
 var Library = function(){
@@ -20,6 +20,7 @@ Library.prototype.addBook = function (book) {
     }
   }
     this._booksInLibrary.push((book));
+      this.saveBooks();
       return true;
 };
 
@@ -28,15 +29,15 @@ Library.prototype.removeBookByTitle = function (title) {
   //Return:boolean true if the book(s) were removed, false if no books match
   var originalLength = this._booksInLibrary.length;
   for(var i = 0; i<this._booksInLibrary.length; i++){
-    if (this._booksInLibrary[i].title.indexOf(title) > -1) {
+    if (this._booksInLibrary[i].title.toLowerCase().indexOf(title) > -1) {
       this._booksInLibrary.splice(i,1);
       --i; // Correct the index value due to splice()
     }
   }
   if (originalLength != this._booksInLibrary.length) {
-    console.log (originalLength - this._booksInLibrary.length + " books with the title, " + title + ", were removed from the library.");
+    this.saveBooks();
     return true;}
-  else {return false;}
+  return false;
 };
 
 Library.prototype.removeBookByAuthor = function (authorName) {
@@ -44,22 +45,24 @@ Library.prototype.removeBookByAuthor = function (authorName) {
   //Return: boolean true if the book(s) were removed, false if no books match
   var originalLength = this._booksInLibrary.length;
   for(var i = 0; i<this._booksInLibrary.length; i++){
-    if (this._booksInLibrary[i].author.indexOf(authorName)>-1) {
+    if (this._booksInLibrary[i].author.toLowerCase().indexOf(authorName)>-1) {
       this._booksInLibrary.splice(i,1);
       --i; // Correct the index value due to splice()
     }
   }
-  if (originalLength != this._booksInLibrary.length) {return true;}
-  else {return false;}
+  if (originalLength != this._booksInLibrary.length) {
+    console.log (originalLength - this._booksInLibrary.length + " books by the author, " + authorName + ", were removed from the library.");
+    this.saveBooks();
+    return true;
+  }
+  return false;
 };
 
 Library.prototype.getRandomBook = function () {
   //Purpose: Return a random book object from your books array
   //Return: book object if you find a book, null if there are no books
   if (this._booksInLibrary.length == 0) {return null;}
-  else {
-    return (this._booksInLibrary[Math.floor(Math.random() * this._booksInLibrary.length)]);
-  }
+  return (this._booksInLibrary[Math.floor(Math.random() * this._booksInLibrary.length)]);
 };
 
 Library.prototype.getBookByTitle = function (title) {
@@ -67,7 +70,7 @@ Library.prototype.getBookByTitle = function (title) {
   //Return: array of book objects if you find books with matching titles, empty array if no books are found
   var booksbytitle = [];
   for(var i = 0; i<this._booksInLibrary.length; i++){
-    if (this._booksInLibrary[i].title.indexOf(title)>-1) {
+    if (this._booksInLibrary[i].title.toLowerCase().indexOf(title.toLowerCase())>-1) {
     // if (this._bookShelf[i].title === title) {
       booksbytitle.push(this._booksInLibrary[i]);
     }
@@ -75,9 +78,7 @@ Library.prototype.getBookByTitle = function (title) {
   if (booksbytitle.length == 0) {
     return ("There are no books by that title");
   }
-  else {
-    return booksbytitle;
-  }
+  return booksbytitle;
 };
 
 Library.prototype.getBooksByAuthor = function (authorName) {
@@ -85,14 +86,14 @@ Library.prototype.getBooksByAuthor = function (authorName) {
 //to the function.
   var booksByAuthor = [];
   for(var i = 0; i<this._booksInLibrary.length; i++){
-    if (this._booksInLibrary[i].author.indexOf(authorName)>-1){
+    if (this._booksInLibrary[i].author.toLowerCase().indexOf(authorName.toLowerCase())>-1){
     // if (this._bookShelf[i].author === authorName) {
 
       booksByAuthor.push(this._booksInLibrary[i].title);
     }
   }
-  return ("The library has the following books by " + authorName +": " + booksByAuthor);
-
+  // return "The library has the following books by " + authorName +": " + booksByAuthor;
+  return booksByAuthor;
 };
 
 Library.prototype.addBooks = function (books) {
@@ -123,7 +124,7 @@ Library.prototype.getRandomAuthorNames = function () {
   //Purpose: Retrieves a random author name from your books collection
   //Return: string author name, null if no books exist
   if (this._booksInLibrary.length == 0) {return ("Null");}
-  else {return this.getRandomBook().author;}
+  return this.getRandomBook().author;
 };
 
 //*******************Local Storage**********************
@@ -136,12 +137,12 @@ Library.prototype.saveBooks = function () {
 
 Library.prototype.retrieveBooks = function () {
 //loop through JSON array and get keys and values
-//************** Not Working*******************************
+//************** Not Working in Firefox*******************************
 //not instantiating books as book objects in foreach loop or in for loop
   var libraryBooks = [];
   var books = JSON.parse(localStorage.getItem('books'));
   //
-  // Object.keys(books).forEach(function(key){
+  //Object.keys(books).forEach(function(key){
   //   console.log(key, books[key]);
   //   libraryBooks.push(new Book (key, books[key])); //this line not doing what I want it to
   // })
@@ -155,35 +156,26 @@ Library.prototype.retrieveBooks = function () {
 //*******************Search Function*********************
 //Purpose: Add a more robust search function to your app to allow you to filter by one or more book properties ○n the search function
 //Return: an array of book instances
-Library.prototype.robustSearch = function () {
+Library.prototype.search = function () {
 }
 
 //*******************Singleton****************************
 //Purpose: Make your library a singleton
 //Note: A prototyped book class should also be made, with each ‘book’ in your library being an instance of the book class.
-//This is not complete - I understand the basic singleton design pattern, but I am challenged by the creation of a prototyped
-//book class
 
-// function librarySingleton() {
-//     // instance stores as reference to Singleton
-//     var instance;
-//
-//     // Singleton
-//     window.librarySingleton = function() {  // Added window. during code reviews
-//         return instance;
-//     };
-//
-//     // carry over the prototype
-//     librarySingleton.prototype = this;
-//
-//     // the instance
-//     instance = new librarySingleton();
-//
-//     // reset the constructor pointer
-//     instance.constructor = librarySingleton;
-//
-       // this._booksInLibrary = [];
-//    };
+function Singleton() {
+    // instance stores as reference to Singleton
+    var instance;
+
+    // Singleton
+    window.Singleton = function() {  // Added window. during code reviews
+        return instance;
+    };
+
+    instance = this;
+
+    this._booksInLibrary = [];
+   };
 
 //*************** Create book as object ***********************
 var Book = function(title, author, numberOfPages, publishDate){
@@ -213,4 +205,5 @@ var newBooks = [
 
 document.addEventListener("DOMContentLoaded", function() {
   window.gLibrary = new Library();
+  window.gLibrary._booksInLibrary = gLibrary.retrieveBooks();
 });
