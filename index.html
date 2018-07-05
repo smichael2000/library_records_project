@@ -111,13 +111,13 @@
                   <p class="">For a list of books on the New York Times best sellers lists, click <a href="https://www.nytimes.com/books/best-sellers/">here</a></p>
                 </a>
                 </div>
-                <div class="col box">
-                  <image src="https://www.google.com/imgres?imgurl=http%3A%2F%2Fwww.thebarefootwriter.com%2Fwp-content%2Fuploads%2F2015%2F12%2FGoodreads-Logo-1024x576-7abf5bd8d98b9d10.jpg&imgrefurl=http%3A%2F%2Fwww.thebarefootwriter.com%2Fmap-your-book-blog%2Fhow-to-make-goodreads-work-for-you&docid=Rhe2qTFbBGHEhM&tbnid=w-A0-HF58ot16M%3A&vet=10ahUKEwjG76fPmIjcAhVjxFkKHfDWBUEQMwiaASgIMAg..i&w=1024&h=576&client=firefox-b-1-ab&bih=721&biw=1440&q=goodreads&ved=0ahUKEwjG76fPmIjcAhVjxFkKHfDWBUEQMwiaASgIMAg&iact=mrc&uact=8GoodReads"></a>
+                <div class="col gbox">
+                  <img alt="Goodreads" src="https://s.gr-assets.com/assets/home/header_logo-8d96d7078a3d63f9f31d92282fd67cf4.png"></img>
                   <p class="">For a list of online goodreads book clubs, click <a href="https://www.goodreads.com/group/show_tag/bookclub">here</a></p>
-                </image>
               </div>
                 <div class="col box">
-                  <p class="hdline">Readergirlz Book Club</p>
+                  <img alt="rgz" src="https://www.google.com/imgres?imgurl=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Fd2%2F82%2F80%2Fd28280f9c155690edde4903f3afded07.png&imgrefurl=https%3A%2F%2Fwww.pinterest.co.uk%2Fpin%2F560135272387788845%2F&docid=aBjs7iuYresDhM&tbnid=M0q60R4NdqTgMM%3A&vet=10ahUKEwjUq-mUj4ncAhVkmeAKHVLMDDwQMwg5KAMwAw..i&w=709&h=345&itg=1&bih=699&biw=1372&q=readergirlz%20logo&ved=0ahUKEwjUq-mUj4ncAhVkmeAKHVLMDDwQMwg5KAMwAw&iact=mrc&uact=8"></img>
+
                   <p class="">For an online book club that engages young men and women, click <a href="https://www.goodreads.com/group/show/42560-the-young-adult-book-club">here</a></p>
                 </a>
               </div>
@@ -133,19 +133,34 @@
                 <h4 class="modal-title">Welcome to The Library Project</h4>
               </div>
               <div class="modal-body">
-                <h6 class="modal-input">The Library Project wants everyone to read.</h6>
-                <h6 class="modal-input">We've created this library to help track the books in your library.</h6>
-                <h6 class="modal-input">You may create an account below:</h6>
-                <input class="modal-input" type="search" placeholder="Username">
-                <input class="modal-input" type="search" placeholder="Password">
-                <input class="modal-input" type="search" placeholder="Confirm Password">
+                <h6 class="modal-input">We help readers find and share good books.</h6>
+                <p class="modal-text"><h8>New here?<a href=""> Create a free account</a></h8></p>
+                <form class="form-horizontal" role="form">
+                  <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Email:</label>
+                  <div class="col-sm-10">
+                    <input type="email" class="form-control" id="" placeholder="Email">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                  <div class="col-sm-10">
+                    <input type="password" class="form-control" id="" placeholder="Password">
+                  </div>
               </div>
+              <div class="form-group">
+                <label for="inputPassword3" class="col-sm-7 control-label">Confirm Password</label>
+                <div class="col-sm-10">
+                  <input type="password" class="form-control" id="" placeholder="Confirm Password">
+                </div>
+            </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-tertiary" data-dismiss="modal">Create My Account</button>
               </div>
             </div>
           </div>
         </div>
+      </div>
         <!-- Modal for Contact Us-->
         <div class="modal" id="contactModal">
           <div class="modal-dialog">
@@ -164,12 +179,22 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h4 class="modal-title">Please login below."</h4>
+                <h4 class="modal-title">Please login below.</h4>
               </div>
             <div class="modal-body">
-              <input type="search" placeholder="Username">
-              <input type="search" placeholder="Password">
-              <p><h8>If you do not have an account, please go to the New to TLP section.</h8></p>
+              <form class="form-horizontal" role="form">
+                <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Username:</label>
+                <div class="col-sm-10">
+                  <input type="email" class="form-control" id="" placeholder="Email or Username">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                <div class="col-sm-10">
+                  <input type="password" class="form-control" id="" placeholder="Author">
+                </div>
+              <p class="modal-text"><h8>New here?<a href="">Create a free account</a></h8></p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-tertiary" data-dismiss="modal">Go</button>
@@ -184,7 +209,6 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Add Book</h4>
           </div>
           <div class="modal-body">
             <form class="form-horizontal" role="form">
@@ -207,7 +231,7 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="inputPassword3" class="col-sm-2 control-label">Publication Date</label>
+              <label for="inputPassword3" class="col-sm-5 control-label">Publication Date</label>
               <div class="col-sm-10">
                 <input type="password" class="form-control" id="" placeholder="Pub Date">
               </div>
@@ -234,43 +258,22 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Remove Book</h4>
           </div>
           <div class="modal-body">
             <form class="form-horizontal" role="form">
             <div class="form-group">
-              <label for="inputEmail3" class="col-sm-2 control-label">Title*</label>
+              <label for="inputEmail3" class="col-sm-5 control-label">Remove by Title</label>
               <div class="col-sm-10">
                 <input type="email" class="form-control" id="" placeholder="Title">
               </div>
             </div>
             <div class="form-group">
-              <label for="inputPassword3" class="col-sm-2 control-label">Author*</label>
+              <label for="inputPassword3" class="col-sm-5 control-label">Remove by Author</label>
               <div class="col-sm-10">
                 <input type="password" class="form-control" id="" placeholder="Author">
               </div>
             </div>
-            <div class="form-group">
-              <label for="inputPassword3" class="col-sm-2 control-label">Pages</label>
-              <div class="col-sm-10">
-                <input type="password" class="form-control" id="" placeholder="Pages">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="inputPassword3" class="col-sm-2 control-label">Publication Date</label>
-              <div class="col-sm-10">
-                <input type="password" class="form-control" id="" placeholder="Pub Date">
-              </div>
-            </div>
-            <p>Synopsis</p>
-            <textarea class="form-control" rows="3"></textarea>
-            <p class="book-cover">Book Cover</p>
-          <button type="button" class="btn btn-default btn-md file-btn">Choose File</button>
-          <div class="row modal-footer removeBook">
-            <div class="col">
-              <button type="button" class="btn btn-default btn-queue" data-dismiss="modal">Queue Book To Remove</button>
-            </div>
-            <div class="col">
+            <div>
               <button type="button" class="btn btn-primary"><i class="fas fa-minus"></i>Remove Books From Library</button>
             </div>
           </div>
