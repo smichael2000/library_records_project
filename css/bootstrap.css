@@ -27,3 +27,8 @@
   background-color: #76d7c4;
   padding-top: 4%;
 }
+
+.box {
+  border: 2px solid black;
+  margin: 3% 3% 3%;
+}
