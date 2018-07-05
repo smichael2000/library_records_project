@@ -4,6 +4,16 @@
 
 }
 
+.navbar {
+  justify-content: right;
+}
+
+.btn-no-outline {
+    margin: 0 .2rem 0 .2rem;
+    outline: none;
+}
+
+}
 .menu-item {
   border-left: 1px solid grey;
   display: inline;
@@ -23,29 +33,47 @@
 
 }
 
-.btn-go {
-  margin: 0 0 0 -20em;
+.btn-add {
+  margin: 0 0 0 1%;
+}
+
+.btn-remove {
+  margin: 0 1% 0 0;
+}
+
+.skinny {
+  padding: 0 0 0 0;
 }
 
 .buttons {
   padding-top: 5%;
 }
 
-/* .btn-add{
-  margin: 0 0 0 -30em;
+.search-control {
+  padding: 0 0 0 0;
 }
 
-.btn-remove {
-  margin: 0 0 0 80em;
-} */
+.btn-go {
+  padding: 0 0 0 0;
+}
 
-.show-books {
-  margin: 2% 0.5% 2% 0;
+.search-btn {
+  background-color: #138d75;
+  padding-bottom: 1%;
+}
+
+.btn-help {
+  margin: 1rem 2.5rem 1rem 2.5rem;
 }
 
 .show-authors {
   margin: 2% 0.5% 2% 0;
 }
+
+.removeBook {
+  margin: 0 -1% 0 0;
+}
+
 .box {
   background-color: #1abc9c;
   border: 2px solid black;
@@ -61,4 +89,8 @@
   padding-top: 2%;
   text-align: center;
 
+}
+
+.modal-input {
+  padding: 1% 1% 1% 1%;
 }
