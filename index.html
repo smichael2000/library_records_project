@@ -8,53 +8,88 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/bootstrap.css"
+    <link rel="stylesheet" href="css/bootstrap.css">
   </head>
   <body>
     <div class = "container-fluid gutter">
       <header class="header-wrapper">
         <div class = "secondary-header row">
-            <div class ="menu-alignright">
+            <div class ="menu col-md-12">
               <nav class = "secondary-menu" role="navigation">
-                <ul role="menubar" class="menu">
-                  <!-- <li role="menuitem" class="menu-item">about us</li>
-                  <li role="menuitem" class="menu-item">contact us</li>
-                  <li role="menuitem" class="menu-item">services</li> -->
-                  <li role="menuitem" class="menu-item">my account</li>
+                <ul role="menubar alignright" class="menu">
+                  <li role="menuitem" class="menu-item">ABOUT US</li>
+                  <li role="menuitem" class="menu-item">CONTACT US</li>
+                  <!-- <li role="menuitem" class="menu-item">services</li> -->
+                  <li role="menuitem" class="menu-item">MY ACCOUNT</li>
                 </ul>
               </nav>
             </div>
           </div>
         <div class = "main-header row">
-          <div class="logo">
-            <a class = "logo-link" href=""></a>
+          <div class="purpose col-md-4">
+            <h1 class = "intent">The Library Project</h1>
           </div>
-          <form role="search" class="search" method="get" action>
-            <div class = "row">
-              <div class ="col-md-3 venue">
-                <div class="form-link">
-                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                  <label class="form-check-label" for="exampleRadios1">My Library</label>
+          <div class="search-bar col-md-8">
+            <form role="search" class="search" method="get" action>
+              <div class = "row">
+                <div class ="col-md-2 venue">
+                  <div class="form-link">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                    <label class="form-check-label" for="exampleRadios1">My Library</label>
+                  </div>
+                  <div class="form-link">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                    <label class="form-check-label" for="exampleRadios2">Amazon</label>
+                  </div>
                 </div>
-                <div class="form-link">
-                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                  <label class="form-check-label" for="exampleRadios2">Amazon</label>
+                <div class="search-control col-md-7 aligncenter">
+                  <input type="search" placeholder="Search by title or author"
+                </div>
+                <div class="btn col-md-1"
+                  <button>Go!</button>
                 </div>
               </div>
-              <div class="search-control col-md-8">
-                <input type="search" placeholder="Search by title or author"
-              </div>
-              <div class="btn col-md-1"
-                <button>Go!</button>
-              </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
-      </header>
+        <div class= "bottom-header row">
+        </div>
+    </header>
       <main>
-        <table>
+        <table class="table table-striped">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Title</th>
+              <th scope="col">Author</th>
+              <th scope="col">Pub Date</th>
+              <th scope="col">No. of Pages</th>
+              <th scope="col">Genre</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Larry</td>
+              <td>the Bird</td>
+              <td>@twitter</td>
+            </tr>
+          </tbody>
         </table>
-        <section>
+        <section class = "suggestions">
+
+
         </section>
       </main>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

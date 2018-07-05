@@ -1,11 +1,29 @@
 .secondary-header {
-  padding-top: 2%;
-  border-top: 2% solid #768f3a;
+  border-top: 4px solid #1abc9c;
+  padding-top: 1%;
+
 }
 
 .menu-item {
+  border-left: 1px solid grey;
+  display: inline;
   font-family: 'Montserrat', sans-serif;
-  letter-spacing: 1px;
   font-weight: normal;
-  font-size: 11px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  padding: 2% 2% 2% 2%;
+  text-align: right;
+
+}
+
+.main-header {
+  background-color: #138d75;
+  padding-top: 3%;
+  padding-bottom: 3%;
+
+}
+
+.bottom-header {
+  background-color: #76d7c4;
+  padding-top: 4%;
 }
