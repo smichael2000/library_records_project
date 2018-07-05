@@ -11,28 +11,26 @@
     <link rel="stylesheet" href="css/bootstrap.css">
   </head>
   <body>
-    <div class = "container-fluid gutter">
+    <div class = "container-fluid aligncenter">
       <header class="header-wrapper">
-        <div class = "secondary-header row">
-            <div class ="menu col-md-12">
-              <nav class = "secondary-menu" role="navigation">
-                <ul role="menubar alignright" class="menu">
-                  <li role="menuitem" class="menu-item">ABOUT US</li>
-                  <li role="menuitem" class="menu-item">CONTACT US</li>
-                  <!-- <li role="menuitem" class="menu-item">services</li> -->
-                  <li role="menuitem" class="menu-item">MY ACCOUNT</li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-        <div class = "main-header row">
-          <div class="purpose col-md-4">
+        <section class = "secondary-header row">
+          <nav class = "navbar menu col-md-12" role="navigation">
+            <ul role="menubar alignright" class="menu">
+            <!-- <li role="menuitem" class="menu-item">ABOUT US</li>
+            <li role="menuitem" class="menu-item">CONTACT US</li> -->
+            <!-- <li role="menuitem" class="menu-item">services</li> -->
+            <li role="menuitem" class="menu-item">MY ACCOUNT</li>
+            </ul>
+          </nav>
+        </section>
+        <section class = "row main-header">
+          <div class="purpose col-sm-4">
             <h1 class = "intent">The Library Project</h1>
           </div>
-          <div class="search-bar col-md-8">
+          <div class="search-bar col-sm-8">
             <form role="search" class="search" method="get" action>
               <div class = "row">
-                <div class ="col-md-2 venue">
+                <div class ="col-sm-2 venue">
                   <div class="form-link">
                     <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
                     <label class="form-check-label" for="exampleRadios1">My Library</label>
@@ -42,20 +40,112 @@
                     <label class="form-check-label" for="exampleRadios2">Amazon</label>
                   </div>
                 </div>
-                <div class="search-control col-md-7 aligncenter">
-                  <input type="search" placeholder="Search by title or author"
+                <div class="search-control col-sm-7">
+                  <input type="search" placeholder="Search by title, author or genre">
                 </div>
-                <div class="btn col-md-1"
+                <div class="btn-go col-sm-3">
                   <button>Go!</button>
                 </div>
               </div>
             </form>
           </div>
+          <div class = "row d-flex justify-content-between buttons">
+              <button class="btn btn-default btn-sm btn-add" data-toggle="modal" data-target="#myModalAdd">Add Book</button>
+              <button class="btn btn-default btn-sm btn-remove" data-toggle="modal" data-target="#myModalRemove">Remove Book</button>
+          </div>
+
+          <!-- The Modal -->
+          <div class="modal" id="myModalAdd">
+            <div class="modal-dialog">
+              <div class="modal-content">
+        <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title">Book to Add to Library</h4>
+                </div>
+        <!-- Modal body -->
+              <div class="modal-body">
+                <input type="search" placeholder="Book Title">
+                <input type="search" placeholder="Author">
+                <input type="search" placeholder="Publication Date">
+                <input type="search" placeholder="No. of Pages">
+                <input type="search" placeholder="Genre">
+              </div>
+        <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-tertiary" data-dismiss="modal">Add</button>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class= "bottom-header row">
+      </div>
+        <!-- The Modal -->
+          <div class="modal" id="myModalRemove">
+            <div class="modal-dialog">
+              <div class="modal-content">
+        <!-- Modal Header -->
+        <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title">Book to Remove from Library</h4>
+                </div>
+        <!-- Modal body -->
+              <div class="modal-body">
+                <input type="search" placeholder="Book Title">
+                <input type="search" placeholder="Author">
+                <input type="search" placeholder="Publication Date">
+                <input type="search" placeholder="No. of Pages">
+                <input type="search" placeholder="Genre">
+              </div>
+        <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Remove</button>
+          </div>
+            </div>
+          </div>
         </div>
+      </section>
+      <section class ="row">
+        <div class = "col-md-4 show-books">
+          <button class="btn btn-default btn-sm" type="submit"> Show All Books</button>
+          <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModalRandomBook"> Show Random Book</button>
+        </div>
+        <div class = "col-md-4 show-authors">
+          <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModalAllAuthors"> Show All Authors</button>
+          <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModalRandomAuthor"> Show Random Author</button>
+        </div>
+        <!-- Modal for Random Book-->
+        <div class="modal" id="myModalRandomBook">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-body">The Catcher in the Rye by JD Salinger</div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal for All Authors-->
+        <div class="modal" id="myModalAllAuthors">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-body">
+                <p>Rachel Carson</p>
+                <p>Michael Lewis</p>
+                <p>JD Salinger</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal for Random Author-->
+        <div class="modal" id="myModalRandomAuthor">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-body">
+                <p>Rachel Carson</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
     </header>
-      <main>
+    <main>
         <table class="table table-striped">
           <thead class="thead-light">
             <tr>
@@ -68,37 +158,40 @@
           </thead>
           <tbody>
             <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
+              <td>The Catcher in the Rye</td>
+              <td>JD Salinger</td>
+              <td>July 16, 1951</td>
+              <td>277</td>
+              <td>Fiction</td>
             </tr>
             <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
+              <td>Silent Spring</td>
+              <td>Rachel Carson</td>
+              <td>September 27, 1962</td>
+              <td>403</td>
+              <td>Nonfiction</td>
             </tr>
             <tr>
-              <th scope="row">3</th>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>@twitter</td>
+              <td>The New New Thing</td>
+              <td>Michael Lewis</td>
+              <td>October 17, 1999</td>
+              <td>272</td>
+              <td>Finance</td>
             </tr>
           </tbody>
         </table>
         <section class = "suggestions">
           <h4>What Others Are Reading</h4>
               <aside class="row">
-                <div class="recs col-md-2 box">
-                  <p class="hdline">New York Times Best Sellers</p>
+                <div class="nytimes col-md-2 box">
+                  <p class="nyhdline">New York Times Best Sellers</p>
                   <p class="">For a list of books on the New York Times best sellers lists, click <a href="https://www.nytimes.com/books/best-sellers/">here</a></p>
                 </a>
                 </div>
-                <div class="recs col-md-2 box">
-                  <p class="hdline">GoodReads Book Clubs</p>
-                  <p class="">For a list of online GoodReads book clubs, click <a href="https://www.goodreads.com/group/show_tag/bookclub">here</a></p>
-                </a>
+                <div class="col-md-2 box">
+                  <image src="https://www.google.com/imgres?imgurl=http%3A%2F%2Fwww.thebarefootwriter.com%2Fwp-content%2Fuploads%2F2015%2F12%2FGoodreads-Logo-1024x576-7abf5bd8d98b9d10.jpg&imgrefurl=http%3A%2F%2Fwww.thebarefootwriter.com%2Fmap-your-book-blog%2Fhow-to-make-goodreads-work-for-you&docid=Rhe2qTFbBGHEhM&tbnid=w-A0-HF58ot16M%3A&vet=10ahUKEwjG76fPmIjcAhVjxFkKHfDWBUEQMwiaASgIMAg..i&w=1024&h=576&client=firefox-b-1-ab&bih=721&biw=1440&q=goodreads&ved=0ahUKEwjG76fPmIjcAhVjxFkKHfDWBUEQMwiaASgIMAg&iact=mrc&uact=8GoodReads"></a>
+                  <p class="">For a list of online goodreads book clubs, click <a href="https://www.goodreads.com/group/show_tag/bookclub">here</a></p>
+                </image>
               </div>
                 <div class="recs col-md-2 box">
                   <p class="hdline">Readergirlz Book Club</p>
@@ -106,8 +199,6 @@
                 </a>
               </div>
               </aside>
-
-
         </section>
       </main>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
