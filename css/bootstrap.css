@@ -96,13 +96,38 @@
   margin: 0 -1% 0 0;
 }
 
-/* .table {
+/* Scroll Feature*/
+.header-fixed {
+    width: 100%
+}
+
+.header-fixed > thead,
+.header-fixed > tbody,
+.header-fixed > thead > tr,
+.header-fixed > tbody > tr,
+.header-fixed > thead > tr > th,
+.header-fixed > tbody > tr > td {
     display: block;
-    max-height: 300px;
-    max-width: 100%;
+}
+
+.header-fixed > tbody > tr:after,
+.header-fixed > thead > tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+.header-fixed > tbody {
     overflow-y: auto;
-    -ms-overflow-style: -ms-autohiding-scrollbar;
-} */
+    height: 150px;
+}
+
+.header-fixed > tbody > tr > td,
+.header-fixed > thead > tr > th {
+    width: 14.2%;
+    float: left;
+}
 
 .modal-text {
   padding: 1% 0 0 0;
@@ -156,4 +181,10 @@
 
 .modal-input {
   padding: 1% 1% 1% 1%;
+}
+
+.cover-img {
+  height: 250px;
+  width: 157.1px;
+  margin: 2% 0 2% 30%;
 }

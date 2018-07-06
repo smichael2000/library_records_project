@@ -53,7 +53,8 @@
       <section>
         <div class = "row btn-group d-flex justify-content-around show-books" role="group">
           <!-- <button class="btn btn-default btn-sm" type="submit"> Show All Books</button> -->
-          <button class="btn btn-default btn-sm btn-help" data-toggle="modal" data-target="#bookRecommendModal"> Book Recommendation</button>
+          <button class="btn btn-default btn-sm btn-help" data-toggle="modal" data-target="#allBooksModal"> Show All Books</button>
+          <button class="btn btn-default btn-sm btn-help" data-toggle="modal" data-target="#bookRecommendModal"> Book Suggestion</button>
           <button class="btn btn-default btn-sm btn-help" data-toggle="modal" data-target="#allAuthorsModal"> Show All Authors</button>
           <button class="btn btn-default btn-sm btn-help" data-toggle="modal" data-target="#randomAuthorModal"> Show Random Author</button>
         </div>
@@ -61,7 +62,7 @@
 
     <main>
       <div class="row">
-        <table class="table table-fixed">
+        <table class="table header-fixed">
           <thead class="thead-light">
             <tr>
               <th scope="col">Title</th>
@@ -98,14 +99,23 @@
               <td>October 17, 1999</td>
               <td>272</td>
               <td>Finance</td>
-              <td><button type="button" class="btn-md x data-toggle="modal" data-target="#editModal"">Edit</button></td>
+              <td><button type="button" class="btn-md x" data-toggle="modal" data-target="#editModal">Edit</button></td>
+              <td><button type="button" class="btn-md x" data-toggle="modal" data-target="#deleteModal">X</button></td>
+            </tr>
+            <tr>
+              <td>The Big Short</td>
+              <td>Michael Lewis</td>
+              <td>March 15, 2010</td>
+              <td>287</td>
+              <td>Finance</td>
+              <td><button type="button" class="btn-md x" data-toggle="modal" data-target="#editModal">Edit</button></td>
               <td><button type="button" class="btn-md x" data-toggle="modal" data-target="#deleteModal">X</button></td>
             </tr>
           </tbody>
         </table>
       </div>
       <section class = "row external-suggestions d-flex justify-content-center">
-          <h3>What Others Are Reading</h3>
+          <h3><em>What Others Are Reading<em></h3>
               <aside class="row">
                 <div class="col"></div>
                 <div class="col grbox">
@@ -188,7 +198,7 @@
             <div class="modal-body">
               <form class="form-horizontal" role="form">
                 <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">Username:</label>
+                <label for="inputEmail3" class="col-sm-2 control-label">Email:</label>
                 <div class="col-sm-10">
                   <input type="email" class="form-control" id="" placeholder="Email or Username">
                 </div>
@@ -198,11 +208,15 @@
                 <div class="col-sm-10">
                   <input type="password" class="form-control" id="" placeholder="Author">
                 </div>
-              <p class="modal-text"><h8>New here?<a href="">Create a free account</a></h8></p>
+              <p class="modal-text"><h8>New here? Create a free account</h8></p>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-tertiary" data-dismiss="modal">Go</button>
-            </div>
+            <div class="row modal-footer">
+              <div>
+                <button type="button" class="btn btn-tertiary" data-dismiss="modal">Login</button>
+              </div>
+              <div class="create">
+                <button type="button" class="btn btn-tertiary" data-dismiss="modal">Create My Account</button>
+              </div>
           </div>
         </div>
       </div>
@@ -293,6 +307,23 @@
       </div><!-- /.modal-dialog -->
     </div>
   </div>
+  <!-- Modal for All Books-->
+  <div class="modal" id="allBooksModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">List of Books in Library</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-input">
+          <img class="cover-img" src="https://upload.wikimedia.org/wikipedia/en/3/32/Rye_catcher.jpg"></img>
+          <img class="cover-img" src="https://upload.wikimedia.org/wikipedia/commons/4/49/Blinkgla.jpg"></img>
+          <img class="cover-img" src="assets/The Undoing Projecxt.jpg"></img>
+          <img class="cover-img" src="https://upload.wikimedia.org/wikipedia/en/2/2f/Big-short-inside-the-doomsday-machine.jpg"></img>
+        </div>
+      </div>
+    </div>
+  </div>
         <!-- Modal for Random Book-->
         <div class="modal" id="bookRecommendModal">
           <div class="modal-dialog">
@@ -301,7 +332,8 @@
                 <h4 class="modal-title">Book Recommended for You</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               </div>
-              <div class="modal-input">The Catcher in the Rye by JD Salinger</div>
+              <!-- <div class="modal-input">The Big Short by Michael Lewis</div> -->
+              <img class="cover-img" src="https://upload.wikimedia.org/wikipedia/en/2/2f/Big-short-inside-the-doomsday-machine.jpg"></img>
             </div>
           </div>
         </div>
@@ -314,7 +346,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               </div>
               <div class="modal-input">
-                <p>Rachel Carson</p>
+                <p>Malcolm Gladwell</p>
                 <p>Michael Lewis</p>
                 <p>JD Salinger</p>
               </div>
@@ -330,7 +362,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               </div>
               <div class="modal-input">
-                <p>Rachel Carson</p>
+                <p>Michael Lewis</p>
               </div>
             </div>
           </div>
