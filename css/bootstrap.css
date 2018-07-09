@@ -1,0 +1,190 @@
+.allover {
+  background-color: lightgrey;
+}
+
+.secondary-header {
+  border-top: 4px solid #1abc9c;
+  padding-top: 1%;
+}
+
+.navbar {
+  justify-content: right;
+}
+
+.btn-no-outline {
+    margin: 0 .2rem 0 .2rem;
+    outline: none;
+}
+
+}
+.menu-item {
+  display: inline;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: normal;
+  font-size: 14px;
+  letter-spacing: 1px;
+  padding: 2% 2% 2% 2%;
+  text-align: right;
+}
+
+.main-header {
+  background-color: #701c1c;
+  padding-top: 4%;
+  padding-bottom: 2%;
+
+}
+.search-bar {
+  border: 1px solid #ffffff;
+  margin: 0 0 0 -25%;
+}
+.sradio {
+  margin: 0 2% 0 0;
+  padding: 2% 0 2% 6%;
+}
+
+.sbox {
+  padding: 2% 0 0 2%;
+  flex: 0 0 45%;
+  max-width: 75%;
+}
+
+.word {
+  color: #ffffff;
+  padding: 0 0 0 2%;
+}
+.dummy {
+  padding-left: 0;
+  padding-right: 0;
+}
+.btn-add {
+  background-color: lightgrey;
+  margin: 0 0 0 1%;
+}
+
+.btn-remove {
+  background-color: lightgrey;
+  margin: 0 1.5% 0 0;
+}
+
+.buttons {
+  padding-top: 5%;
+}
+
+.btn-go {
+  padding: 2% 0 6% 2%;
+}
+
+.go {
+  background-color: lightgrey;
+  padding: 0 2% 6% 2%;
+}
+
+.search-btn {
+  background-color: #701c1c;
+  padding-bottom: 1%;
+}
+
+.btn-help {
+  margin: 1rem 2.5rem 1rem 2.5rem;
+}
+
+.show-authors {
+  margin: 2% 0.5% 2% 0;
+}
+
+.removeBook {
+  margin: 0 -1% 0 0;
+}
+
+/* Scroll Feature*/
+.header-fixed {
+    width: 100%
+}
+
+.header-fixed > thead,
+.header-fixed > tbody,
+.header-fixed > thead > tr,
+.header-fixed > tbody > tr,
+.header-fixed > thead > tr > th,
+.header-fixed > tbody > tr > td {
+    display: block;
+}
+
+.header-fixed > tbody > tr:after,
+.header-fixed > thead > tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+.header-fixed > tbody {
+    overflow-y: auto;
+    height: 150px;
+}
+
+.header-fixed > tbody > tr > td,
+.header-fixed > thead > tr > th {
+    width: 14.2%;
+    float: left;
+}
+
+.modal-text {
+  padding: 1% 0 0 0;
+}
+
+.external-suggestions {
+  color: #701c1c;
+  margin-top: 3%;
+}
+.box {
+  background-color: #1abc9c;
+  border: 2px solid black;
+  margin: 3% 3% 3%;
+}
+
+.grbox {
+  background-color: #F4F1EA;
+  border: 2px solid black;
+  margin: 3% 3% 3% 3%;
+}
+
+.grImage {
+  padding: 15% 2% 4% 2%;
+}
+
+.grBookClub {
+  padding: 4% 2% 4% 2%;
+}
+
+.nybox {
+  background-color: ;
+  border: 2px solid black;
+  margin: 3% 3% 3% 3%;
+}
+
+.nytimesImage {
+  margin: 2% 0 0 0;
+}
+.rgbox {
+  background-color: #f3ecf4;
+  border: 2px solid black;
+  margin: 3% 3% 3% 3%;
+}
+.rgz {
+  margin: 0 20% 2%;
+}
+
+.rgzBkClub {
+  padding: 4% 2% 4% 2%;
+}
+
+.modal-input {
+  padding: 1% 1% 1% 1%;
+}
+
+.cover-img {
+  height: 250px;
+  width: 157.1px;
+  margin: 2% 0 2% 30%;
+}
