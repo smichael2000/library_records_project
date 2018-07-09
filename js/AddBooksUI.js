@@ -1,4 +1,5 @@
 var AddBooksUI = function(){
+  Library(call).this;
 this._tempBookShelf = [];
 this.$container = container;
 };
