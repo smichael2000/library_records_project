@@ -46,17 +46,17 @@
           <section class="col dummy"></section>
         </section>
         <section class = "row search-btn d-flex justify-content-between">
-          <button class="btn btn-sm btn-add" data-toggle="modal" data-target="#addModal">Add Book</button>
+          <button class="btn btn-sm btn-add" id="addBkBtn">Add Book</button>
           <button class="btn btn-sm btn-remove" data-toggle="modal" data-target="#removeModal">Remove Book</button>
       </section>
     </header>
       <section>
         <div class = "row btn-group d-flex justify-content-around show-books" role="group">
           <!-- <button class="btn btn-default btn-sm" type="submit"> Show All Books</button> -->
-          <button class="btn btn-default btn-sm btn-help" data-toggle="modal" data-target="#allBooksModal"> Show All Books</button>
-          <button class="btn btn-default btn-sm btn-help" data-toggle="modal" data-target="#bookRecommendModal"> Book Suggestion</button>
-          <button class="btn btn-default btn-sm btn-help" data-toggle="modal" data-target="#allAuthorsModal"> Show All Authors</button>
-          <button class="btn btn-default btn-sm btn-help" data-toggle="modal" data-target="#randomAuthorModal"> Show Random Author</button>
+          <button class="btn btn-default btn-sm btn-help" id=""> Show All Books</button>
+          <button class="btn btn-default btn-sm btn-help" id=""> Book Suggestion</button>
+          <button class="btn btn-default btn-sm btn-help" type="button" id="distinct-authors"> Show All Authors</button>
+          <button class="btn btn-default btn-sm btn-help" id= ""> Show Random Author</button>
         </div>
       </section>
 
@@ -338,17 +338,14 @@
           </div>
         </div>
         <!-- Modal for All Authors-->
-        <div class="modal" id="allAuthorsModal">
-          <div class="modal-dialog">
+        <div class="modal fade" id="allAuthorsModal" tabindex="-1" role="dialog" aria-labelledby="showAllAuthorsModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <h4 class="modal-title">List of Authors in Library</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               </div>
-              <div class="modal-input">
-                <p>Malcolm Gladwell</p>
-                <p>Michael Lewis</p>
-                <p>JD Salinger</p>
+              <div class="modal-body">
               </div>
             </div>
           </div>
@@ -414,8 +411,10 @@
       </main>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="js/bootstrap.bundle.js" charset="utf-8"></script>
-
+    <!-- <script src="js/bootstrap.bundle.js.map" charset="utf-8"></script> -->
     <script src="js/library_records.js" charset="utf-8"></script>
+    <!-- <script src="js/addbooksUI.js" charset="utf-8"></script> -->
+    <script src="js/showauthors.js" charset="utf-8"></script>
 
   </body>
 </html>
