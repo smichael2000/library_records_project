@@ -7,11 +7,15 @@ var AddBooksUI = function(container){
 AddBooksUI.prototype = Object.create(Library.prototype);
 
 AddBooksUI.prototype.init = function () {
+  window._bookShelf = this.retrieveBooks();
   this._bindEvents();
 };
 
 AddBooksUI.prototype._bindevents = function () {
   $('addBkBtn').on('click', $.proxy(this.handleModalOpen, this));
+  //books that are qued
+  //add one book
+  //add all books that are qued
   return false;
 };
 

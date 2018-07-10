@@ -27,7 +27,7 @@ ShowAuthorsUI.prototype._handleShowAuthors = function() {
   // console.log('hello');
   var authors = this.getDistinctAuthors();
   // console.log(authors);
-  // console.log(authors.length);
+  console.log(authors.length);
   // $('#allAuthorsModal').modal('show');
   if(authors.length > 0){
     // console.log("Brett is cool")
@@ -49,9 +49,9 @@ ShowAuthorsUI.prototype._createUlOfAuthors = function(authors) {
     $(li).text(authors[i]);
     ul.append(li);
   }
-    // console.log(ul);
     return ul;
 };
+
 //set up document ready
 $(function(){
   window.gShowAuthorsUI = new ShowAuthorsUI($('#allAuthorsModal')); //creates new instance on library
