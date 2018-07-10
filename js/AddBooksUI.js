@@ -12,10 +12,15 @@ AddBooksUI.prototype.init = function () {
 };
 
 AddBooksUI.prototype._bindevents = function () {
-  $('addBkBtn').on('click', $.proxy(this.handleModalOpen, this));
-  //books that are qued
-  //add one book
-  //add all books that are qued
+  $('#addBkBtn').on('click', $.proxy(this.handleModalOpen, this));
+  $('#queue-btn').on('click', $.proxy(this.handleModalOpen, this));
+
+  return false;
+};
+
+AddBooksUI.prototype._ = function () {
+  
+
   return false;
 };
 
