@@ -8,21 +8,25 @@ var Library = function(){
 //**************** Functions **************
 Library.prototype.addBook = function (book) {
   //Purpose: Add a book object to your books array.
-  //Return:boolean true if it is not already added, false if it is already added
-  for (var i = 0; i < window._bookShelf.length; i++) {
-  //error debugging ********************************************
-    // console.log('typeof window._bookShelf[i] is:', typeof(window._bookShelf[i]))
-    // console.log('this.__bookShelf is:', window._bookShelf[i])
-    // console.log('book is:', book);
-    if (window._bookShelf[i].title.indexOf(book.title) >-1) {
-  //***********************************************************
-      return false;
-    }
-  }
-    window._bookShelf.push((book));
+  //Return:boolean true if it is not already added
+    if (this.checkNoDups(book)) {
+      window._bookShelf.push(new Book(book));
       this.saveBooks();
+    };
       return true;
 };
+
+Library.prototype.checkNoDups = function (book){
+  for (var i = 0; i < window._bookShelf.length; i++) {
+    // if (window._bookShelf[i].title.indexOf(book.title) >-1)
+    if (window._bookShelf[i].title ===  book.title) {
+      alert('This book is already in your library')
+    }
+  //***********************************************************
+    return true;
+  }
+};
+
 
 Library.prototype.removeBookByTitle = function (title) {
   //Purpose: Remove book from from the books array by its title.
@@ -108,6 +112,8 @@ Library.prototype.addBooks = function (books) {
   return (window._bookShelf.length - originalLength + " books were added to the library.");
 };
 
+
+
 Library.prototype.getDistinctAuthors = function () {
   //Purpose: Find the distinct authors’ names from all books in your library
   //Return: array of strings the names of all distinct authors, empty array if no books exist or if no authors exist
@@ -172,13 +178,20 @@ function Singleton() {
     window._bookShelf = [];
    };
 
-//*************** Create book as object ***********************
-var Book = function(title, author, numberOfPages, publishDate){
+//*************** Create book as Book object ***********************
+var Book = function(title, author, numberOfPages, publishDate) {
   this.title = title;
   this.author = author;
   this.numberOfPages = numberOfPages;
   this.publishDate = new Date(publishDate);
-}
+};
+
+// var Book = function(args){
+//   this.title = args.title;
+//   this.author = args.author;
+//   this.numberOfPages = args.numberOfPages;
+//   this.publishDate = new Date(args.publishDate);
+// }
 //************* Books to add to library **********************
 //************* Use gLibrary.addBook(newBook) or .addBooks(newBooks) ***************************
 var newBook = [
@@ -201,5 +214,5 @@ var newBooks = [
 
 document.addEventListener("DOMContentLoaded", function() {
   window.gLibrary = new Library();
-  window.gLibrary._bookShelf = gLibrary.retrieveBooks();
+  window.gLibrary = gLibrary.retrieveBooks();
 });

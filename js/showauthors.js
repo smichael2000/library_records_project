@@ -11,7 +11,7 @@ ShowAuthorsUI.prototype = Object.create(Library.prototype);
 //create method fire off everything need from get go
 ShowAuthorsUI.prototype.init = function() {
   window._bookShelf = this.retrieveBooks();
-  // console.log(window._bookShelf);
+  console.log(window._bookShelf);
   this._bindEvents();
   return; //stops the function
 };
