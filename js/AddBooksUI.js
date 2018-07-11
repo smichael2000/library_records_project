@@ -13,10 +13,12 @@ AddBooksUI.prototype.init = function () {
 
 AddBooksUI.prototype._bindEvents = function () {
   console.log('heelloooo');
-  $('#addBkBtn').on('click', $.proxy(this._handleAddBooks, this));
+  this.$container.find('.add-to-lib').on('click', $.proxy(this._addQueuedToLibrary, this));
+  this.$container.find('.clear-q').on('click', $.proxy(this._clearQueue, this));
+
   this.$container.find(.queueBtn).on('click', $.proxy(this._queueBooks, this));
   // this.$container.find(.clearQue).on('click', $.proxy(this._queueBooks, this));
-  //return false;
+  $('#addBkBtn').on('click', $.proxy(this._handleAddBooks, this));
 
 };
 
@@ -35,14 +37,31 @@ AddBooksUI.prototype._queueBooks = function () {
       validAddInput = false;
       alert("Please enter the value for: " + kvp.name);
     }
-    // return this._queueShelf.push(qObject).text();
+    // if(validAddInput && this.nodups(qBook)) {
+    //   this.$container.find('').text(this._queue.push(oBook));
+    // }
+    // // console.log(this._queue);
+    // return validAddInput;
 };
 
 AddBooksUI.prototype._handleAddBooks = function() {
   console.log('hello');
   console.log(this.$container);
   this.$container.modal('show');
+  if (this_queue) {
+    if(this.addBooks(this._queue)) {
+      this._clearQ();
+    }
+  } else {
+    alert("Please queue at least one book.")
+  }
+  return false;
+};
 
+AddBooksUI.prototype._clearQ = function () {
+  this._queue = [];
+  // this.$container.find('.queueNumber').text(this._queue.length);
+  return false;
 };
 
 $(function(){
