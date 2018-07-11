@@ -1,6 +1,7 @@
 var ShowAuthorsUI = function(container){
   this.$container = container;
   Library.call(this);
+  console.log(Library);
 
 };
 
@@ -13,7 +14,6 @@ ShowAuthorsUI.prototype.init = function() {
   window._bookShelf = this.retrieveBooks();
   console.log(window._bookShelf);
   this._bindEvents();
-  return; //stops the function
 };
 
 ShowAuthorsUI.prototype._bindEvents = function() {
@@ -59,4 +59,4 @@ $(function(){
   window._bookShelf;
 
   // console.log("init");
-})//remove instance created on gLibrary - don't need document.EventListener code
+});//remove instance created on gLibrary - don't need document.EventListener code

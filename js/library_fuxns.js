@@ -8,25 +8,20 @@ var Library = function(){
 //**************** Functions **************
 Library.prototype.addBook = function (book) {
   //Purpose: Add a book object to your books array.
-  //Return:boolean true if it is not already added
-    if (this.noDups(book)) {
-      window._bookShelf.push(new Book(book));
+  //Return:boolean true if it is not already added, false if it is already added
+  if (this.noDups());
+    window._bookShelf.push((book));
       this.saveBooks();
-    };
       return true;
 };
 
-Library.prototype.noDups = function (book){
+Library.prototype.noDups = function (book) {
   for (var i = 0; i < window._bookShelf.length; i++) {
-    // if (window._bookShelf[i].title.indexOf(book.title) >-1)
-    if (window._bookShelf[i].title ===  book.title) {
-      alert('This book is already in your library')
+    if (window._bookShelf[i].title === book.title) {
+      alert('The book with the title ' + book.title + 'is already in the library.')
     }
-  //***********************************************************
-    return true;
-  }
+  } return true;
 };
-
 
 Library.prototype.removeBookByTitle = function (title) {
   //Purpose: Remove book from from the books array by its title.
@@ -112,8 +107,6 @@ Library.prototype.addBooks = function (books) {
   return (window._bookShelf.length - originalLength + " books were added to the library.");
 };
 
-
-
 Library.prototype.getDistinctAuthors = function () {
   //Purpose: Find the distinct authors’ names from all books in your library
   //Return: array of strings the names of all distinct authors, empty array if no books exist or if no authors exist
@@ -122,8 +115,7 @@ Library.prototype.getDistinctAuthors = function () {
     authors.push(window._bookShelf[i].author);
   }
   // console.log(authors);
-  var uniqueAuthors = Array.from(new Set(authors));
-  return uniqueAuthors;
+  return new Set(authors);
 };
 
 Library.prototype.getRandomAuthorNames = function () {
@@ -133,13 +125,22 @@ Library.prototype.getRandomAuthorNames = function () {
   return this.getRandomBook().author;
 };
 
+//*******************Search Function*********************
+//Purpose: Add a more robust search function to your app to allow you to filter by one or more book properties ○n the search function
+//Return: an array of book instances
+Library.prototype.search = function () {
+  for (var i = 0; i < window._bookShelf.length; i++) {
+    
+  }
+};
+
 //*******************Local Storage**********************
 //Stores data as strings - need to parse to convert back to objects when retrieve
 //Purpose: Use localstorage and JSON.stringify to save the state of your library
 Library.prototype.saveBooks = function () {
   console.log(window._bookShelf);
   localStorage.setItem('books', JSON.stringify(window._bookShelf));
-}
+};
 
 Library.prototype.retrieveBooks = function () {
 //loop through JSON array and get keys and values
@@ -147,18 +148,13 @@ Library.prototype.retrieveBooks = function () {
 //not instantiating books as book objects in foreach loop or in for loop - works in Chrome
   var libraryBooks = [];
   var books = JSON.parse(localStorage.getItem('books'));
+
   for (var i = 0; i < books.length; i++) {
     libraryBooks.push(new Book(books[i].title,books[i].author,books[i].numberOfPages, books[i].pubDate));
     // console.log(libraryBooks);
   }
   return libraryBooks;
 };
-
-//*******************Search Function*********************
-//Purpose: Add a more robust search function to your app to allow you to filter by one or more book properties ○n the search function
-//Return: an array of book instances
-Library.prototype.search = function () {
-}
 
 //*******************Singleton****************************
 //Purpose: Make your library a singleton
@@ -178,27 +174,21 @@ function Singleton() {
     window._bookShelf = [];
    };
 
-//*************** Create book as Book object ***********************
-var Book = function(title, author, numberOfPages, publishDate) {
+//*************** Create book as object ***********************
+//************** Use to read in for phase-two******************
+var Book = function(title, author, numberOfPages, publishDate){
   this.title = title;
   this.author = author;
   this.numberOfPages = numberOfPages;
   this.publishDate = new Date(publishDate);
 };
-
-// var Book = function(args){
-//   this.title = args.title;
-//   this.author = args.author;
-//   this.numberOfPages = args.numberOfPages;
-//   this.publishDate = new Date(args.publishDate);
-// }
 //************* Books to add to library **********************
 //************* Use gLibrary.addBook(newBook) or .addBooks(newBooks) ***************************
 var newBook = [
   new Book("Of Mice and Men", "John Steinbeck", 132, "2-25-1939"),
 ]
 var newBooks = [
-  new Book("The Catcher in the Rye", "J.D. Salinger", 277, "7-16-1951"),
+  new Book("Catcher in the Rye", "J.D. Salinger", 277, "7-16-1951"),
   new Book("The Undoing Project", "Michael Lewis", 368, "12-6-2016"),
   new Book("The Graveyard Book", "Neil Gaiman", 312, "9-30-2008"),
   new Book("The New New Thing", "Michael Lewis", 349, "10-17-1999"),
@@ -211,8 +201,7 @@ var newBooks = [
   new Book ("Holden Reincarnated", "Collin Taylor", 104, "4-16-2001")
 ];
 
-
 document.addEventListener("DOMContentLoaded", function() {
   window.gLibrary = new Library();
-  window.gLibrary = gLibrary.retrieveBooks();
+  window.gLibrary._bookShelf = gLibrary.retrieveBooks();
 });
