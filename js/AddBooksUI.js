@@ -7,13 +7,13 @@ var AddBooksUI = function(container){
 AddBooksUI.prototype = Object.create(Library.prototype);
 
 AddBooksUI.prototype.init = function () {
-  //window._bookShelf = this.retrieveBooks();
+  window._bookShelf = this.retrieveBooks();
   this._bindEvents();
 };
 
 AddBooksUI.prototype._bindEvents = function () {
   console.log('heelloooo');
-  this.$container.find('.add-to-lib').on('click', $.proxy(this._addQueuedToLibrary, this));
+  this.$container.find('.add-to-lib').on('click', $.proxy(this._handleAddBooks, this));
   this.$container.find('.clear-q').on('click', $.proxy(this._clearQueue, this));
 
   this.$container.find(.queueBtn).on('click', $.proxy(this._queueBooks, this));
@@ -65,6 +65,8 @@ AddBooksUI.prototype._clearQ = function () {
 };
 
 $(function(){
-window.gAddBooksUI = new addbooksUI($('#addModal'));
+  console.log('works');
+
+window.gAddBooksUI = new AddBooksUI($('#addModal'));
 window.gAddBooksUI.init();
 });

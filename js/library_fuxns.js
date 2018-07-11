@@ -12,7 +12,9 @@ Library.prototype.addBook = function (book) {
   if (this.noDups());
     window._bookShelf.push((book));
       this.saveBooks();
-      return true;
+      // return true;
+
+  this._handleEventTrigger("objUpdate", {booksAdded: "The book is added."})
 };
 
 Library.prototype.noDups = function (book) {
@@ -104,6 +106,7 @@ Library.prototype.addBooks = function (books) {
       }
     }
   }
+  console.log('addBooks works');
   return (window._bookShelf.length - originalLength + " books were added to the library.");
 };
 
@@ -130,10 +133,18 @@ Library.prototype.getRandomAuthorNames = function () {
 //Return: an array of book instances
 Library.prototype.search = function () {
   for (var i = 0; i < window._bookShelf.length; i++) {
-    
+
   }
 };
 
+//************************ Creating event "" *****************************
+Library.prototype._handleEventTrigger = function(sEvent, oData) {
+ var oData = oData || {}; //sets oData to an empty object if it does not have data
+ if (sEvent) {
+   var event = new CustomEvent(sEvent, oData);
+   document.dispatchEvent(event);
+ }
+};
 //*******************Local Storage**********************
 //Stores data as strings - need to parse to convert back to objects when retrieve
 //Purpose: Use localstorage and JSON.stringify to save the state of your library
