@@ -125,6 +125,13 @@ Library.prototype.getRandomAuthorNames = function () {
   return this.getRandomBook().author;
 };
 
+//*******************Search Function*********************
+//Purpose: Add a more robust search function to your app to allow you to filter by one or more book properties ○n the search function
+//Return: an array of book instances
+Library.prototype.search = function () {
+  for (var i = 0; i < this._bookShelf.length; i++)
+}
+
 //*******************Local Storage**********************
 //Stores data as strings - need to parse to convert back to objects when retrieve
 //Purpose: Use localstorage and JSON.stringify to save the state of your library
@@ -139,19 +146,13 @@ Library.prototype.retrieveBooks = function () {
 //not instantiating books as book objects in foreach loop or in for loop - works in Chrome
   var libraryBooks = [];
   var books = JSON.parse(localStorage.getItem('books'));
-  
+
   for (var i = 0; i < books.length; i++) {
     libraryBooks.push(new Book(books[i].title,books[i].author,books[i].numberOfPages, books[i].pubDate));
     // console.log(libraryBooks);
   }
   return libraryBooks;
 };
-
-//*******************Search Function*********************
-//Purpose: Add a more robust search function to your app to allow you to filter by one or more book properties ○n the search function
-//Return: an array of book instances
-Library.prototype.search = function () {
-}
 
 //*******************Singleton****************************
 //Purpose: Make your library a singleton
