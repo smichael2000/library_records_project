@@ -9,14 +9,14 @@ var Library = function(){
 Library.prototype.addBook = function (book) {
   //Purpose: Add a book object to your books array.
   //Return:boolean true if it is not already added
-    if (this.checkNoDups(book)) {
+    if (this.noDups(book)) {
       window._bookShelf.push(new Book(book));
       this.saveBooks();
     };
       return true;
 };
 
-Library.prototype.checkNoDups = function (book){
+Library.prototype.noDups = function (book){
   for (var i = 0; i < window._bookShelf.length; i++) {
     // if (window._bookShelf[i].title.indexOf(book.title) >-1)
     if (window._bookShelf[i].title ===  book.title) {
