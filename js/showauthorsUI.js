@@ -12,14 +12,14 @@ ShowAuthorsUI.prototype = Object.create(Library.prototype);
 //create method fire off everything need from get go
 ShowAuthorsUI.prototype.init = function() {
   window._bookShelf = this.retrieveBooks();
-  console.log(window._bookShelf);
+  // console.log(window._bookShelf);
   this._bindEvents();
 };
 
 ShowAuthorsUI.prototype._bindEvents = function() {
   // $("button[data-target="#allAuthorsModal"]").on('click', $.proxy(this, this._handleShowAuthors));
   $('#distinct-authors').on('click', $.proxy(this._handleShowAuthors, this));
-  console.log('_bindEvents');
+  // console.log('_bindEvents');
   return false;
 };
 
@@ -56,7 +56,7 @@ ShowAuthorsUI.prototype._createUlOfAuthors = function(authors) {
 $(function(){
   window.gShowAuthorsUI = new ShowAuthorsUI($('#allAuthorsModal')); //creates new instance on library
   window.gShowAuthorsUI.init();
-  window._bookShelf;
+
 
   // console.log("init");
 });//remove instance created on gLibrary - don't need document.EventListener code
