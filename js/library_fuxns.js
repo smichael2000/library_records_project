@@ -179,7 +179,7 @@ var Book = function(title, author, numberOfPages, publishDate){
   this.title = title;
   this.author = author;
   this.numberOfPages = numberOfPages;
-  this.publishDate = new Date(publishDate);
+  this.publishDate = new Date(publishDate).getUTCFullYear();
 };
 //************* Books to add to library **********************
 //************* Use gLibrary.addBook(newBook) or .addBooks(newBooks) ***************************

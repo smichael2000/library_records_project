@@ -1,6 +1,6 @@
 var AddBooksUI = function(container){
   Library.call(this);
-  this._queue = [];
+  this._q = [];
   this.$container = container;
 
 };
@@ -19,7 +19,7 @@ AddBooksUI.prototype._bindEvents = function () {
   this.$container.find('.add-to-lib').on('click', $.proxy(this._handleAddBooks, this));
   // this.$container.find('.clear-q').on('click', $.proxy(this._clearQueue, this));
   // this.$container.find('.btn-queue').on('click', $.proxy(this._queueBooks, this));
-  $('button#btn-queue').on('click', $.proxy(this._queueBooks, this));
+  $('button#btn-queue').on('click', $.proxy(this._qBooks, this));
   // this.$container.find(.clearQue).on('click', $.proxy(this._queueBooks, this));
   $('#addBkBtn').on('click', $.proxy(this._openModal, this));
 };
@@ -29,15 +29,28 @@ AddBooksUI.prototype._openModal = function () {
   this.$container.modal('show');
 };
 
-AddBooksUI.prototype._queueBooks = function (e) {
+AddBooksUI.prototype._qBooks = function (e) {
   e.preventDefault();
 
   var title = $("#title").val();
   var author = $('#author').val();
-  console.log(title, author);
+  var publishDate = $('#pubDate').val();
+  var numberOfPages= $('#numberOfPages').val();
+  var genre=$('#genre')
+  console.log(title, author, publishDate, numberOfPages, genre);
 
-  var book = new Book(title, author, ...)
-
+  var qBook = new Book(title, author, pubDate, numberOfPages, genre);
+  console.log(qBook);
+  if (this.noDups(qBook)){
+    this._q.push(qBook);
+  }
+  console.log(this._q, 'queue');
+  // $.each(this._q , function(index, kvp) {
+  //   console.log(kvp.value, 'value');
+  //   if (kvp.value) {
+  //     qObject[kvp.name]=kvp.value;
+  //     console.log(qObject);
+};
 
   // console.log('queue_handle check');
   // var sForm = this.$container.find('form').serializeArray();
@@ -65,14 +78,12 @@ AddBooksUI.prototype._queueBooks = function (e) {
 
     // // console.log(this._queue);
     // return validAddInput;
-};
+// };
 
 AddBooksUI.prototype._handleAddBooks = function() {
-  // console.log('hello');
-  // console.log(this.$container);
-  console.log('hello');
-  if (this._queue) {
-    if(this.addBooks(this._queue)) {
+  if (this._q) {
+    if(this.addBooks(this._q)) {
+      console.log(Library);
       this._clearQ();
     }
   } else {
