@@ -10,13 +10,15 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
 
-    <script src="js/util.js" charset="utf-8"></script>
     <script src="js/jquery.js" charset="utf-8"></script>
     <script src="js/bootstrap.bundle.js" charset="utf-8"></script>
     <script src="js/library_fuxns.js" charset="utf-8"></script>
+    <script src="js/newBooks.js" charset="utf-8"></script>
     <script src="js/addbooksUI.js" charset="utf-8"></script>
     <script src="js/datatableUI.js" charset="utf-8"></script>
     <script src="js/showauthorsUI.js" charset="utf-8"></script>
+    <script src="js/util.js" charset="utf-8"></script>
+
   </head>
   <body>
     <div class = "container-fluid allover">
@@ -71,16 +73,7 @@
     <main>
       <div class="row">
         <table class="table header-fixed" id="dataTable">
-          <thead class="thead-light">
-            <tr>
-              <th scope="col">Title</th>
-              <th scope="col">Author</th>
-              <th scope="col">Year Published</th>
-              <th scope="col">No. of Pages</th>
-              <th scope="col">Genre</th>
-              <th scope="col">Edit</th>
-              <th scope="col">Delete</th>
-            </tr>
+          <thead class="thead-light" id="tHead">
           </thead>
           <tbody>
 
@@ -206,34 +199,34 @@
           <div class="modal-body">
             <form id="myForm" class="form-horizontal" role="form">
             <div class="form-group">
-              <label for="inputEmail3" class="col-sm-2 control-label">Title*</label>
+              <label class="col-sm-2 control-label">Title*</label>
               <div class="col-sm-10">
                 <input type="text" id="title" class="form-control" name="title" placeholder="Title">
               </div>
             </div>
             <div class="form-group">
-              <label for="inputPassword3" class="col-sm-2 control-label">Author*</label>
+              <label class="col-sm-2 control-label">Author*</label>
               <div class="col-sm-10">
                 <input type="text" class="form-control" id="author" name="author" placeholder="Author">
               </div>
             </div>
             <div class="form-group">
-              <label for="inputPassword3" class="col-sm-10 control-label">Number of Pages</label>
+              <label class="col-sm-10 control-label">Number of Pages</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="numberOfPages" name="numberOfPages" placeholder="Number of Pages">
+                <input type="number" class="form-control" id="numberOfPages" name="numberOfPages" placeholder="Number of Pages">
               </div>
             </div>
             <div class="form-group">
               <div class = "row">
                 <div class = "col-sm-6">
-                <label for="inputPassword3" class="col-sm-10 control-label">Publication Date</label>
+                <label class="col-sm-10 control-label">Publication Date</label>
                 <div class = "col-sm-12">
                   <input type ="text" class="form-control" id="pubDate" name="pubDate" placeholder="MM/DD/YYYY" type="text"/>
                 </div>
               </div>
               <div class = "col-sm-6">
                 <div class="dropdown">
-                  <label for="inputPassword3" class="col-sm-10 control-label">Genre</label>
+                  <label class="col-sm-10 control-label">Genre</label>
                   <div class="col-sm-12">
                     <button class="btn btn-outline-secondary dropdown-toggle" id="genre" type="button" name="genre" aria-haspopup="true" aria-expanded="false">
                     Genre
@@ -248,24 +241,25 @@
             </div>
           </div>
           <div>
-            <label for="inputPassword3" class="col-sm-10 control-label">Summary</label>
+            <label for=class="col-sm-10 control-label">Summary</label>
             <div class = "col-sm-10">
-              <textarea class="form-control" rows="3"></textarea>
+              <textarea class="form-control" rows="3" id="summary"></textarea>
             </div>
           </div>
           <div>
-            <label for="inputPassword3" class="col-sm-10 control-label book-cover" name="cover">Book Cover</label>
+            <label class="col-sm-10 control-label book-cover" id="cover" name="cover">Book Cover</label>
             <div class="col-sm-5">
               <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle dropdown-toggle-split">Choose File</button>
             </div>
             <div class="row modal-footer">
               <div class="col">
-                <button type="button" id="btn-queue" class="btn btn-default" data-dismiss="modal">Queue Book To Add</button>
+                <button type="button" id="btn-queue" class="btn clear-q btn-outline-primary">Queue Book To Add</button>
               </div>
               <div class="col">
-                <button type="button" class="btn btn-primary add-to-lib"><i class="fas fa-plus"></i> Add Books To Library</button>
+                <button type="button" class="btn btn-primary add-to-lib" data-dismiss="modal"><i class="fas fa-plus"></i> Add Books To Library</button>
               </div>
             </div>
+            <span class="aligncenter" id="numInQ">0 book(s) added to queue</span>
         </div>
       </div>
     </div>
@@ -338,11 +332,7 @@
                 <h4 class="modal-title">List of Authors in Library</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               </div>
-              <!-- <div class="modal-input">
-                <p>Malcolm Gladwell</p>
-                <p>Michael Lewis</p>
-                <p>JD Salinger</p>
-              </div> -->
+              <div class="modal-body"></div>
             </div>
           </div>
         </div>
@@ -386,11 +376,11 @@
                 <button type="button" class="btn btn-primary">Edit Book in Library</button>
               </div>
             </div>
-          </div><!-- /.modal-content -->
+          </div><! /.modal-content -->
         </div><!-- /.modal-dialog -->
-      </div>
+      <!-- </div>
     </div>
-  </div> -->
+  </div> --> -->
   <!-- Delete Modal-->
   <!-- <div class="modal" id="deleteModal">
     <div class="modal-dialog">

@@ -14,13 +14,12 @@ ShowAuthorsUI.prototype.init = function() {
   window._bookShelf = this.retrieveBooks();
   // console.log(window._bookShelf);
   this._bindEvents();
+  return false;
 };
 
 ShowAuthorsUI.prototype._bindEvents = function() {
-  // $("button[data-target="#allAuthorsModal"]").on('click', $.proxy(this, this._handleShowAuthors));
   $('#distinct-authors').on('click', $.proxy(this._handleShowAuthors, this));
   // console.log('_bindEvents');
-  return false;
 };
 
 ShowAuthorsUI.prototype._handleShowAuthors = function() {
@@ -49,6 +48,7 @@ ShowAuthorsUI.prototype._createUlOfAuthors = function(authors) {
     $(li).text(authors[i]);
     ul.append(li);
   }
+    console.log(ul);
     return ul;
 };
 
