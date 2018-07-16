@@ -1,11 +1,17 @@
 //This file adds books to library to check functionality
 
-var Book = function(title, author, numberOfPages, publishDate){
+var Book = function(cover, title, author, numberOfPages, yearPublished){
+  this.cover = cover;
+  // this.genre = genre;
   this.title = title;
   this.author = author;
   this.numberOfPages = numberOfPages;
-  this.publishDate = new Date(publishDate).getUTCFullYear();
+  this.yearPublished = new Date(yearPublished).getUTCFullYear();
+  return false;
 };
+
+
+
 //************* Use gLibrary.addBook(newBook) or .addBooks(newBooks) ***************************
 // var newBook = [
 //   new Book("Of Mice and Men", "John Steinbeck", 132, "2-25-1939"),

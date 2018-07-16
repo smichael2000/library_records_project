@@ -31,24 +31,54 @@ AddBooksUI.prototype._qBooks = function (e) {
 
 // serialized array empty - trying different approach & will continue to problem solve with serialized array
 //creating object
-  var title = $("#title").val();
-  var author = $('#author').val();
+  var cover = cover || 'assets/goodreads_icon.jpg'
+  // var genre=$('#genre').val();
+  var title = $('#title').val();
+  var author =$ ('#author').val();
   var numberOfPages= $('#numberOfPages').val();
-  var publishDate = $('#pubDate').val();
-  var genre=$('#genre').val();
-  // console.log(title, author, numberOfPages,  publishDate, genre);
-  var qBook = new Book(title, author, numberOfPages,  publishDate, genre);
-  this._q.push(qBook);
-  // this.$container.find('#numInQ').text(this._q.push(qBook)+ " book(s) added to queue");
+  var yearPublished = $('#publishDate').val();
+
+  console.log(cover, title, author, numberOfPages,  yearPublished);
+  var qBook = new Book(cover, title, author, numberOfPages, yearPublished);
+
+  // var selectors = '.validate';
+  // $('#dataTable').on('change', selectors, function(event) {
+  //   var $this = $(event.currentTarget),
+  //     $row = $this.closest('tr'),
+  //     $elements = $row.find(selectors);
+  //   var $filledElements = $elements.filter(function(index) {
+  //     return $(this).val();
+  //   });
+  //
+  //   var hasEmpty = $filledElements.length !== $elements.length
+  //   console.log(hasEmpty);
+  //   if (hasEmpty)
+  //     console.log('some value is missing');
+  //   else {
+  //     console.log('valid');
+    }
+  });
+
+  if (noDups(qBook)){
+    this._q.push(qBook);
+    this.$container.find('#numInQ').text(this._q.length + ' book(s) added to queue')
+
+    document.getElementById("addBkBtn").reset();
+  } else
+    alert('This book is already in the library.')
+  this.$container.find('#numInQ').text(this._q.push(qBook)+ " book(s) added to queue");
   console.log(this._q.length, '_q - end');
-  return (this._q);
+  return qBook;
 };
 
 AddBooksUI.prototype._handleAddBooks = function() {
 
-  console.log(this._q.length,'HandleAddBooks-beginning');
+  // console.log(this._q.length,'HandleAddBooks-beginning');
   if (this._q) {
     this.addBooks(this._q);
+    this._clearQ();
+    // $("#form")[0].reset();
+    $('#addModal').modal('hide');
   } else {
     alert("Please queue at least one book.")
   }

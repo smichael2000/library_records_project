@@ -8,7 +8,7 @@ var noDups = function (book) {
         alert('The book with the title ' + book.title + ' is already in the library.')
         return false;
       }
-    } {return true;}
+    } return true;
   }
 };
 

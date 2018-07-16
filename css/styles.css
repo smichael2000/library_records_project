@@ -1,5 +1,9 @@
 .allover {
   background-color: lightgrey;
+  margin:0;
+  padding:0;
+  height:100%;
+  width:100%;
 }
 
 .secondary-header {
@@ -58,12 +62,12 @@
 }
 .btn-add {
   background-color: lightgrey;
-  margin: 0 0 0 1%;
+  margin: 0 0 0 5%;
 }
 
 .btn-remove {
   background-color: lightgrey;
-  margin: 0 1.5% 0 0;
+  margin: 0 5% 0 0;
 }
 
 .buttons {
@@ -96,6 +100,10 @@
   margin: 0 -1% 0 0;
 }
 
+.table {
+  margin: 0 0 0 5%;
+  width:100%;
+}
 /* Scroll Feature*/
 .header-fixed {
     width: 100%
@@ -120,12 +128,12 @@
 
 .header-fixed > tbody {
     overflow-y: auto;
-    height: 150px;
+    height: 300px;
 }
 
 .header-fixed > tbody > tr > td,
 .header-fixed > thead > tr > th {
-    width: 14.2%;
+    width: 20%;
     float: left;
 }
 

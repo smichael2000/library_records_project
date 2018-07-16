@@ -10,18 +10,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
 
-    <script src="js/jquery.js" charset="utf-8"></script>
-    <script src="js/bootstrap.bundle.js" charset="utf-8"></script>
-    <script src="js/library_fuxns.js" charset="utf-8"></script>
-    <script src="js/newBooks.js" charset="utf-8"></script>
-    <script src="js/addbooksUI.js" charset="utf-8"></script>
-    <script src="js/datatableUI.js" charset="utf-8"></script>
-    <script src="js/showauthorsUI.js" charset="utf-8"></script>
-    <script src="js/util.js" charset="utf-8"></script>
 
   </head>
   <body>
     <div class = "container-fluid allover">
+      </div>
       <header class="header-wrapper">
         <nav class = "navbar menu col-md-12" role="navigation">
             <button class="btn btn-default btn-sm btn-no-outline" data-toggle="modal" data-target="#createModal">New to TLP</button>
@@ -73,8 +66,8 @@
     <main>
       <div class="row">
         <table class="table header-fixed" id="dataTable">
-          <thead class="thead-light" id="tHead">
-          </thead>
+        <!-- <table class="table" id="dataTable"> -->
+          <thead class="thead-light" id="tHead"></thead>
           <tbody>
 
           </tbody>
@@ -197,31 +190,31 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           </div>
           <div class="modal-body">
-            <form id="myForm" class="form-horizontal" role="form">
+            <form id="myForm" class="form-horizontal" id="form">
             <div class="form-group">
               <label class="col-sm-2 control-label">Title*</label>
               <div class="col-sm-10">
-                <input type="text" id="title" class="form-control" name="title" placeholder="Title">
-              </div>
+                <input type="text" id="title" class="form-control validate" name="title" placeholder="Title">
+            </div>
             </div>
             <div class="form-group">
               <label class="col-sm-2 control-label">Author*</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="author" name="author" placeholder="Author">
+                <input type="text" class="form-control validate" id="author" name="author" placeholder="Author">
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-10 control-label">Number of Pages</label>
               <div class="col-sm-10">
-                <input type="number" class="form-control" id="numberOfPages" name="numberOfPages" placeholder="Number of Pages">
+                <input type="number" class="form-control validate" id="numberOfPages" name="numberOfPages" placeholder="Number of Pages">
               </div>
             </div>
             <div class="form-group">
               <div class = "row">
                 <div class = "col-sm-6">
-                <label class="col-sm-10 control-label">Publication Date</label>
+                <label class="col-sm-10 control-label">Date Published</label>
                 <div class = "col-sm-12">
-                  <input type ="text" class="form-control" id="pubDate" name="pubDate" placeholder="MM/DD/YYYY" type="text"/>
+                  <input type ="date" class="form-control validate" id="publishDate" name="yearPublished" placeholder="MM/DD/YYYY" type="text"/>
                 </div>
               </div>
               <div class = "col-sm-6">
@@ -240,26 +233,26 @@
               </div>
             </div>
           </div>
-          <div>
+          <!-- <div>
             <label for=class="col-sm-10 control-label">Summary</label>
             <div class = "col-sm-10">
               <textarea class="form-control" rows="3" id="summary"></textarea>
             </div>
-          </div>
+          </div> -->
           <div>
-            <label class="col-sm-10 control-label book-cover" id="cover" name="cover">Book Cover</label>
+            <label class="col-sm-10 control-label book-cover validate" id="cover" name="cover">Book Cover</label>
             <div class="col-sm-5">
               <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle dropdown-toggle-split">Choose File</button>
             </div>
             <div class="row modal-footer">
               <div class="col">
-                <button type="button" id="btn-queue" class="btn clear-q btn-outline-primary">Queue Book To Add</button>
+                <button type="button" id="btn-queue" class="btn btn-outline-primary">Queue Book To Add</button>
               </div>
               <div class="col">
                 <button type="button" class="btn btn-primary add-to-lib" data-dismiss="modal"><i class="fas fa-plus"></i> Add Books To Library</button>
               </div>
             </div>
-            <span class="aligncenter" id="numInQ">0 book(s) added to queue</span>
+            <span class="aligncenter" id="numInQ">0</span>
         </div>
       </div>
     </div>
@@ -377,8 +370,8 @@
               </div>
             </div>
           </div><! /.modal-content -->
-        </div><!-- /.modal-dialog -->
-      <!-- </div>
+        <!-- </div><!
+       </div>
     </div>
   </div> --> -->
   <!-- Delete Modal-->
@@ -397,4 +390,13 @@
   </main>
 
   </body>
+  <script src="js/jquery.js" charset="utf-8"></script>
+  <script src="js/bootstrap.bundle.js" charset="utf-8"></script>
+  <script src="js/library_fuxns.js" charset="utf-8"></script>
+  <script src="js/newBooks.js" charset="utf-8"></script>
+  <script src="js/addbooksUI.js" charset="utf-8"></script>
+  <script src="js/datatableUI.js" charset="utf-8"></script>
+  <script src="js/showauthorsUI.js" charset="utf-8"></script>
+  <script src="js/util.js" charset="utf-8"></script>
+
 </html>
