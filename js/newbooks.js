@@ -1,8 +1,8 @@
 //This file adds books to library to check functionality
 
-var Book = function(cover, title, author, numberOfPages, yearPublished){
+var Book = function(cover, genre, title, author, numberOfPages, yearPublished){
   this.cover = cover;
-  // this.genre = genre;
+  this.genre = genre;
   this.title = title;
   this.author = author;
   this.numberOfPages = numberOfPages;

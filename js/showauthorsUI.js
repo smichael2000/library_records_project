@@ -26,7 +26,7 @@ ShowAuthorsUI.prototype._handleShowAuthors = function() {
   // console.log('hello');
   var authors = this.getDistinctAuthors();
   // console.log(authors);
-  console.log(authors.length);
+  // console.log(authors.length);
   // $('#allAuthorsModal').modal('show');
   if(authors.length > 0){
     // console.log("Brett is cool")

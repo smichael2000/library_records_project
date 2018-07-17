@@ -86,7 +86,7 @@ Library.prototype.getBooksByAuthor = function (authorName) {
     if (window.bookShelf[i].author.toLowerCase().indexOf(authorName.toLowerCase())>-1){
     // if (window.bookShelf[i].author === authorName) {
 
-      booksByAuthor.push(window.bookShelf[i]);
+      booksByAuthor.push(window.bookShelf[i].title);
     }
   }
   return booksByAuthor;
@@ -131,9 +131,7 @@ Library.prototype.getRandomAuthorNames = function () {
 //Purpose: Add a more robust search function to your app to allow you to filter by one or more book properties ○n the search function
 //Return: an array of book instances
 Library.prototype.search = function () {
-  for (var i = 0; i < window.bookShelf.length; i++) {
-
-  }
+  // this.getBooksByAuthor()
 };
 
 //************************ Creating event "" *****************************

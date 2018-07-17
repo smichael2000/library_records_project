@@ -42,20 +42,32 @@ DataTable.prototype._updateTable = function (e) {
 };
 
 DataTable.prototype._createRow = function (book) {
-  console.log('made it to _createRow');
   var tr = document.createElement('tr');
-  var deleteInput = document.createElement('input');
-  var att = document.createAttribute("type");
-  att.value = "checkbox";
-  deleteInput.setAttributeNode(att);
+  var deleteX = document.createElement('td');
+  var edit=document.createElement('tr');
+
+
+  // var deleteInput = document.createElement('input');
+  // var att = document.createAttribute("type");
+  // att.value = "checkbox";
+  // deleteInput.setAttributeNode(att);
 
   for(var key in book){
     var td = document.createElement('td');
     $(td).text(book[key]);
     tr.append(td);
   }
+
   console.log(td);
-  // tr.append(document.createElement('td').append(deleteInput));
+
+  tr.append(edit);
+  $(edit).text('edit');
+  $(edit).addClass('btn');
+
+  tr.append(deleteX);
+  $(deleteX).text('X');
+  $(deleteX).addClass('btn');
+  // $(deleteX).attr("data-bkTitle", book.title);//this will allow me to use the attribute, booktitle, when I call an event on this element
   return tr;
 };
 
@@ -73,12 +85,31 @@ DataTable.prototype._createHeader = function (book) {
     thr.append(bkey);
   }
 
-  // var edit = document.createElement('th');
-  //
-  // thr.append(edit);
-  // tr.append(document.createElement('td').append(deleteInput));
+  var edit = document.createElement('th');
+  thr.append(edit);
+  $(edit).text('edit');
+  var deleteBook = document.createElement('th');
+  thr.append(deleteBook);
+  $(deleteBook).text('delete');
+  // thr.append(document.createElement('td').append(deleteInput));
   return theader;
 };
+
+// DataTable.prototype._editBook = function (book) {
+//  document.getElementById("edit_button"+no).style.display="block";
+//
+//  var title=document.getElementById('title+'no);
+//  var author=document.getElementById('author'+no);
+//  var publishDate=document.getElementById('publishDate'+no);
+//
+//  var title=title.innerHTML;
+//  var author=author.innerHTML;
+//  var publishDate=publishDate.innerHTML;
+//
+//  title.innerHTML="<input type='text' id='title"+no+"' value='"+title+"'>";
+//  author.innerHTML="<input type='text' id='author"+no+"' value='"+author+"'>";
+//  publishDate.innerHTML="<input type='text' id='publishDate"+no+"' value='"+publishDate+"'>";
+// }
 
 $(function(){
   window.gDataTable = new DataTable();

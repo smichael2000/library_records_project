@@ -17,6 +17,7 @@ AddBooksUI.prototype.init = function () {
 AddBooksUI.prototype._bindEvents = function () {
   $('button#btn-queue').on('click', $.proxy(this._qBooks, this));
   this.$container.find('.add-to-lib').on('click', $.proxy(this._handleAddBooks, this));
+  this.$container.find('#genre-option').on('clickl', $.proxy(this._handleGenreField, this));
   // this.$container.find('.clear-q').on('click', $.proxy(this._clearQ, this));
   $('#addBkBtn').on('click', $.proxy(this._openModal, this));
 
@@ -31,15 +32,15 @@ AddBooksUI.prototype._qBooks = function (e) {
 
 // serialized array empty - trying different approach & will continue to problem solve with serialized array
 //creating object
-  var cover = cover || 'assets/goodreads_icon.jpg'
-  // var genre=$('#genre').val();
+  var cover = cover || 'image';
+  var genre =$('#genre-option').val();
   var title = $('#title').val();
   var author =$ ('#author').val();
   var numberOfPages= $('#numberOfPages').val();
   var yearPublished = $('#publishDate').val();
 
-  console.log(cover, title, author, numberOfPages,  yearPublished);
-  var qBook = new Book(cover, title, author, numberOfPages, yearPublished);
+  console.log(cover, genre, title, author, numberOfPages,  yearPublished);
+  var qBook = new Book(cover, genre, title, author, numberOfPages, yearPublished);
 
   // var selectors = '.validate';
   // $('#dataTable').on('change', selectors, function(event) {
@@ -56,17 +57,16 @@ AddBooksUI.prototype._qBooks = function (e) {
   //     console.log('some value is missing');
   //   else {
   //     console.log('valid');
-    }
-  });
 
   if (noDups(qBook)){
     this._q.push(qBook);
     this.$container.find('#numInQ').text(this._q.length + ' book(s) added to queue')
+    // $("#form")[0].reset();
 
-    document.getElementById("addBkBtn").reset();
+    // document.getElementById("addBkBtn").reset();
   } else
     alert('This book is already in the library.')
-  this.$container.find('#numInQ').text(this._q.push(qBook)+ " book(s) added to queue");
+  this.$container.find('#numInQ').text(this._q.length+ " book(s) added to queue");
   console.log(this._q.length, '_q - end');
   return qBook;
 };
@@ -77,12 +77,10 @@ AddBooksUI.prototype._handleAddBooks = function() {
   if (this._q) {
     this.addBooks(this._q);
     this._clearQ();
-    // $("#form")[0].reset();
     $('#addModal').modal('hide');
   } else {
     alert("Please queue at least one book.")
   }
-  //alert (count + " book(s) were added to your  library.")
   console.log(this._q.length, "handleAddBooks");
   return false;
 };
@@ -91,6 +89,11 @@ AddBooksUI.prototype._clearQ = function () {
   this._q = [];
   // this.$container.find('.').text(this._q.length);
   return false;
+};
+
+AddBooksUI.prototype._handleGenreField = function () {
+  var dropdown_btn = $('#genre-option').val();
+  console.log(dropdown_btn);
 };
 
 //*************Serialized Array code here - need to troubleshoot - sForm = {}
