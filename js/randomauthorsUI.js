@@ -1,7 +1,7 @@
 var RandomAuthorUI = function(container){
   this.$container = container;
   Library.call(this);
-  console.log(Library);
+  // console.log(Library);
 
 };
 
@@ -19,7 +19,7 @@ RandomAuthorUI.prototype.init = function() {
 
 RandomAuthorUI.prototype._bindEvents = function() {
   $('#random-author').on('click', $.proxy(this._handleRandomAuthor, this));
-  console.log('_bindEvents');
+  // console.log('_bindEvents');
 };
 
 RandomAuthorUI.prototype._handleRandomAuthor = function() {
@@ -29,11 +29,11 @@ RandomAuthorUI.prototype._handleRandomAuthor = function() {
   this.$container.find('.suggestedAuthor').text(author);
   this.$container.find('.listOfBooks').text('Books by ' + author + ' in your library:');
   this.$container.find('.booksByAuthor').text(books);
-  // this.$container.find('.booksByAuthor').html(this._createUlOfBooks(books));
+  this.$container.find('.booksByAuthor').html(this._createUlOfBooks(books));
   this.$container.modal('show');
 };
 
-ShowAuthorsUI.prototype._createUlOfBooks = function(books) {
+RandomAuthorUI.prototype._createUlOfBooks = function(books) {
 // console.log('yes');
 var ul = document.createElement("ul");
 for(var i =0; i< books.length; i++) {

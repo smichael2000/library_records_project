@@ -1,17 +1,27 @@
+body,html{
+  margin:0;
+  width:100%;
+}
+html{
+    background-color: #D3D3D3;
+}
+
+/*
+
 .allover {
   background-color: lightgrey;
   margin:0;
   padding:0;
   height:100%;
   width:100%;
-}
+} */
 
 .secondary-header {
   border-top: 4px solid #1abc9c;
   padding-top: 1%;
 }
 
-.navbar {
+.menu {
   justify-content: right;
 }
 

@@ -1,7 +1,7 @@
 var ShowAuthorsUI = function(container){
   this.$container = container;
   Library.call(this);
-  console.log(Library);
+  // console.log(Library);
 
 };
 
@@ -45,8 +45,10 @@ ShowAuthorsUI.prototype._createUlOfAuthors = function(authors) {
   for(var i =0; i< authors.length; i++) {
     var li = document.createElement("li");
     // console.log(authors[i]);
-    $(li).text(authors[i]);
-    ul.append(li);
+    if (authors[i]){
+      $(li).text(authors[i]);
+      ul.append(li);
+    }
   }
     console.log(ul);
     return ul;

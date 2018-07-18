@@ -1,34 +1,30 @@
-var AddBooksUI = function(container){
+var AddBooksUI = function(){
   Library.call(this);
   this._q = [];
-  this.$container = container;
-
+  this.$container = $('#addModal');
 };
 
 AddBooksUI.prototype = Object.create(Library.prototype);
 
 AddBooksUI.prototype.init = function () {
-  // window.bookShelf = this.retrieveBooks();
   this.retrieveBooks();
   this._bindEvents();
-
 };
 
 AddBooksUI.prototype._bindEvents = function () {
   $('button#btn-queue').on('click', $.proxy(this._qBooks, this));
   this.$container.find('.add-to-lib').on('click', $.proxy(this._handleAddBooks, this));
   this.$container.find('#genre-option').on('clickl', $.proxy(this._handleGenreField, this));
-  // this.$container.find('.clear-q').on('click', $.proxy(this._clearQ, this));
+  this.$container.find('.clear-q').on('click', $.proxy(this._clearQ, this));
   $('#addBkBtn').on('click', $.proxy(this._openModal, this));
-
 };
 
 AddBooksUI.prototype._openModal = function () {
   this.$container.modal('show');
 };
 
-AddBooksUI.prototype._qBooks = function (e) {
-  e.preventDefault();
+AddBooksUI.prototype._qBooks = function () {
+  // e.preventDefault();
 
 // serialized array empty - trying different approach & will continue to problem solve with serialized array
 //creating object
@@ -36,38 +32,20 @@ AddBooksUI.prototype._qBooks = function (e) {
   var genre =$('#genre-option').val();
   var title = $('#title').val();
   var author =$ ('#author').val();
-  var numberOfPages= $('#numberOfPages').val();
+  var numPages= $('#numberOfPages').val();
   var yearPublished = $('#publishDate').val();
 
-  console.log(cover, genre, title, author, numberOfPages,  yearPublished);
-  var qBook = new Book(cover, genre, title, author, numberOfPages, yearPublished);
-
-  // var selectors = '.validate';
-  // $('#dataTable').on('change', selectors, function(event) {
-  //   var $this = $(event.currentTarget),
-  //     $row = $this.closest('tr'),
-  //     $elements = $row.find(selectors);
-  //   var $filledElements = $elements.filter(function(index) {
-  //     return $(this).val();
-  //   });
-  //
-  //   var hasEmpty = $filledElements.length !== $elements.length
-  //   console.log(hasEmpty);
-  //   if (hasEmpty)
-  //     console.log('some value is missing');
-  //   else {
-  //     console.log('valid');
+  console.log(cover, genre, title, author, numPages, yearPublished);
+  var qBook = new Book(cover, genre, title, author, numPages, yearPublished);
 
   if (noDups(qBook)){
     this._q.push(qBook);
-    this.$container.find('#numInQ').text(this._q.length + ' book(s) added to queue')
-    // $("#form")[0].reset();
-
-    // document.getElementById("addBkBtn").reset();
+    this.$container.find('#numInQ').text(this._q.length + ' book(s) added to queue');
+    this._handleResetForm();
   } else
     alert('This book is already in the library.')
   this.$container.find('#numInQ').text(this._q.length+ " book(s) added to queue");
-  console.log(this._q.length, '_q - end');
+  // console.log(this._q.length, '_q - end');
   return qBook;
 };
 
@@ -81,7 +59,7 @@ AddBooksUI.prototype._handleAddBooks = function() {
   } else {
     alert("Please queue at least one book.")
   }
-  console.log(this._q.length, "handleAddBooks");
+  // console.log(this._q.length, "handleAddBooks");
   return false;
 };
 
@@ -93,8 +71,22 @@ AddBooksUI.prototype._clearQ = function () {
 
 AddBooksUI.prototype._handleGenreField = function () {
   var dropdown_btn = $('#genre-option').val();
-  console.log(dropdown_btn);
+
 };
+
+AddBooksUI.prototype._handleResetForm = function () {
+  // console.log(document.getElementById('clear-q-form'));
+  this.$container.find('#clear-q-form')[0].reset();
+};
+
+// AddBooksUI.prototype._handleEditField = function () {
+//   var edit = $('#edit-btn').button({
+//   classes: {
+//     "edit": "highlight"
+//   }
+// })
+
+// };
 
 //*************Serialized Array code here - need to troubleshoot - sForm = {}
   // console.log('queue_handle check');
@@ -127,6 +119,6 @@ AddBooksUI.prototype._handleGenreField = function () {
 // **************** end of Serialized Array code
 $(function(){
   // console.log('here');
-  window.gAddBooksUI = new AddBooksUI($('#addModal'));
+  window.gAddBooksUI = new AddBooksUI();
   window.gAddBooksUI.init();
 });
