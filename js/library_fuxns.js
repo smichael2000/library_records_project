@@ -47,20 +47,21 @@ Library.prototype.removeBookByAuthor = function (author) {
   // console.log(' made it to removeBookByAuthor fuxn');
   var originalLength = window.bookShelf.length;
   for(var i = 0; i < window.bookShelf.length; i++){
-    if (window.bookShelf[i].author.tolowercase() === author.tolowercase().trim()) {
+    if (window.bookShelf[i].author === author) {
     // if (window.bookShelf[i].author.indexOf(authorName >-1)) {
       window.bookShelf.splice(i,1);
       --i; // Correct the index value due to splice()
+      this.saveBooks();
+      // alert('The book was removed.');
+      this._handleEventTrigger('objUpdate');
     }
   }
   // console.log(window.bookShelf);
   if (originalLength != window.bookShelf.length) {
     // console.log (originalLength - window.bookShelf.length + " books by the author, " + authorName + ", were removed from the library.");
-    this.saveBooks();
-    // alert('The book was removed.');
-    this._handleEventTrigger('objUpdate');
+    return true;
   }
-  return true;
+  return false;
 };
 
 Library.prototype.getRandomBook = function () {

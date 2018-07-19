@@ -32,7 +32,7 @@ DataTable.prototype._updateTable = function (e) {
   // console.log($tbody);
   if(window.bookShelf){
   this.$container.find('#tHead').replaceWith(this._createHeader(window.bookShelf[0]));
-    $().each(window.bookShelf, function(index, book){
+    $.each(window.bookShelf, function(index, book){
       $tbody.append(_self._createRow(book));
     })
   }
@@ -56,7 +56,7 @@ DataTable.prototype._searchQuery = function (e) {
   if(e){
     // var result = ;
     // console.log(result, 'in _searchQuery');
-    this.$container.find('#search-btn').replaceWith(this._createHeader(e[0]))
+    this.$container.find('#tHead').replaceWith(this._createHeader(e[0]))
     $().each(e, function(index, book){
       // console.log("I am in $.each(e, function(index, book) ");
       $tbody.append(_self._createRow(book));

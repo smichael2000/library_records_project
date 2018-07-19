@@ -70,7 +70,6 @@ AddBooksUI.prototype._handleAddBooks = function() {
 
 AddBooksUI.prototype._clearQ = function () {
   this._q = [];
-  // this.$container.find('.').text(this._q.length);
   return false;
 };
 
