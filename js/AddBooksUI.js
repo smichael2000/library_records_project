@@ -38,6 +38,11 @@ AddBooksUI.prototype._qBooks = function () {
   console.log(cover, genre, title, author, numPages, yearPublished);
   var qBook = new Book(cover, genre, title, author, numPages, yearPublished);
 
+  // for (var key in qBook) {
+  //   if (key.value) {
+  //
+  //   } else { alert('Please input ' + key)}
+  // };
   if (noDups(qBook)){
     this._q.push(qBook);
     this.$container.find('#numInQ').text(this._q.length + ' book(s) added to queue');

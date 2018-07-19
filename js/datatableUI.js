@@ -13,12 +13,14 @@ DataTable.prototype.init = function() {
 };
 
 DataTable.prototype._bindEvents = function () {
-  $('#editBtn').on('click', $.proxy(this._EditModal, this));
+  $('.editBtn').on('click', $.proxy(this._editModal, this));
+  $('#dataTable').on('click','.deleteBtn', $.proxy(this._deleteRow, this));
+
 };
 
 DataTable.prototype._bindCustomListeners = function () {
   $(document).on('objUpdate', $.proxy(this._updateTable, this));
-  $(document).on('ubiquitous', $.proxy(this._searchQuery, this));
+  $(document).on('searchEvent', $.proxy(this._searchQuery, this));
 };
 
 DataTable.prototype._updateTable = function (e) {
@@ -30,7 +32,7 @@ DataTable.prototype._updateTable = function (e) {
   // console.log($tbody);
   if(window.bookShelf){
   this.$container.find('#tHead').replaceWith(this._createHeader(window.bookShelf[0]));
-    $.each(window.bookShelf, function(index, book){
+    $().each(window.bookShelf, function(index, book){
       $tbody.append(_self._createRow(book));
     })
   }
@@ -41,13 +43,22 @@ DataTable.prototype._updateTable = function (e) {
   return;
 };
 
+// DataTable.prototype.searchTable = function (e) {
+//   console.log(e);
+//   this._updateTable(e.detail)
+//
+// };
 DataTable.prototype._searchQuery = function (e) {
   var _self=this;
   var $tbody = this.$container.find('tbody');
   $tbody.empty();
+  console.log("event"+e.target);
   if(e){
+    // var result = ;
+    // console.log(result, 'in _searchQuery');
     this.$container.find('#search-btn').replaceWith(this._createHeader(e[0]))
-    $.each(e, function(index, book){
+    $().each(e, function(index, book){
+      // console.log("I am in $.each(e, function(index, book) ");
       $tbody.append(_self._createRow(book));
     })
   }else{
@@ -64,37 +75,27 @@ var tr = document.createElement('tr');
     var td = document.createElement('td');
     $(td).attr('contenteditable', 'true');
     $(td).text(book[key]);
+    $(td).data(key,book[key]);
     tr.append(td);
   }
 //adds delete button to td in tr
   var tdX = document.createElement('td');
-  var trX = document.createElement('input');
-  tdX.append(trX);
-  $(tdX).attr(book.title);
-  trX.setAttribute('type','button');
-  trX.setAttribute('value','X');
-  tr.append(trX);
-  //
-  // var rowGone = document.getElementById('dataTable');
-  //   rowGone.deleteRow(trX.parentNode.parentNode.rowIndex)
+  var deleteBtn = document.createElement('input');
+  tdX.append(deleteBtn);
+  // $(tdX).data('data-title', book.title);
+  deleteBtn.setAttribute('type','button');
+  deleteBtn.setAttribute('value','X');
+  deleteBtn.setAttribute('class','deleteBtn')
+  tr.append(tdX);
 
-  //Determine the reference of the Row using the Button.
-  // var row = trX.parentNode.parentNode;
-  // var name = row.getElementsByTagName("td")[0].innerHTML;
-  // if (confirm("Do you want to delete: " + name)) {
-  //   //Get the reference of the Table.
-  //   var table = document.getElementById("dataTable");
-  //   //Delete the Table row using it's Index.
-  //   // table.deleteRow(row.rowIndex);
-  // }
 //adds edit button to td in tr
   var tdEdit= document.createElement('td');
-  var trEdit = document.createElement('button');
-  tdEdit.append(trEdit);
+  var editBtn = document.createElement('button');
+  tdEdit.append(editBtn);
   var trEditText = document.createTextNode("Edit");
-  trEdit.setAttribute("name",name);
-  trEdit.appendChild(trEditText);
-  $(trEdit).attr("id", "editBtn")
+  editBtn.setAttribute("name",name);
+  editBtn.appendChild(trEditText);
+  $(editBtn).attr("class", "editBtn")
   tr.append(tdEdit);
 
   return tr;
@@ -124,9 +125,15 @@ DataTable.prototype._createHeader = function (book) {
   return theader;
 };
 
-// DataTable.prototype._editModal = function (book) {
-//   this.$container.modal('show');
-// };
+DataTable.prototype._deleteRow = function (e) {
+  console.log("delete button worked");
+  var deleteTr = $(e.currentTarget).closest('tr').children()[2];
+  console.log(deleteTr);
+  var title = $(deleteTr).data('title');
+  // console.log(deleteTr.data('title'));
+  this.removeBookByTitle(title)
+
+};
 
 $(function(){
   window.gDataTable = new DataTable();

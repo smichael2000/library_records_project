@@ -13,10 +13,10 @@ Library.prototype.addBook = function (book) {
     window.bookShelf.push(book);
     // console.log("addBook func");
     this.saveBooks();
+    console.log(window.bookShelf);
     this._handleEventTrigger("objUpdate");
   }
   // var booksInLib = Array.from(new Set(authors));
-  // console.log(booksInLib, 'booksInLib');
   //
   // return "No books!";    // return true;
 };
@@ -26,18 +26,19 @@ Library.prototype.removeBookByTitle = function (title) {
   //Return:boolean true if the book(s) were removed, false if no books match
   var originalLength = window.bookShelf.length;
   for(var i = 0; i<window.bookShelf.length; i++){
-    if (window.bookShelf[i].title.tolowercase() === title.tolowercase().trim()) {
+    if (window.bookShelf[i].title === title) {
+      console.log(window.bookShelf[i].title, " has been deleted");
     // if (window.bookShelf[i].title.indexOf(title) > -1) {
       window.bookShelf.splice(i,1);
       --i; // Correct the index value due to splice()
+      this.saveBooks()
+      this._handleEventTrigger('objUpdate');
     }
   }
-  if (originalLength != window.bookShelf.length) {
-    this.saveBooks();
-    // alert('The book, ' + bktitle + ', was removed.')
-    this._handleEventTrigger('objUpdate');
+  if (originalLength !== window.bookShelf.length) {
+    return true;
   }
-  return true;
+  return false;
 };
 
 Library.prototype.removeBookByAuthor = function (author) {
@@ -74,14 +75,15 @@ Library.prototype.getBookByTitle = function (title) {
   //Return: array of book objects if you find books with matching titles, empty array if no books are found
   var booksbytitle = [];
   for(var i = 0; i<window.bookShelf.length; i++){
-    if (window.bookShelf[i].title.toLowerCase().search(title.toLowerCase())>=0) {
-    // if (window.bookShelf[i].title === title) {
+    // console.log(window.bookShelf, 'getBookByTitle');
+    // if (window.bookShelf[i].title.search(title)>= -1) {
+    if (window.bookShelf[i].title === title) {
       booksbytitle.push(window.bookShelf[i]);
     }
   }
-  if (booksbytitle.length == 0) {
-    return ("There are no books by that title");
-  }
+  // if (booksbytitle.length == 0) {
+  //   return ("There are no books by that title");
+  // }
   return booksbytitle;
 };
 
@@ -90,9 +92,9 @@ Library.prototype.getBooksByAuthor = function (authorName) {
 //to the function.
   var booksByAuthor = [];
   for(var i = 0; i<window.bookShelf.length; i++){
-    if (window.bookShelf[i].author.toLowerCase().search(authorName.toLowerCase())>=0){
-    // if (window.bookShelf[i].author === authorName) {
-      booksByAuthor.push(window.bookShelf[i].title);
+    // if (window.bookShelf[i].author.search(authorName>=0)){
+    if (window.bookShelf[i].author === authorName) {
+      booksByAuthor.push(window.bookShelf[i].author);
     }
   }
   return booksByAuthor;
@@ -136,26 +138,32 @@ Library.prototype.getRandomAuthorNames = function () {
 //*******************Search Function*********************
 //Purpose: Add a more robust search function to your app to allow you to filter by one or more book properties ○n the search function
 //Return: an array of book instances
-Library.prototype.search = function (word) {
-  var searchT=[];
-  searchT.push(this.getBookByTitle(word));
-  console.log(searchT);
-  var searchTotal=searchT.concat(this.getBooksByAuthor(word));
-  console.log(searchTotal);
+Library.prototype.search = function (string) {
+  var resultT=[];
+  var resultA=[];
+  resultT.push(this.getBookByTitle(string));
+  console.log(resultT, 'resultT');
+  var resultA=this.getBooksByAuthor(string);
+  console.log(resultT, 'resultA');
+  var result=resultT.concat(resultA);
+  console.log(result, 'result');
 
-  if(searchTotal) {
-    searchTotal = filter(function(value,index,self){
-    return self.indexof(value) === index;
-    })
-  } return searchTotal;
+  // if(result) {
+  //   result = filter(function(value,index,self){
+  //   return self.indexof(value) === index;
+  //   })
+  // }
+  return result;
 };
 
 //************************ Creating event "" *****************************
 Library.prototype._handleEventTrigger = function(sEvent, oData) {
  var oData = oData || {}; //sets oData to an empty object if it does not have data
+ console.log("oData" + oData);
  if (sEvent) {
    var event = new CustomEvent(sEvent, oData);
    document.dispatchEvent(event);
+   console.log(document.dispatchEvent(event), "dispatch");
  }
 };
 //*******************Local Storage**********************
@@ -163,6 +171,7 @@ Library.prototype._handleEventTrigger = function(sEvent, oData) {
 //Purpose: Use localstorage and JSON.stringify to save the state of your library
 Library.prototype.saveBooks = function () {
   // console.log(window.bookShelf, 'save books');
+  console.log("setting storage");
   localStorage.setItem('books', JSON.stringify(window.bookShelf));
 };
 
