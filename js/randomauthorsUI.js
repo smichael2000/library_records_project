@@ -25,7 +25,7 @@ RandomAuthorUI.prototype._bindEvents = function() {
 RandomAuthorUI.prototype._handleRandomAuthor = function() {
   var author = this.getRandomAuthorNames();
   var books = this.getBooksByAuthor(author);
-  console.log(books);
+  console.log(books, 'books by '+ author);
   this.$container.find('.suggestedAuthor').text(author);
   this.$container.find('.listOfBooks').text('Books by ' + author + ' in your library:');
   this.$container.find('.booksByAuthor').text(books);
@@ -38,8 +38,8 @@ RandomAuthorUI.prototype._createUlOfBooks = function(books) {
 var ul = document.createElement("ul");
 for(var i =0; i< books.length; i++) {
   var li = document.createElement("li");
-  // console.log(authors[i]);
-  $(li).text(books[i]);
+  console.log(books[i].title);
+  $(li).text(books[i].title);
   ul.append(li);
 }
   console.log(ul);

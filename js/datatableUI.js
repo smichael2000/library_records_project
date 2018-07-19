@@ -20,11 +20,11 @@ DataTable.prototype._bindEvents = function () {
 
 DataTable.prototype._bindCustomListeners = function () {
   $(document).on('objUpdate', $.proxy(this._updateTable, this));
-  $(document).on('searchEvent', $.proxy(this._searchQuery, this));
+  $(document).on('searchEvent', $.proxy(this._searchTable, this));
 };
 
 DataTable.prototype._updateTable = function (e) {
-  // alert(e.detail.data);
+  // console.log(e.detail);
   var table = document.createElement('table');
   var _self = this;
   var $tbody = this.$container.find('tbody');
@@ -43,29 +43,29 @@ DataTable.prototype._updateTable = function (e) {
   return;
 };
 
-// DataTable.prototype.searchTable = function (e) {
-//   console.log(e);
-//   this._updateTable(e.detail)
-//
-// };
-DataTable.prototype._searchQuery = function (e) {
-  var _self=this;
-  var $tbody = this.$container.find('tbody');
-  $tbody.empty();
-  console.log("event"+e.target);
-  if(e){
-    // var result = ;
-    // console.log(result, 'in _searchQuery');
-    this.$container.find('#tHead').replaceWith(this._createHeader(e[0]))
-    $().each(e, function(index, book){
-      // console.log("I am in $.each(e, function(index, book) ");
-      $tbody.append(_self._createRow(book));
-    })
-  }else{
-    alert("no books in the bookshelf")
-  }
+DataTable.prototype._searchTable = function (e) {
+  console.log(e);
+  this._updateTable(e)
 
 };
+// DataTable.prototype._searchQuery = function (e) {
+//   var _self=this;
+//   var $tbody = this.$container.find('tbody');
+//   $tbody.empty();
+//   console.log("event"+e.target);
+//   if(e){
+//     // var result = ;
+//     // console.log(result, 'in _searchQuery');
+//     this.$container.find('#tHead').replaceWith(this._createHeader(e[0]))
+//     $().each(e, function(index, book){
+//       // console.log("I am in $.each(e, function(index, book) ");
+//       $tbody.append(_self._createRow(book));
+//     })
+//   }else{
+//     alert("no books in the bookshelf")
+//   }
+//
+// };
 
 DataTable.prototype._createRow = function (book) {
 var tr = document.createElement('tr');

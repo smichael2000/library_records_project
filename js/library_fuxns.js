@@ -56,7 +56,6 @@ Library.prototype.removeBookByAuthor = function (author) {
       this._handleEventTrigger('objUpdate');
     }
   }
-  // console.log(window.bookShelf);
   if (originalLength != window.bookShelf.length) {
     // console.log (originalLength - window.bookShelf.length + " books by the author, " + authorName + ", were removed from the library.");
     return true;
@@ -95,9 +94,10 @@ Library.prototype.getBooksByAuthor = function (authorName) {
   for(var i = 0; i<window.bookShelf.length; i++){
     // if (window.bookShelf[i].author.search(authorName>=0)){
     if (window.bookShelf[i].author === authorName) {
-      booksByAuthor.push(window.bookShelf[i].author);
+      booksByAuthor.push(window.bookShelf[i]);
     }
   }
+  console.log(booksByAuthor);
   return booksByAuthor;
 };
 
@@ -140,20 +140,8 @@ Library.prototype.getRandomAuthorNames = function () {
 //Purpose: Add a more robust search function to your app to allow you to filter by one or more book properties ○n the search function
 //Return: an array of book instances
 Library.prototype.search = function (string) {
-  var resultT=[];
-  var resultA=[];
-  resultT.push(this.getBookByTitle(string));
-  console.log(resultT, 'resultT');
-  var resultA=this.getBooksByAuthor(string);
-  console.log(resultT, 'resultA');
-  var result=resultT.concat(resultA);
+  var result = (this.getBookByTitle(string)).concat(this.getBooksByAuthor(string));
   console.log(result, 'result');
-
-  // if(result) {
-  //   result = filter(function(value,index,self){
-  //   return self.indexof(value) === index;
-  //   })
-  // }
   return result;
 };
 
