@@ -170,21 +170,23 @@ Library.prototype.retrieveBooks = function () {
   window.bookShelf = books || [];
   return window.bookShelf;
 };
-//loop through JSON array and get keys and values
-//************** Not Working in Firefox*******************************
-//not instantiating books as book objects in foreach loop or in for loop - works in Chrome
+
+//*******************Singleton****************************
+//Purpose: Make your library a singleton
+//Note: A prototyped book class should also be made, with each ‘book’ in your library being an instance of the book class.
+
+function Singleton() {
+    // instance stores as reference to Singleton
+    var instance;
+
+    // Singleton
+    window.Singleton = function() {  // Added window. during code reviews
+        return instance;
+    };
+
+    instance = this;
+
+    this._bookShelf = [];
+   };
 
 
-//*************** Create book as object ***********************
-//************** Use to read in for phase-two******************
-// var Book = function(title, author, numberOfPages, publishDate){
-//   this.title = title;
-//   this.author = author;
-//   this.numberOfPages = numberOfPages;
-//   this.publishDate = new Date(publishDate).getUTCFullYear();
-// };
-
-// document.addEventListener("DOMContentLoaded", function() {
-//   window.gLibrary = new Library();
-//   window.gLibrary._bookShelf = gLibrary.retrieveBooks();
-// });
