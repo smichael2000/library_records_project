@@ -58,7 +58,7 @@ AddBooksUI.prototype._qBooks = function () {
         // console.log(this._q.length, '_q - end');
         this._handleResetForm();
       }
-      else {alert('This book is already in the library.')}
+      else {alert('This book is already in the library.')};
       return validAddInput;
 };
 
