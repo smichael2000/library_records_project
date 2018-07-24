@@ -6,7 +6,8 @@ var DataTable = function(){
 DataTable.prototype = Object.create(Library.prototype);
 
 DataTable.prototype.init = function() {
-  this.retrieveBooks();
+  // this.retrieveBooks();
+  // this.retrieveBksDb();
   this._updateTable();
   this._bindEvents();
   this._bindCustomListeners();
@@ -24,15 +25,16 @@ DataTable.prototype._bindCustomListeners = function () {
 };
 
 DataTable.prototype._updateTable = function (e) {
-  // console.log(e.detail);
+  console.log("_updateTable ran");
+  console.log(window._bookShelf);
   var table = document.createElement('table');
   var _self = this;
   var $tbody = this.$container.find('tbody');
   $tbody.empty();
   // console.log($tbody);
-  if(window.bookShelf){
-  this.$container.find('#tHead').replaceWith(this._createHeader(window.bookShelf[0]));
-    $.each(window.bookShelf, function(index, book){
+  if(window._bookShelf){
+  this.$container.find('#tHead').replaceWith(this._createHeader(window._bookShelf[0]));
+    $.each(window._bookShelf, function(index, book){
       $tbody.append(_self._createRow(book));
     })
   }
@@ -45,7 +47,7 @@ DataTable.prototype._updateTable = function (e) {
 
 DataTable.prototype._searchTable = function (e) {
   console.log(e);
-  this._updateTable(e)
+  this._updateTable(e.detail);
 
 };
 // DataTable.prototype._searchQuery = function (e) {
@@ -108,7 +110,7 @@ DataTable.prototype._createHeader = function (book) {
   var thr = document.createElement('tr');
   $(thr).addClass("thead-light");
   theader.append(thr);
-  var dummyBk = new Book();
+  var dummyBk = new Book({});
   for(var key in dummyBk){
     var bkey = document.createElement('th');
     $(bkey).text(key);

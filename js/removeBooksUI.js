@@ -6,7 +6,7 @@ var RemoveBooksUI = function(container){
 RemoveBooksUI.prototype = Object.create(Library.prototype);
 
 RemoveBooksUI.prototype.init = function () {
-  this.retrieveBooks();
+  // this.retrieveBooks();
   this._bindEvents();
 };
 

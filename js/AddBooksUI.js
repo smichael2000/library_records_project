@@ -7,7 +7,7 @@ var AddBooksUI = function(){
 AddBooksUI.prototype = Object.create(Library.prototype);
 
 AddBooksUI.prototype.init = function () {
-  this.retrieveBooks();
+  // this.retrieveBooks();
   this._bindEvents();
 };
 

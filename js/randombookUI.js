@@ -11,8 +11,8 @@ RandomBookUI.prototype = Object.create(Library.prototype);
 
 //create method fire off everything need from get go
 RandomBookUI.prototype.init = function() {
-  window.bookShelf = this.retrieveBooks();
-  // console.log(window.bookShelf);
+  // window._bookShelf = this.retrieveBooks();
+  // console.log(window._bookShelf);
   this._bindEvents();
   return false;
 };
