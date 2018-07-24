@@ -2,56 +2,62 @@
 
 //**************** Constructor*************
 var Library = function(){
-  this._bookShelf = new Array();
+  window.bookShelf= [];
 };
 
 //**************** Functions **************
 Library.prototype.addBook = function (book) {
   //Purpose: Add a book object to your books array.
   //Return:boolean true if it is not already added, false if it is already added
-  if (this.nodups());
-    this._bookShelf.push((book));
-      this.saveBooks();
-      return true;
+  if (noDups(book)){// noDups fuxn in util.js
+    window.bookShelf.push(book);
+    // console.log("addBook func");
+    this.saveBooks();
+    console.log(window.bookShelf);
+    this._handleEventTrigger("objUpdate");
+  }
+  // var booksInLib = Array.from(new Set(authors));
+  //
+  // return "No books!";    // return true;
 };
-
-Library.prototype.nodups = function (book) {
-  for (var i = 0; i < this._bookShelf.length; i++) {
-    if (this._bookShelf[i].title === book.title) {
-      alert('The book with the title ' + book.title + 'is already in the library.')
-    }
-  } return true;
-}
 
 Library.prototype.removeBookByTitle = function (title) {
   //Purpose: Remove book from from the books array by its title.
   //Return:boolean true if the book(s) were removed, false if no books match
-  var originalLength = this._bookShelf.length;
-  for(var i = 0; i<this._bookShelf.length; i++){
-    if (this._bookShelf[i].title.toLowerCase().indexOf(title) > -1) {
-      this._bookShelf.splice(i,1);
+  var originalLength = window.bookShelf.length;
+  for(var i = 0; i<window.bookShelf.length; i++){
+    if (window.bookShelf[i].title === title) {
+      console.log(window.bookShelf[i].title, " has been deleted");
+    // if (window.bookShelf[i].title.indexOf(title) > -1) {
+      window.bookShelf.splice(i,1);
       --i; // Correct the index value due to splice()
+      this.saveBooks()
+      this._handleEventTrigger('objUpdate');
     }
   }
-  if (originalLength != this._bookShelf.length) {
-    this.saveBooks();
-    return true;}
+  if (originalLength !== window.bookShelf.length) {
+    return true;
+  }
   return false;
 };
 
-Library.prototype.removeBookByAuthor = function (authorName) {
+Library.prototype.removeBookByAuthor = function (author) {
   //Remove a specific book from your books array by the author name.
   //Return: boolean true if the book(s) were removed, false if no books match
-  var originalLength = this._bookShelf.length;
-  for(var i = 0; i<this._bookShelf.length; i++){
-    if (this._bookShelf[i].author.toLowerCase().indexOf(authorName.toLowerCase())>-1) {
-      this._bookShelf.splice(i,1);
+  // console.log(' made it to removeBookByAuthor fuxn');
+  var originalLength = window.bookShelf.length;
+  for(var i = 0; i < window.bookShelf.length; i++){
+    if (window.bookShelf[i].author === author) {
+    // if (window.bookShelf[i].author.indexOf(authorName >-1)) {
+      window.bookShelf.splice(i,1);
       --i; // Correct the index value due to splice()
+      this.saveBooks();
+      // alert('The book was removed.');
+      this._handleEventTrigger('objUpdate');
     }
   }
-  if (originalLength != this._bookShelf.length) {
-    console.log (originalLength - this._bookShelf.length + " books by the author, " + authorName + ", were removed from the library.");
-    this.saveBooks();
+  if (originalLength != window.bookShelf.length) {
+    // console.log (originalLength - window.bookShelf.length + " books by the author, " + authorName + ", were removed from the library.");
     return true;
   }
   return false;
@@ -60,23 +66,24 @@ Library.prototype.removeBookByAuthor = function (authorName) {
 Library.prototype.getRandomBook = function () {
   //Purpose: Return a random book object from your books array
   //Return: book object if you find a book, null if there are no books
-  if (this._bookShelf.length == 0) {return null;}
-  return (this._bookShelf[Math.floor(Math.random() * this._bookShelf.length)]);
+  if (window.bookShelf.length == 0) {return null;}
+  return (window.bookShelf[Math.floor(Math.random() * window.bookShelf.length)]);
 };
 
 Library.prototype.getBookByTitle = function (title) {
   //Purpose: Return all books that completely or partially matches the string title passed into the function
   //Return: array of book objects if you find books with matching titles, empty array if no books are found
   var booksbytitle = [];
-  for(var i = 0; i<this._bookShelf.length; i++){
-    if (this._bookShelf[i].title.toLowerCase().indexOf(title.toLowerCase())>-1) {
-    // if (this._bookShelf[i].title === title) {
-      booksbytitle.push(this._bookShelf[i]);
+  for(var i = 0; i<window.bookShelf.length; i++){
+    // console.log(window.bookShelf, 'getBookByTitle');
+    // if (window.bookShelf[i].title.search(title)>= -1) {
+    if (window.bookShelf[i].title === title) {
+      booksbytitle.push(window.bookShelf[i]);
     }
   }
-  if (booksbytitle.length == 0) {
-    return ("There are no books by that title");
-  }
+  // if (booksbytitle.length == 0) {
+  //   return ("There are no books by that title");
+  // }
   return booksbytitle;
 };
 
@@ -84,74 +91,84 @@ Library.prototype.getBooksByAuthor = function (authorName) {
 //Purpose: Finds all books where the author’s name partially or completely matches the authorName argument passed
 //to the function.
   var booksByAuthor = [];
-  for(var i = 0; i<this._bookShelf.length; i++){
-    if (this._bookShelf[i].author.toLowerCase().indexOf(authorName.toLowerCase())>-1){
-    // if (this._bookShelf[i].author === authorName) {
-
-      booksByAuthor.push(this._bookShelf[i]);
+  for(var i = 0; i<window.bookShelf.length; i++){
+    // if (window.bookShelf[i].author.search(authorName>=0)){
+    if (window.bookShelf[i].author === authorName) {
+      booksByAuthor.push(window.bookShelf[i]);
     }
   }
+  console.log(booksByAuthor);
   return booksByAuthor;
 };
 
 Library.prototype.addBooks = function (books) {
   //Purpose: Takes multiple books, in the form of an array of book objects, and adds the objects to your books array.
   //Return: number number of books successfully added, 0 if no books were added
+  var originalLength = window.bookShelf.length;
   if (Array.isArray(books)) {
-    var originalLength = this._bookShelf.length;
     for (var i = 0; i < books.length; i++) {
-      if (this.addBook(books[i])) {
-      }
+        this.addBook(books[i]);
     }
   }
-  return (this._bookShelf.length - originalLength + " books were added to the library.");
+  // console.log('addBooks works');
+  var numAddedBks = window.bookShelf.length - originalLength;
+  // console.log(numAddedBks + " books were added to the library.");
+  return (window.bookShelf, numAddedBks);
 };
 
 Library.prototype.getDistinctAuthors = function () {
   //Purpose: Find the distinct authors’ names from all books in your library
   //Return: array of strings the names of all distinct authors, empty array if no books exist or if no authors exist
   var authors = [];
-  for(var i = 0; i<this._bookShelf.length; i++){
-    authors.push(this._bookShelf[i].author);
+  for(var i = 0; i<window.bookShelf.length; i++){
+    authors.push(window.bookShelf[i].author);
   }
   // console.log(authors);
-  return new Set(authors);
+  var uniqueAuthors = Array.from(new Set(authors));
+  // console.log(uniqueAuthors, 'uniqueAuthors');
+  return uniqueAuthors;
 };
 
 Library.prototype.getRandomAuthorNames = function () {
   //Purpose: Retrieves a random author name from your books collection
   //Return: string author name, null if no books exist
-  if (this._bookShelf.length == 0) {return ("Null");}
+  if (window.bookShelf.length == 0) {return ("Null");}
   return this.getRandomBook().author;
 };
 
 //*******************Search Function*********************
 //Purpose: Add a more robust search function to your app to allow you to filter by one or more book properties ○n the search function
 //Return: an array of book instances
-Library.prototype.search = function () {
-  for (var i = 0; i < this._bookShelf.length; i++)
-}
+Library.prototype.search = function (string) {
+  var result = (this.getBookByTitle(string)).concat(this.getBooksByAuthor(string));
+  console.log(result, 'result');
+  return result;
+};
 
+//************************ Creating event "" *****************************
+Library.prototype._handleEventTrigger = function(sEvent, oData) {
+ var oData = oData || {}; //sets oData to an empty object if it does not have data
+ console.log("oData" + oData);
+ if (sEvent) {
+   var event = new CustomEvent(sEvent, oData);
+   document.dispatchEvent(event);
+   console.log(document.dispatchEvent(event), "dispatch");
+ }
+};
 //*******************Local Storage**********************
 //Stores data as strings - need to parse to convert back to objects when retrieve
 //Purpose: Use localstorage and JSON.stringify to save the state of your library
 Library.prototype.saveBooks = function () {
-  console.log(this._bookShelf);
-  localStorage.setItem('books', JSON.stringify(this._bookShelf));
-}
+  // console.log(window.bookShelf, 'save books');
+  console.log("setting storage");
+  localStorage.setItem('books', JSON.stringify(window.bookShelf));
+};
 
 Library.prototype.retrieveBooks = function () {
-//loop through JSON array and get keys and values
-//************** Not Working in Firefox*******************************
-//not instantiating books as book objects in foreach loop or in for loop - works in Chrome
-  var libraryBooks = [];
   var books = JSON.parse(localStorage.getItem('books'));
-
-  for (var i = 0; i < books.length; i++) {
-    libraryBooks.push(new Book(books[i].title,books[i].author,books[i].numberOfPages, books[i].pubDate));
-    // console.log(libraryBooks);
-  }
-  return libraryBooks;
+  // console.log(books, 'booksStorage');
+  window.bookShelf = books || [];
+  return window.bookShelf;
 };
 
 //*******************Singleton****************************
@@ -172,34 +189,4 @@ function Singleton() {
     this._bookShelf = [];
    };
 
-//*************** Create book as object ***********************
-//************** Use to read in for phase-two******************
-var Book = function(title, author, numberOfPages, publishDate){
-  this.title = title;
-  this.author = author;
-  this.numberOfPages = numberOfPages;
-  this.publishDate = new Date(publishDate);
-}
-//************* Books to add to library **********************
-//************* Use gLibrary.addBook(newBook) or .addBooks(newBooks) ***************************
-var newBook = [
-  new Book("Of Mice and Men", "John Steinbeck", 132, "2-25-1939"),
-]
-var newBooks = [
-  new Book("Catcher in the Rye", "J.D. Salinger", 277, "7-16-1951"),
-  new Book("The Undoing Project", "Michael Lewis", 368, "12-6-2016"),
-  new Book("The Graveyard Book", "Neil Gaiman", 312, "9-30-2008"),
-  new Book("The New New Thing", "Michael Lewis", 349, "10-17-1999"),
-  new Book ("IT", "Stephen King", 1138, "9-15-1986"),
-  new Book ("The Shining", "Stephen King", 447, "1-28-1977"),
-  new Book ("The Big Four", "Agatha Christie", 282, "1-27-1927"),
-  new Book ("A Thousand Acres", "Jane Smiley", 367, "10-23-1991"),
-  new Book ("To Kill a Mockingbird", "Harper Lee", 281, "7-11-1960"),
-  new Book ("The Shining", "Petra", 501, "9-28-1997"),//not adding as only unique titles included in library
-  new Book ("Holden Reincarnated", "Collin Taylor", 104, "4-16-2001")
-];
 
-document.addEventListener("DOMContentLoaded", function() {
-  window.gLibrary = new Library();
-  window.gLibrary._bookShelf = gLibrary.retrieveBooks();
-});
