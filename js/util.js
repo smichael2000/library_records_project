@@ -2,19 +2,16 @@
 var _bookShelf= new Array();
 var libraryURL = "http://127.0.0.1:3002/Library/";
 
-//transforms array of objects from dB into books
+//transforms array of objects into book array
 var bookify = function(arr) {
+  console.log(arr, "arr");
   var tempArr = []
   for (var i = 0; i < arr.length; i++) {
-    var myObj = new Object();
-    for (var key in arr[i]) {
-        myObj[key] = arr[i][key]
-    }
-    tempArr.push(new Book(myObj))
+    tempArr.push(new Book(arr[i]));
   }
-  //console.log(tempArr);
-  return tempArr
-}
+  console.log(tempArr, "tempArr");
+  return tempArr;
+};
 
 //************ connects to library_fuxns.js - checks for books already in library before adding
 var noDups = function (book) {
@@ -28,9 +25,6 @@ var noDups = function (book) {
     } return true;
   }
 };
-
-
-
 
 // function reformatDate(){
 //   //reformats reformat

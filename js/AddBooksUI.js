@@ -29,6 +29,7 @@ AddBooksUI.prototype._qBooks = function () {
     // console.log('queue_handle check');
     // console.log($('#addBkForm'));
     var sForm = $('form').serializeArray();
+    console.log(sForm, "sForm");
     // console.log(this.$container.find('form'), 'form');
     // console.log(sForm, 'sForm');
 
@@ -66,6 +67,8 @@ AddBooksUI.prototype._handleAddBooks = function() {
 
   // console.log(this._q.length,'HandleAddBooks-beginning');
   if (this._q) {
+    console.log(this._q, "this._q");
+      console.log(this, 'this');
     this.addBooks(this._q);
     this._clearQ();
     $('#addModal').modal('hide');

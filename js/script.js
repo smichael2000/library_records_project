@@ -6,18 +6,30 @@ var Library = function(){
 
 //**************** Functions **************
 Library.prototype.addBook = function (book) {
+  console.log(book, "book in addBook");
+
   //Purpose: Add a book object to your books array.
   //Return:boolean true if it is not already added, false if it is already added
   if (noDups(book)){// noDups fuxn in util.js
-    window._bookShelf.push(book);
-    // console.log("addBook func");
-    this.saveBooks();
-    console.log(window._bookShelf);
-    this._handleEventTrigger("objUpdate");
-  }
-  // var booksInLib = Array.from(new Set(authors));
-  //
-  // return "No books!";    // return true;
+    // window._bookShelf.push(book);
+    // this._handleEventTrigger("searchEvent");
+
+    $.ajax({
+    url: window.libraryURL,
+    dataType: 'json',
+    method: 'POST',
+    data: book,
+    success: data => {
+      console.log(data, "response data");
+      var myBook = new Book(data);
+      window._bookShelf.push(myBook);
+      console.log(myBook, "myBook");
+      // window._bookShelf.push(myBook);
+      // console.log(myBook, "myBook");
+      this._handleEventTrigger("searchEvent", window._bookShelf);
+    }
+  })
+}
 };
 
 Library.prototype.removeBookByTitle = function (title) {
@@ -103,7 +115,10 @@ Library.prototype.getBooksByAuthor = function (authorName) {
 Library.prototype.addBooks = function (books) {
   //Purpose: Takes multiple books, in the form of an array of book objects, and adds the objects to your books array.
   //Return: number number of books successfully added, 0 if no books were added
+  // console.log("i am in addBooks");
   var originalLength = window._bookShelf.length;
+  // console.log(typeof books);
+  // console.log(books);
   if (Array.isArray(books)) {
     for (var i = 0; i < books.length; i++) {
         this.addBook(books[i]);
@@ -178,30 +193,31 @@ Library.prototype.retrieveBksDb = function (){
     dataType:'json',
     method: 'GET',
     success: (data) => {
-      console.log(data, "data");
+      // console.log(data, "data");
       window._bookShelf=bookify(data);
-      console.log(window._bookShelf);
-      console.log("i am here");
+      // console.log('_bookShelf, retrieveBksDb');
+      // console.log(window._bookShelf);
+      // console.log("i am here");
       // this._handleEventTrigger('searchEvent',window._bookShelf);
       _self._handleEventTrigger('objUpdate');
     }
   })
-}
+};
 
 //*******************Singleton****************************
 //Purpose: Make your library a singleton
 //Note: A prototyped book class should also be made, with each ‘book’ in your library being an instance of the book class.
 
-function Singleton() {
-    // instance stores as reference to Singleton
-    var instance;
-
-    // Singleton
-    window.Singleton = function() {  // Added window. during code reviews
-        return instance;
-    };
-
-    instance = this;
-
-    this._bookShelf = [];
-   };
+// function Singleton() {
+//     // instance stores as reference to Singleton
+//     var instance;
+//
+//     // Singleton
+//     window.Singleton = function() {  // Added window. during code reviews
+//         return instance;
+//     };
+//
+//     instance = this;
+//
+//     this._bookShelf = [];
+//    };
