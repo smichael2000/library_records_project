@@ -12,7 +12,7 @@ DataTable.prototype.init = function() {
 };
 
 DataTable.prototype._bindEvents = function () {
-  $('.editBtn').on('click', $.proxy(this._editModal, this));
+  // $('.editBtn').on('click', $.proxy(this._editModal, this));
   $('#dataTable').on('click','.deleteBtn', $.proxy(this._deleteRow, this));
 
 };
@@ -60,7 +60,8 @@ var tr = document.createElement('tr');
     $(td).data(key,book[key]);
     if (key != '_id'){
       tr.append(td);
-    } else {var idKey = td}
+    // } else {var idKey = td}
+    }
   }
 //adds delete & edit buttons to td in tr
   var tdDelete = document.createElement('td');
@@ -115,10 +116,12 @@ DataTable.prototype._createHeader = function (book) {
 };
 
 DataTable.prototype._deleteRow = function (e) {
-  console.log("delete button worked");
-  console.log($(e.currentTarget).closest('tr').children()[2]);
+  // console.log("delete button worked");
+  // console.log($(e.currentTarget).closest('tr').children()[2]);
   var deleteTr = $(e.currentTarget).closest('tr').children()[2];
-  var title = deleteTr.innerHTML;
+  // console.log(deleteTr);
+  var title = $(deleteTr).text();
+  // console.log(title);
   this.removeBookByTitle(title)
 };
 

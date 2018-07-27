@@ -6,7 +6,7 @@ var Library = function(){
 
 //**************** Functions **************
 Library.prototype.addBook = function (book) {
-  console.log(book, "book in addBook");
+  // console.log(book, "book in addBook");
 
   if (noDups(book)){// noDups fuxn in util.js
     $.ajax({
@@ -15,11 +15,9 @@ Library.prototype.addBook = function (book) {
     method: 'POST',
     data: book,
     success: data => {
-      console.log(data, "response data");
+      // console.log(data, "response data");
       var myBook = new Book(data);
       window._bookShelf.push(myBook);
-      console.log(myBook, "myBook");
-      // window._bookShelf.push(myBook);
       // console.log(myBook, "myBook");
       this._handleEventTrigger("searchEvent", window._bookShelf);
     }
@@ -28,13 +26,12 @@ Library.prototype.addBook = function (book) {
 };
 
 Library.prototype.removeBookByTitle = function (title) {
-  console.log("in removeBookByTitle");
   //Purpose: Remove book from from the books array by its title.
   //Return:boolean true if the book(s) were removed, false if no books match
   var originalLength = window._bookShelf.length;
   for(var i = 0; i<window._bookShelf.length; i++){
     if (window._bookShelf[i].title === title) {
-      alert(window._bookShelf[i].title, + " has been deleted")
+      // alert(window._bookShelf[i].title, + " has been deleted")
       var id = window._bookShelf[i]._id;
     // if (window._bookShelf[i].title.indexOf(title) > -1) {
       window._bookShelf.splice(i,1);
@@ -63,7 +60,7 @@ Library.prototype.removeBookByAuthor = function (author) {
   }
   if (originalLength != window._bookShelf.length) {
     // console.log (originalLength - window._bookShelf.length + " books by the author, " + authorName + ", were removed from the library.");
-    alert("All the books by " + window._bookShelf[i].author + " have been deleted")
+    // alert("All the books by " + window._bookShelf[i].author + " have been deleted")
     return true;
   } else {alert("There are no books by that author in the library.")}
   return false;
@@ -73,8 +70,9 @@ Library.prototype.getRandomBook = function () {
   //Purpose: Return a random book object from your books array
   //Return: book object if you find a book, null if there are no books
   if (window._bookShelf.length == 0) {return null;}
-  var desiredBk = window._bookShelf[Math.floor(Math.random() * window._bookShelf.length)];
-  return desiredBk;
+  var ranBk = window._bookShelf[Math.floor(Math.random() * window._bookShelf.length)]._id;
+  // console.log(ranBk, 'randomBk');
+  return ranBk;
 };
 
 Library.prototype.getBookByTitle = function (title) {
@@ -90,7 +88,7 @@ Library.prototype.getBookByTitle = function (title) {
   }
 
   if (booksByTitle.length <= 0) {
-    console.log("There are no books by that title");
+    alert("There are no books by that title");
 
   }
   return booksByTitle;
@@ -150,8 +148,27 @@ Library.prototype.getRandomAuthorNames = function () {
   //Purpose: Retrieves a random author name from your books collection
   //Return: string author name, null if no books exist
   if (window._bookShelf.length == 0) {return ("Null");}
-  return this.getRandomBook().author;
+  return this.getRandomBook();
+
 };
+
+
+
+Library.prototype.getBkById = function (id) {
+    var randomBook = $.ajax({
+        url: window.libraryURL + '/' + id,
+        dataType: "json",
+        method: 'GET',
+        // data: id,
+        success: data => {
+        // console.log(data, "response data")
+        var book = new Book(data);
+        // console.log(book, 'book in getBkById');
+        return book;
+        }
+    })
+    return randomBook;
+  };
 
 Library.prototype.updateBook = function (book) {
   $.ajax({
@@ -161,8 +178,8 @@ Library.prototype.updateBook = function (book) {
   data: book,
   success: data => {
     console.log(data, "response data");
-    var myBook = new Book(data);
-    window._bookShelf.push(myBook);
+    // var myBook = new Book(data);
+    // window._bookShelf.push(myBook);
     // console.log(myBook, "myBook");
     this._handleEventTrigger("searchEvent", window._bookShelf);
     }
@@ -189,7 +206,7 @@ Library.prototype.deleteBook = function (id) {
 //Return: an array of book instances
 Library.prototype.search = function (string) {
   var result = (this.getBookByTitle(string)).concat(this.getBooksByAuthor(string));
-  console.log(result, 'result');
+  // console.log(result, 'result');
   return result;
 };
 

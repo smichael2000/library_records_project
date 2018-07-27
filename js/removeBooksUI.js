@@ -28,16 +28,22 @@ RemoveBooksUI.prototype._handleRemoveBooks = function() {
   if (title) {
     this.removeBookByTitle(title);
     alert('The book, ' + title + ', was removed.');
+    this._handleResetForm();
 
   }
   else if (author) {
     // console.log('made it to author');
     this.removeBookByAuthor(author);
     // alert('The book(s) by the author, '  author + ', was/were removed.');
+    this._handleResetForm();
   }
   else {
     alert('The book is not in the library.');
   }
+};
+RemoveBooksUI.prototype._handleResetForm = function () {
+  this.$container.find('#removeBkForm')[0].reset()
+  // console.log($('#addBkForm'))
 };
 
 $(function(){

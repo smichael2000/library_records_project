@@ -22,10 +22,12 @@ RandomAuthorUI.prototype._bindEvents = function() {
   // console.log('_bindEvents');
 };
 
-RandomAuthorUI.prototype._handleRandomAuthor = function() {
-  var author = this.getRandomAuthorNames();
+RandomAuthorUI.prototype._handleRandomAuthor = async function() {
+  var book = await this.getBkById(this.getRandomAuthorNames());
+  var author = book.author;
+  // console.log(author);
   var books = this.getBooksByAuthor(author);
-  console.log(books, 'books by '+ author);
+  // console.log(books, 'books by '+ author);
   this.$container.find('.suggestedAuthor').text(author);
   this.$container.find('.listOfBooks').text('Books by ' + author + ' in your library:');
   this.$container.find('.booksByAuthor').text(books);
@@ -38,11 +40,11 @@ RandomAuthorUI.prototype._createUlOfBooks = function(books) {
 var ul = document.createElement("ul");
 for(var i =0; i< books.length; i++) {
   var li = document.createElement("li");
-  console.log(books[i].title);
+  // console.log(books[i].title);
   $(li).text(books[i].title);
   ul.append(li);
 }
-  console.log(ul);
+  // console.log(ul);
   return ul;
 };
 

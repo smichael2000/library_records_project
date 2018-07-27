@@ -22,11 +22,10 @@ RandomBookUI.prototype._bindEvents = function() {
   // console.log('_bindEvents');
 };
 
-RandomBookUI.prototype._handleRandomBook = function() {
-  var book = this.getRandomBook();
-  var title = book.title;
-  var author = book.author;
-  console.log(book, author);
+RandomBookUI.prototype._handleRandomBook = async function() {
+  var book = await this.getBkById(this.getRandomBook());
+  // console.log(book);
+  // console.log(book.title, book.author);
   this.$container.find('.modal-input').text(book.title + ' by ' + book.author);
   this.$container.modal('show');
 };
