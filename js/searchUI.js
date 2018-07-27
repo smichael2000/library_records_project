@@ -1,7 +1,7 @@
 var SearchUI = function(){
   Library.call(this);
   this.$container = $('#searchForm');
-  console.log(this.$container);
+  // console.log(this.$container);
 
 };
 
@@ -28,6 +28,7 @@ SearchUI.prototype._handleSearch = function(e) {
   var query = this.$container.find('#search-field').val();
   // console.log(query);
   var searchResult = this.search(query);
+  console.log(searchResult);
   this._handleEventTrigger('searchEvent', searchResult);
 
 };

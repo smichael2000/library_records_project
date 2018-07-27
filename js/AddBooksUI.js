@@ -29,34 +29,33 @@ AddBooksUI.prototype._qBooks = function () {
     // console.log('queue_handle check');
     // console.log($('#addBkForm'));
     var sForm = $('form').serializeArray();
-    console.log(sForm, "sForm");
+    // console.log(sForm, "sForm");
     // console.log(this.$container.find('form'), 'form');
     // console.log(sForm, 'sForm');
 
-    var objBk = new Object();
-    console.log(objBk, 'Obj');
+    var book = new Book("");
+    //console.log(book, 'new Book');
     var validAddInput = true;
     $.each(sForm , function(index, kvp) {
       // console.log(kvp.value, 'value');
       if (kvp.value) {
-        objBk[kvp.name]=kvp.value;
-        console.log(objBk, 'if statment');
+        book[kvp.name]=kvp.value;
+        //console.log(book, 'if statment');
       }
       else {
         validAddInput = false;
         alert("Please enter the value for: " + kvp.name);
       }
-      return objBk;
+      return book;
     });
-
-      var book = new Book(objBk);
-      console.log(objBk, 'objBk');
-      console.log(book, 'book');
+    // console.log("add books line 51");
+    //   console.log(book);
 
       if(validAddInput && noDups(book)) {
         this._q.push(book);
         this.$container.find('#numInQ').text(this._q.length+ " book(s) added to queue");
         // console.log(this._q.length, '_q - end');
+        console.log("happened");
         this._handleResetForm();
       }
       else {alert('This book is already in the library.')};
@@ -89,8 +88,9 @@ AddBooksUI.prototype._handleGenreField = function () {
 };
 
 AddBooksUI.prototype._handleResetForm = function () {
+  console.log("form resetting");
   // console.log(document.getElementById('clear-q-form'));
-  // this.$container.find('#clear-q-form')[0].reset();
+  console.log($('form'))
 };
 
 // AddBooksUI.prototype._handleEditField = function () {

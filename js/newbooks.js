@@ -1,7 +1,7 @@
 //This file adds books to library to check functionality
 
 var Book = function(args){
-  console.log(args, "beg bk construct");
+  // console.log(args, "beg bk construct");
   this._id = args._id;
   this.cover = args.cover || "cover image";
   this.genre = args.genre;

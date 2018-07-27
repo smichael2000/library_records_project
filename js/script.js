@@ -8,12 +8,7 @@ var Library = function(){
 Library.prototype.addBook = function (book) {
   console.log(book, "book in addBook");
 
-  //Purpose: Add a book object to your books array.
-  //Return:boolean true if it is not already added, false if it is already added
   if (noDups(book)){// noDups fuxn in util.js
-    // window._bookShelf.push(book);
-    // this._handleEventTrigger("searchEvent");
-
     $.ajax({
     url: window.libraryURL,
     dataType: 'json',
@@ -28,28 +23,28 @@ Library.prototype.addBook = function (book) {
       // console.log(myBook, "myBook");
       this._handleEventTrigger("searchEvent", window._bookShelf);
     }
-  })
-}
+    })
+  }
 };
 
 Library.prototype.removeBookByTitle = function (title) {
+  console.log("in removeBookByTitle");
   //Purpose: Remove book from from the books array by its title.
   //Return:boolean true if the book(s) were removed, false if no books match
   var originalLength = window._bookShelf.length;
   for(var i = 0; i<window._bookShelf.length; i++){
     if (window._bookShelf[i].title === title) {
-      console.log(window._bookShelf[i].title, " has been deleted");
+      alert(window._bookShelf[i].title, + " has been deleted")
+      var id = window._bookShelf[i]._id;
     // if (window._bookShelf[i].title.indexOf(title) > -1) {
       window._bookShelf.splice(i,1);
       --i; // Correct the index value due to splice()
-      this.saveBooks()
-      this._handleEventTrigger('objUpdate');
-    }
+      this._handleEventTrigger("objUpdate", window._bookShelf);
+      this.deleteBook(id);
+    } if (originalLength !== window._bookShelf.length) {
+      return true;
+    } return false;
   }
-  if (originalLength !== window._bookShelf.length) {
-    return true;
-  }
-  return false;
 };
 
 Library.prototype.removeBookByAuthor = function (author) {
@@ -60,17 +55,17 @@ Library.prototype.removeBookByAuthor = function (author) {
   for(var i = 0; i < window._bookShelf.length; i++){
     if (window._bookShelf[i].author === author) {
     // if (window._bookShelf[i].author.indexOf(authorName >-1)) {
+      var id = window._bookShelf[i]._id;
       window._bookShelf.splice(i,1);
       --i; // Correct the index value due to splice()
-      this.saveBooks();
-      // alert('The book was removed.');
-      this._handleEventTrigger('objUpdate');
+      this.deleteBook(id);
     }
   }
   if (originalLength != window._bookShelf.length) {
     // console.log (originalLength - window._bookShelf.length + " books by the author, " + authorName + ", were removed from the library.");
+    alert("All the books by " + window._bookShelf[i].author + " have been deleted")
     return true;
-  }
+  } else {alert("There are no books by that author in the library.")}
   return false;
 };
 
@@ -78,24 +73,27 @@ Library.prototype.getRandomBook = function () {
   //Purpose: Return a random book object from your books array
   //Return: book object if you find a book, null if there are no books
   if (window._bookShelf.length == 0) {return null;}
-  return (window._bookShelf[Math.floor(Math.random() * window._bookShelf.length)]);
+  var desiredBk = window._bookShelf[Math.floor(Math.random() * window._bookShelf.length)];
+  return desiredBk;
 };
 
 Library.prototype.getBookByTitle = function (title) {
   //Purpose: Return all books that completely or partially matches the string title passed into the function
   //Return: array of book objects if you find books with matching titles, empty array if no books are found
-  var booksbytitle = [];
+  var booksByTitle = [];
   for(var i = 0; i<window._bookShelf.length; i++){
     // console.log(window._bookShelf, 'getBookByTitle');
     // if (window._bookShelf[i].title.search(title)>= -1) {
     if (window._bookShelf[i].title === title) {
-      booksbytitle.push(window._bookShelf[i]);
+      booksByTitle.push(window._bookShelf[i]);
     }
   }
-  // if (booksbytitle.length == 0) {
-  //   return ("There are no books by that title");
-  // }
-  return booksbytitle;
+
+  if (booksByTitle.length <= 0) {
+    console.log("There are no books by that title");
+
+  }
+  return booksByTitle;
 };
 
 Library.prototype.getBooksByAuthor = function (authorName) {
@@ -108,7 +106,12 @@ Library.prototype.getBooksByAuthor = function (authorName) {
       booksByAuthor.push(window._bookShelf[i]);
     }
   }
-  console.log(booksByAuthor);
+
+  if (booksByAuthor.length <= 0) {
+    console.log("There are no books by " + authorName);
+
+  }
+  // console.log(booksByAuthor);
   return booksByAuthor;
 };
 
@@ -150,6 +153,37 @@ Library.prototype.getRandomAuthorNames = function () {
   return this.getRandomBook().author;
 };
 
+Library.prototype.updateBook = function (book) {
+  $.ajax({
+  url: window.libraryURL,
+  dataType: 'json',
+  method: 'PUT',
+  data: book,
+  success: data => {
+    console.log(data, "response data");
+    var myBook = new Book(data);
+    window._bookShelf.push(myBook);
+    // console.log(myBook, "myBook");
+    this._handleEventTrigger("searchEvent", window._bookShelf);
+    }
+  })
+};
+
+Library.prototype.deleteBook = function (id) {
+    $.ajax({
+        url: window.libraryURL + "/" + id,
+        dataType: "text",
+        method: 'DELETE',
+        data: id,
+        success: data => {
+          // console.log(data, "response data");
+          this._handleEventTrigger("searchEvent", window._bookShelf);
+        }
+    })
+  };
+
+
+
 //*******************Search Function*********************
 //Purpose: Add a more robust search function to your app to allow you to filter by one or more book properties ○n the search function
 //Return: an array of book instances
@@ -167,7 +201,7 @@ Library.prototype._handleEventTrigger = function(sEvent, oData) {
  if (sEvent) {
    var event = new CustomEvent(sEvent, {"detail":oData});
    document.dispatchEvent(event);
-   console.log(document.dispatchEvent(event), "dispatch");
+   // console.log(document.dispatchEvent(event), "dispatch");
  }
 };
 //*******************Local Storage**********************
@@ -199,7 +233,7 @@ Library.prototype.retrieveBksDb = function (){
       // console.log(window._bookShelf);
       // console.log("i am here");
       // this._handleEventTrigger('searchEvent',window._bookShelf);
-      _self._handleEventTrigger('objUpdate');
+      _self._handleEventTrigger('searchEvent',window._bookShelf);
     }
   })
 };

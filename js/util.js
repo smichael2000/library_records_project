@@ -4,12 +4,12 @@ var libraryURL = "http://127.0.0.1:3002/Library/";
 
 //transforms array of objects into book array
 var bookify = function(arr) {
-  console.log(arr, "arr");
+  // console.log(arr, "arr");
   var tempArr = []
   for (var i = 0; i < arr.length; i++) {
     tempArr.push(new Book(arr[i]));
   }
-  console.log(tempArr, "tempArr");
+  // console.log(tempArr, "tempArr");
   return tempArr;
 };
 
