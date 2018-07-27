@@ -1,24 +1,97 @@
-/* @import url('https://fonts.googleapis.com/css?family=Raleway');
-@import url('https://fonts.googleapis.com/css?family=Oswald');
-
-html, body{
-  margin:0;
-  padding:0;
-  height:100%;
-  width:100%;
+/*import fonts*/
+@import url ('https//fonts.googleapis.com/css?family= Raleway');
+@import url ('https//fonts.googleapis.com/css?family=Oswald');
+/* background image */
+html{
+      height: 100%;
+    }
+body {
+      position: relative;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      min-height: 100%;
+    }
+body::after {
+      content: "";
+      background: url('../assets/ideasBook3.jpg') no-repeat center center;
+      background-size:cover;
+      opacity: 0.5;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      position: absolute;
+      z-index: -1;
+      /* -webkit-filter: grayscale(1);
+      filter: grayscale(1); */
+    }
+.menu {
+      max-width: 100%;
 }
+.page {
+      max-width: 500px;
+      margin 0 auto;
+      text-align: center;
+    }
+.page h1 {
+      display: block;
+      font-family: 'Raleway', sans-serif;
+      font-size: 250%;
+      margin: 0 0 0 0;
+      padding: 5% 0 3% 0;
+      text-shadow: 0px 0px 300px #000;
+    }
+.page h2 {
+          /* color: #4B0082; */
+      display: block;
+      font-family: 'Oswald', sans-serif;
+      font-size: 175%;
+      margin: 0 0 0 0;
+      padding: 0 0 5% 0;
+      text-shadow: 0px 0px 300px #000;
+    }
+.btn {
+      background-color: #4B0082;
+      border: solid black 2px;
+      border-radius: 3px;
+      color: #fff;
+      font-size: 140%
+      padding: 20px 30px;
+      text-transform: uppercase;
+    }
+.btn:hover {
+      color: #fff;
+      border: solid #fff 2px;
+    }
 
-.bg {
-  height:100%;
-  width:100%;
-  margin: auto;
-  background: url('assets/bg.jpg') no repeat 50% 50%;
-} */
-body{
-    /* background-image:url('assets/bg_world.jpg'); */
-    background-image: url('book-magic-light.jpg');
-    background-attachment:fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
+/* .table-message {
+      color: #fff;
+      text-shadow: #343a40 2px 2px;
+      min-width: 100%;
+      min-height: 12em;
+      position: relative;
+    }
 
-}
+.table-message::before {
+      content: "";
+      display: block;
+      position: absolute;
+      margin-left: 0;
+      min-width: 100%;
+      min-height: 12em;
+      z-index: -1;
+      opacity: 0.4;
+      background-color: #343a40;
+    }
+
+.table-title,
+.table-sub-title {
+      width: 100%;
+      display: block;
+      text-align: center;
+    }
+
+.table-title {
+      margin: 3% 0;
+      text-transform: uppercase;
+    } */
