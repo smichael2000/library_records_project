@@ -82,15 +82,15 @@
               <aside class="row">
                 <div class="col"></div>
                 <div class="col grbox">
-                  <img class="grImage" alt="goodreads" src="https://s.gr-assets.com/assets/home/header_logo-8d96d7078a3d63f9f31d92282fd67cf4.png"></img>
+                  <img class="grImage" alt="goodreads" src="https://s.gr-assets.com/assets/home/header_logo-8d96d7078a3d63f9f31d92282fd67cf4.png">
                   <p class="grBookClub">For a list of online goodreads book clubs, click <a href="https://www.goodreads.com/group/show_tag/bookclub">here</a></p>
               </div>
                 <div class="col nybox">
-                  <img class="nytimesImage" alt="nytimes" src="assets/nytimes.png"></img>
+                  <img class="nytimesImage" alt="nytimes" src="assets/nytimes.png">
                   <p class="">For a list of books on the New York Times best sellers lists, click <a href="https://www.nytimes.com/books/best-sellers/">here</a></p>
                 </div>
                 <div class="col rgbox">
-                  <img class="rgz" alt="rgz" src="http://www.readergirlz.com/rgzicon.jpg"></img>
+                  <img class="rgz" alt="rgz" src="http://www.readergirlz.com/rgzicon.jpg">
                   <p class="rgzBkClub">For an online book club that engages young men and women, click <a href="http://www.readergirlz.com/issue.html">here</a></p>
               </div>
               <div class="col"></div>
@@ -294,10 +294,10 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
         <div class="modal-input">
-          <img class="cover-img" src="https://upload.wikimedia.org/wikipedia/en/3/32/Rye_catcher.jpg"></img>
-          <img class="cover-img" src="https://upload.wikimedia.org/wikipedia/commons/4/49/Blinkgla.jpg"></img>
-          <img class="cover-img" src="assets/The Undoing Projecxt.jpg"></img>
-          <img class="cover-img" src="https://upload.wikimedia.org/wikipedia/en/2/2f/Big-short-inside-the-doomsday-machine.jpg"></img>
+          <img class="cover-img" src="https://upload.wikimedia.org/wikipedia/en/3/32/Rye_catcher.jpg">
+          <img class="cover-img" src="https://upload.wikimedia.org/wikipedia/commons/4/49/Blinkgla.jpg">
+          <img class="cover-img" src="assets/The Undoing Projecxt.jpg">
+          <img class="cover-img" src="https://upload.wikimedia.org/wikipedia/en/2/2f/Big-short-inside-the-doomsday-machine.jpg">
         </div>
       </div>
     </div>
@@ -357,17 +357,40 @@
               <div class="form-group">
                 <label for="inputEmail3" class="col-sm-5 control-label editTitle">Edit Title</label>
                 <div class="col-sm-10">
-                  <input type="email" class="form-control" id="" placeholder="Edit Title">
+                  <input type="text" class="form-control" id="edit-title" placeholder="Edit Title">
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputPassword3" class="col-sm-5 control-label editAuthor">Edit Author</label>
                 <div class="col-sm-10">
-                  <input type="password" class="form-control" id="" placeholder="Edit Author">
+                  <input type="text" class="form-control" id="edit-author" placeholder="Edit Author">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-5 control-label" id="">Edit Number of Pages</label>
+                <div class="col-sm-10">
+                  <input type="number" class="form-control" id="edit-numPages" placeholder="Edit Number of Pages">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-5 control-label" id="">Edit Publication Date</label>
+                <div class="col-sm-10">
+                  <input type="number" class="form-control" id="edit-pubDate" placeholder="Edit Publication Date">
+                </div>
+              </div>
+              <div class = "col-sm-6">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">Genre</label>
+                  </div>
+                  <select class="custom-select" id="edit-genre" name="genre" onchange="">
+                    <option value="fiction">Fiction</option>
+                    <option value="nonfiction">Nonfiction</option>
+                  </select>
                 </div>
               </div>
               <div>
-                <button type="button" class="btn btn-primary">Edit Book in Library</button>
+                <button type="button" class="btn btn-primary" id='saveChangesBtn'>Save Changes</button>
               </div>
             </form>
             </div>
@@ -402,6 +425,7 @@
   <script src="js/randomauthorsUI.js" charset="utf-8"></script>
   <script src="js/randombookUI.js" charset="utf-8"></script>
   <script src="js/searchUI.js" charset="utf-8"></script>
+  <script src="js/editUI.js" charset="utf-8"></script>
   <script src="js/util.js" charset="utf-8"></script>
 
 </html>
