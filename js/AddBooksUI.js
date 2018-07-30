@@ -28,7 +28,7 @@ AddBooksUI.prototype._qBooks = function () {
   //*************Serialized Array code here - need to troubleshoot
     // console.log('queue_handle check');
     // console.log($('#addBkForm'));
-    var sForm = $('form').serializeArray();
+    var sForm = $('#addBkForm').serializeArray();
     // console.log(sForm, "sForm");
     // console.log(this.$container.find('form'), 'form');
     // console.log(sForm, 'sForm');
@@ -46,13 +46,14 @@ AddBooksUI.prototype._qBooks = function () {
         validAddInput = false;
         alert("Please enter the value for: " + kvp.name);
       }
-      return book;
+      return;
     })
       if(validAddInput && noDups(book)) {
         this._q.push(book);
         this.$container.find('#numInQ').text(this._q.length+ " book(s) added to queue");
         // console.log(this._q.length, '_q - end');
-        this._handleResetForm();
+        // this._handleResetForm();
+        this.$container.find('#addBkForm')[0].reset()
       }
       else {alert('This book is already in the library.')};
       return validAddInput;
@@ -81,10 +82,9 @@ AddBooksUI.prototype._handleGenreField = function () {
 
 };
 
-AddBooksUI.prototype._handleResetForm = function () {
-  this.$container.find('#addBkForm')[0].reset()
-  // console.log($('#addBkForm'))
-};
+// AddBooksUI.prototype._handleResetForm = function () {
+//   this.$container.find('#addBkForm')[0].reset()
+// };
 
 // AddBooksUI.prototype._handleEditField = function () {
 //   var edit = $('#edit-btn').button({

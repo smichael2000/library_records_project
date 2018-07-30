@@ -81,16 +81,29 @@ Library.prototype.getBookByTitle = function (title) {
   //Return: array of book objects if you find books with matching titles, empty array if no books are found
   var booksByTitle = [];
   for(var i = 0; i<window._bookShelf.length; i++){
-    // console.log(window._bookShelf, 'getBookByTitle');
     // if (window._bookShelf[i].title.search(title)>= -1) {
     if (window._bookShelf[i].title === title) {
+      // console.log(window._bookShelf[i].title, 'getBookByTitle');
       booksByTitle.push(window._bookShelf[i]);
     }
   }
 
-  // if (booksByTitle.length <= 0) {
-  //   alert("There are no books by that title");
-//
+  console.log(booksByTitle);
+  return booksByTitle;
+};
+
+Library.prototype.getOneBookByTitle = function (title) {
+  //Purpose: Return all books that completely or partially matches the string title passed into the function
+  //Return: array of book objects if you find books with matching titles, empty array if no books are found
+  var booksByTitle = {};
+  for(var i = 0; i<window._bookShelf.length; i++){
+    // if (window._bookShelf[i].title.search(title)>= -1) {
+    if (window._bookShelf[i].title === title) {
+      // console.log(window._bookShelf[i].title, 'getOneBookByTitle');
+      booksByTitle = window._bookShelf[i];
+    }
+  }
+  console.log(booksByTitle);
   return booksByTitle;
 };
 
@@ -101,6 +114,7 @@ Library.prototype.getBooksByAuthor = function (authorName) {
   for(var i = 0; i<window._bookShelf.length; i++){
     // if (window._bookShelf[i].author.search(authorName>=0)){
     if (window._bookShelf[i].author === authorName) {
+      // console.log(window._bookShelf[i]);
       booksByAuthor.push(window._bookShelf[i]);
     }
   }
@@ -159,7 +173,7 @@ Library.prototype.editBook = function (title,args) {
        window._bookShelf[i].title = args.title; //reassigns values on the selected book
        window._bookShelf[i].author = args.author;
        window._bookShelf[i].numPages = args.numPages;
-       window._bookShelf[i].pubDate = args.pubDate;
+       window._bookShelf[i].yearPublished = args.yearPublished;
         window._bookShelf[i].genre = args.genre;
        // console.log(window.bookShelf[i]);
        // this.editBookByMongoId(window._bookShelf[i]._id,window._bookShelf[i]) // gives id of edited book and the book object

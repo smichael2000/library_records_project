@@ -68,12 +68,7 @@
         <!-- <table class="table" id="dataTable"> -->
           <thead class="thead-light" id="tHead"></thead>
           <tbody>
-            <td>
-              <input type="button" id="edit-btn" value="editBkBtn" class="edit" onclick="edit_row('1')">
-            </td>
-            <td>
-              <input type="button" id="delete-btn" value="DeleteBkBtn" class="delete" onclick="delete_row('1')">
-            </td>
+            <td></td>
           </tbody>
         </table>
       </div>
@@ -295,65 +290,36 @@
         </div>
       </div>
     </div>
-  <!-- Modal for All Books-->
-  <div class="modal" id="allBooksModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">List of Books in Library</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        </div>
-        <div class="modal-input">
-          <img class="cover-img" src="https://upload.wikimedia.org/wikipedia/en/3/32/Rye_catcher.jpg">
-          <img class="cover-img" src="https://upload.wikimedia.org/wikipedia/commons/4/49/Blinkgla.jpg">
-          <img class="cover-img" src="assets/The Undoing Projecxt.jpg">
-          <img class="cover-img" src="https://upload.wikimedia.org/wikipedia/en/2/2f/Big-short-inside-the-doomsday-machine.jpg">
+        <!-- Modal for Random Book-->
+    <div class="modal" id="suggestedBookModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Book Recommended for You</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class='modal-body'>
+            <p class='modal-input'></p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-        <!-- Modal for Random Book-->
-        <div class="modal" id="suggestedBookModal">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h4 class="modal-title">Book Recommended for You</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              </div>
-              <div class='modal-body'>
-                <p class='modal-input'></p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Modal for All Authors-->
-        <div class="modal" id="allAuthorsModal">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h4 class="modal-title">List of Authors in Library</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              </div>
-              <div class="modal-body"></div>
-            </div>
-          </div>
-        </div>
         <!-- Modal for Random Author-->
-        <div class="modal" id="randomAuthorModal">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h4 class="text-center modal-title">Recommended Author for You</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              </div>
-              <div class="modal-body">
-                <h4 class="text-center suggestedAuthor">Author</h4>
-                <h5 class="text-center listOfBooks">Books</h5>
-                <h5 class="text-center booksByAuthor">Books</h5>
-              </div>
-            </div>
+    <div class="modal" id="randomAuthorModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="text-center modal-title">Recommended Author for You</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+            <h4 class="text-center suggestedAuthor">Author</h4>
+            <h5 class="text-center listOfBooks">Books</h5>
+            <h5 class="text-center booksByAuthor">Books</h5>
           </div>
         </div>
+      </div>
+    </div>
         <!-- Edit Modal -->
       <div class="modal fade" id="editModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
@@ -367,25 +333,25 @@
               <div class="form-group">
                 <label for="inputEmail3" class="col-sm-5 control-label editTitle">Edit Title</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="edit-title">
+                  <input type="text" class="form-control" name="edit-title">
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputPassword3" class="col-sm-5 control-label editAuthor">Edit Author</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="edit-author">
+                  <input type="text" class="form-control" name="edit-author">
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputEmail3" class="col-sm-5 control-label">Edit Number of Pages</label>
                 <div class="col-sm-10">
-                  <input type="number" class="form-control" id="edit-numPages">
+                  <input type="number" class="form-control" name="edit-numPages">
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputEmail3" class="col-sm-5 control-label">Edit Publication Date</label>
                 <div class="col-sm-10">
-                  <input type="number" class="form-control" id="edit-pubDate">
+                  <input type="number" class="form-control" name="edit-pubDate">
                 </div>
               </div>
               <div class = "col-sm-6">
@@ -393,7 +359,7 @@
                   <div class="input-group-prepend">
                     <label class="input-group-text">Genre</label>
                   </div>
-                  <select class="custom-select" id="edit-genre" onchange="">
+                  <select class="custom-select" name="edit-genre" onchange="">
                     <option value="fiction">Fiction</option>
                     <option value="nonfiction">Nonfiction</option>
                   </select>

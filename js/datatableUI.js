@@ -111,7 +111,7 @@ DataTable.prototype._createHeader = function (book) {
 
 DataTable.prototype._deleteRow = function (e) {
   // console.log("delete button worked");
-  // console.log($(e.currentTarget).closest('tr').children()[2]);
+  console.log($(e.currentTarget).closest('tr').children()[2]);
   var deleteTr = $(e.currentTarget).closest('tr').children()[2];
   var title = $(deleteTr).data('title');
   // var title = $(deleteTr).text();
