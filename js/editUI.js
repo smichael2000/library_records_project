@@ -21,9 +21,7 @@ EditUI.prototype.init = function() {
 
 EditUI.prototype._bindEvents = function() {
   $(document).on('click', '.editBtn', $.proxy(this._handleEdit, this));
-  $(document).on('click', '#saveChangesBtn', $.proxy(this._updateTable, this));
-  // $('.editBtn').on('click', this._openModal.bind(this))
-  // console.log('_bindEvents');
+
 };
 
 EditUI.prototype._handleEdit = function(e) {
@@ -32,14 +30,31 @@ EditUI.prototype._handleEdit = function(e) {
   //better to loop over and serach for 'title' in td
   var td=$(e.currentTarget).parent().parent().children()[2];
   this.title = $(td).data('title');
-  var book = this.getBookByTitle(title);
-  this.$container.find('#edit-title').attr('value',book[0].title);
-  this.$container.find('#edit-author').attr('value',book[0].author);
-  this.$container.find('#edit-pubDate').attr('value',book[0].pubDate);
-  this.$container.find('#edit-numPages').attr('value',book[0].numPages);
-  this.$container.find('#edit-genre').attr('value',book[0].genre);
-  // console.log(book[0], 'book');
+  console.log(td);
+  var book = this.getBookByTitle(this.title);
+  this.$container.find('#edit-title').attr('value',book.title);
+  this.$container.find('#edit-author').attr('value',book.author);
+  this.$container.find('#edit-pubDate').attr('value',book.pubDate);
+  this.$container.find('#edit-numPages').attr('value',book.numPages);
+  this.$container.find('#edit-genre').attr('value',book.genre);
+  console.log(book, 'book');
   this.$container.modal('show');
+
+  var sForm = this.$container.find("form").serializeArray();
+  var sForm = $('form').serializeArray();
+  console.log(sForm);
+  var obj = new Object();
+  console.log(obj);
+  $.each(sForm , function(index, kvp) {
+    // console.log(kvp.value, 'value');
+    if (kvp.value) {
+      obj[kvp.name]=kvp.value;
+      //console.log(book, 'if statment');
+    }
+  })
+    var book = new Book(obj);
+    console.log(book);
+  this.editBook(this.title,book);
 };
 
 $(function(){

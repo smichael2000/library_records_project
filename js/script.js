@@ -27,20 +27,21 @@ Library.prototype.addBook = function (book) {
 
 Library.prototype.removeBookByTitle = function (title) {
   //Purpose: Remove book from from the books array by its title.
-  //Return:boolean true if the book(s) were removed, false if no books match
+  // console.log(title);
   var originalLength = window._bookShelf.length;
   for(var i = 0; i<window._bookShelf.length; i++){
+    // console.log('inside for loop');
+    // console.log(window._bookShelf[i].title);
     if (window._bookShelf[i].title === title) {
       // alert(window._bookShelf[i].title, + " has been deleted")
       var id = window._bookShelf[i]._id;
     // if (window._bookShelf[i].title.indexOf(title) > -1) {
       window._bookShelf.splice(i,1);
-      --i; // Correct the index value due to splice()
+      // --i; // Correct the index value due to splice()
+      // console.log(id);
       this._handleEventTrigger("objUpdate", window._bookShelf);
       this.deleteBook(id);
-    } if (originalLength !== window._bookShelf.length) {
-      return true;
-    } return false;
+    }
   }
 };
 
@@ -87,10 +88,9 @@ Library.prototype.getBookByTitle = function (title) {
     }
   }
 
-  if (booksByTitle.length <= 0) {
-    alert("There are no books by that title");
-
-  }
+  // if (booksByTitle.length <= 0) {
+  //   alert("There are no books by that title");
+//
   return booksByTitle;
 };
 
@@ -105,10 +105,10 @@ Library.prototype.getBooksByAuthor = function (authorName) {
     }
   }
 
-  if (booksByAuthor.length <= 0) {
-    console.log("There are no books by " + authorName);
-
-  }
+  // if (booksByAuthor.length <= 0) {
+  //   console.log("There are no books by " + authorName);
+  //
+  // }
   // console.log(booksByAuthor);
   return booksByAuthor;
 };
@@ -152,7 +152,22 @@ Library.prototype.getRandomAuthorNames = function () {
 
 };
 
-
+Library.prototype.editBook = function (title,args) {
+  console.log('inside edit book function');
+  for (var i = 0; i < window._bookShelf.length; i++) { //loop over bookshelf
+    if(window._bookShelf[i].title === title){ //matches title on bookshelf with title given to function
+       window._bookShelf[i].title = args.title; //reassigns values on the selected book
+       window._bookShelf[i].author = args.author;
+       window._bookShelf[i].numPages = args.numPages;
+       window._bookShelf[i].pubDate = args.pubDate;
+        window._bookShelf[i].genre = args.genre;
+       // console.log(window.bookShelf[i]);
+       // this.editBookByMongoId(window._bookShelf[i]._id,window._bookShelf[i]) // gives id of edited book and the book object
+       //this.setStorage()
+    }
+  }
+  this._handleEventTrigger('objUpdate'); //this updates my table yours might be different
+};
 
 Library.prototype.getBkById = function (id) {
     var randomBook = $.ajax({
@@ -178,15 +193,13 @@ Library.prototype.updateBook = function (book) {
   data: book,
   success: data => {
     console.log(data, "response data");
-    // var myBook = new Book(data);
-    // window._bookShelf.push(myBook);
-    // console.log(myBook, "myBook");
     this._handleEventTrigger("searchEvent", window._bookShelf);
     }
   })
 };
 
 Library.prototype.deleteBook = function (id) {
+    // console.log('inside deleteBook');
     $.ajax({
         url: window.libraryURL + "/" + id,
         dataType: "text",

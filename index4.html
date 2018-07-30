@@ -32,10 +32,10 @@
                         <input class="form-check-input" type="radio" id="mylibrary" value="option1" checked>
                         <label class="form-check-label" for="mylibrary">My Library</label>
                       </div>
-                      <div class="form-link word">
+                      <!-- <div class="form-link word">
                         <input class="form-check-input" type="radio" id="amazon" value="option2">
                         <label class="form-check-label" for="amazon">Amazon</label>
-                      </div>
+                      </div> -->
                     </div>
                     <div class="col-sm-6 sbox">
                       <input class="sbox-input" type="search" id="search-field" placeholder="Search by Exact Title or Author">
@@ -235,8 +235,18 @@
               </div>
             </div>
           </div>
-          <div>
-            <label class="col-sm-10 control-label book-cover validate" id="cover">Book Cover</label>
+          <!-- <div class="dropdown show">
+            <a class="btn btn-secondary dropdown-toggle" href="https://example.com" id="cover" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Book Cover
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="https://upload.wikimedia.org/wikipedia/commons/4/49/Blinkgla.jpg">Blink</a>
+              <a class="dropdown-item" href="assets/The Undoing Projecxt.jpg">The Undoing Project</a>
+              <a class="dropdown-item" href="https://upload.wikimedia.org/wikipedia/en/2/2f/Big-short-inside-the-doomsday-machine.jpg">The Big Short</a>
+            </div>
+          </div> -->
+            <div>
+              <label class="col-sm-10 control-label book-cover validate" id="cover">Book Cover</label>
             <div class="col-sm-5">
               <button type="button" name = "cover" class="btn btn-sm btn-outline-secondary dropdown-toggle dropdown-toggle-split">Choose File</button>
             </div>
@@ -349,7 +359,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Edit Book Title or Author</h4>
+              <h4 class="modal-title">Edit Book</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
@@ -357,33 +367,33 @@
               <div class="form-group">
                 <label for="inputEmail3" class="col-sm-5 control-label editTitle">Edit Title</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="edit-title" placeholder="Edit Title">
+                  <input type="text" class="form-control" id="edit-title">
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputPassword3" class="col-sm-5 control-label editAuthor">Edit Author</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="edit-author" placeholder="Edit Author">
+                  <input type="text" class="form-control" id="edit-author">
                 </div>
               </div>
               <div class="form-group">
-                <label for="inputEmail3" class="col-sm-5 control-label" id="">Edit Number of Pages</label>
+                <label for="inputEmail3" class="col-sm-5 control-label">Edit Number of Pages</label>
                 <div class="col-sm-10">
-                  <input type="number" class="form-control" id="edit-numPages" placeholder="Edit Number of Pages">
+                  <input type="number" class="form-control" id="edit-numPages">
                 </div>
               </div>
               <div class="form-group">
-                <label for="inputEmail3" class="col-sm-5 control-label" id="">Edit Publication Date</label>
+                <label for="inputEmail3" class="col-sm-5 control-label">Edit Publication Date</label>
                 <div class="col-sm-10">
-                  <input type="number" class="form-control" id="edit-pubDate" placeholder="Edit Publication Date">
+                  <input type="number" class="form-control" id="edit-pubDate">
                 </div>
               </div>
               <div class = "col-sm-6">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
-                    <label class="input-group-text" for="inputGroupSelect01">Genre</label>
+                    <label class="input-group-text">Genre</label>
                   </div>
-                  <select class="custom-select" id="edit-genre" name="genre" onchange="">
+                  <select class="custom-select" id="edit-genre" onchange="">
                     <option value="fiction">Fiction</option>
                     <option value="nonfiction">Nonfiction</option>
                   </select>
@@ -425,6 +435,7 @@
   <script src="js/randomauthorsUI.js" charset="utf-8"></script>
   <script src="js/randombookUI.js" charset="utf-8"></script>
   <script src="js/searchUI.js" charset="utf-8"></script>
+    <script src="js/showallbooksUI.js" charset="utf-8"></script>
   <script src="js/editUI.js" charset="utf-8"></script>
   <script src="js/util.js" charset="utf-8"></script>
 

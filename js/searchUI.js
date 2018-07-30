@@ -19,17 +19,22 @@ SearchUI.prototype.init = function() {
 
 SearchUI.prototype._bindEvents = function() {
   $('#search-btn').on('click', $.proxy(this._handleSearch, this));
+  $('#search-btn').on('click', $.proxy(this._handleReset, this));
   // console.log('_bindEvents');
 };
 
 SearchUI.prototype._handleSearch = function(e) {
-  event.preventDefault();
+  e.preventDefault();
   // console.log("_handleSearch");
   var query = this.$container.find('#search-field').val();
   // console.log(query);
   var searchResult = this.search(query);
-  console.log(searchResult);
+  // console.log(searchResult);
   this._handleEventTrigger('searchEvent', searchResult);
+};
+
+SearchUI.prototype._handleReset = function () {
+  this.$container.find('#search-btn').reset()
 
 };
 

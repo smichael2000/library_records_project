@@ -55,12 +55,10 @@ var tr = document.createElement('tr');
 //puts book object in td in tr
   for(var key in book){
     var td = document.createElement('td');
-    // $(td).attr('contenteditable', 'true');
     $(td).text(book[key]);
     $(td).data(key,book[key]);
     if (key != '_id'){
       tr.append(td);
-    // } else {var idKey = td}
     }
   }
 //adds delete & edit buttons to td in tr
@@ -101,17 +99,13 @@ DataTable.prototype._createHeader = function (book) {
     }
   }
 
-  var deleteEdit = document.createElement('th');
-  thr.append(deleteEdit);
-  $(deleteEdit).text('Delete/Edit');
+  var deleteBook = document.createElement('th');
+  thr.append(deleteBook);
+  $(deleteBook).text('delete');
 
-  // var deleteBook = document.createElement('th');
-  // thr.append(deleteBook);
-  // $(deleteBook).text('delete');
-  //
-  // var edit = document.createElement('th');
-  // thr.append(edit);
-  // $(edit).text('edit');
+  var edit = document.createElement('th');
+  thr.append(edit);
+  $(edit).text('edit');
   return theader;
 };
 
@@ -119,8 +113,8 @@ DataTable.prototype._deleteRow = function (e) {
   // console.log("delete button worked");
   // console.log($(e.currentTarget).closest('tr').children()[2]);
   var deleteTr = $(e.currentTarget).closest('tr').children()[2];
-  // console.log(deleteTr);
-  var title = $(deleteTr).text();
+  var title = $(deleteTr).data('title');
+  // var title = $(deleteTr).text();
   // console.log(title);
   this.removeBookByTitle(title)
 };
