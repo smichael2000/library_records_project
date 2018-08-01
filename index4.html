@@ -25,7 +25,7 @@
             <h1>The Library Project</h1>
           </div>
           <section class="col dummy"></section>
-          <form role="search" class="col" id= "searchForm" method="get" action>
+          <form role="search" class="col searchForm" id= "searchForm" method="get" action>
               <div class = "row search-bar">
                     <div class="col-sm-3 sradio">
                       <div class= "form-link word">
@@ -329,35 +329,35 @@
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-              <form class="editBkForm" role="form">
+              <form class="editBkForm" id="editBkForm" role="form">
               <div class="form-group">
                 <!-- <label for="inputEmail3" class="col-sm-5 control-label">Book ID</label> -->
                 <div class="col-sm-10">
-                  <input type="hidden" class="form-control" id="editId" name="edit-id">
+                  <input type="hidden" class="form-control" id="editId" name="_id">
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputEmail3" class="col-sm-5 control-label editTitle">Edit Title</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="editTitle" name="edit-title">
+                  <input type="text" class="form-control" id="editTitle" name="title">
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputPassword3" class="col-sm-5 control-label editAuthor">Edit Author</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="editAuthor" name="edit-author">
+                  <input type="text" class="form-control" id="editAuthor" name="author">
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputEmail3" class="col-sm-5 control-label">Edit Number of Pages</label>
                 <div class="col-sm-10">
-                  <input type="number" class="form-control" id="editNumPages" name="edit-numPages">
+                  <input type="number" class="form-control" id="editNumPages" name="numPages">
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputEmail3" class="col-sm-5 control-label">Edit Publication Date</label>
                 <div class="col-sm-10">
-                  <input type="number" class="form-control editPubDate" id="editPubDate" name="edit-pubDate">
+                  <input type="number" class="form-control editPubDate" id="editPubDate" name="yearPublished">
                 </div>
               </div>
               <div class = "col-sm-6">
@@ -365,14 +365,14 @@
                   <div class="input-group-prepend">
                     <label class="input-group-text">Genre</label>
                   </div>
-                  <select class="custom-select" name="edit-genre" id="editGenre" onchange="">
+                  <select class="custom-select" name="genre" id="editGenre" onchange="">
                     <option value="fiction">Fiction</option>
                     <option value="nonfiction">Nonfiction</option>
                   </select>
                 </div>
               </div>
               <div>
-                <button type="button" class="btn btn-primary" id='saveChangesBtn'>Save Changes</button>
+                <button type="button" class="btn btn-primary" id='saveChangesBtn' data-dismiss="modal">Save Changes</button>
               </div>
             </form>
             </div>

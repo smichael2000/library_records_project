@@ -2,6 +2,7 @@ var EditUI = function(){
   Library.call(this);
   this.$container = $('#editModal');
   this.title="";
+  this.tempBook = {}
   // console.log(this.$container);
 
 };
@@ -21,6 +22,7 @@ EditUI.prototype.init = function() {
 
 EditUI.prototype._bindEvents = function() {
   $(document).on('click', '#editBtn', $.proxy(this._handleEdit, this));
+  this.$container.find('#saveChangesBtn').on('click', $.proxy(this._saveEditedBook, this));
 
 };
 
@@ -33,7 +35,7 @@ EditUI.prototype._handleEdit = function(e) {
   // console.log($(td).data('title'));
   // console.log(this.title, 'this.title');
   var book = this.getOneBookByTitle(this.title);
-  console.log(book, 'book after getBookByTitle');
+  // console.log(book, 'book after getBookByTitle');
   this.$container.find('#editId').attr('value',book._id);
   this.$container.find('#editTitle').attr('value',book.title);
   this.$container.find('#editAuthor').attr('value',book.author);
@@ -42,29 +44,36 @@ EditUI.prototype._handleEdit = function(e) {
   this.$container.find('#editGenre').attr('value',book.genre);
   // console.log(book, 'book after .finds');
   this.$container.modal('show');
-  this._serArr(book);
+
 };
 
 EditUI.prototype._serArr = function (book) {
   // console.log(book, 'beginning _serArr');
   var sForm = this.$container.find(".editBkForm").serializeArray();
-  console.log(sForm, 'sForm');
+  // console.log(sForm, 'sForm');
   var obj = new Object()
   $.each(sForm , function(index, kvp) {
     // console.log(kvp.value, 'value');
     if (kvp.value) {
       obj[kvp.name]=kvp.value;
-      console.log(kvp.name, kvp.value);
+      // console.log(kvp.name, kvp.value);
     } return;
   })
-  console.log(obj, "obj");
-
-
-  // var book = new Book(obj);
-  // console.log(book, 'book after new Book & serArr');
-  this.saveEditedBook(obj);
-
+  // console.log(obj, "obj");
+  // console.log(obj);
+  var book=new Book(obj);
+  // console.log(book);
+  this.tempBook = book;
 };
+
+EditUI.prototype._saveEditedBook = function (e) {
+  var book = this.getOneBookByTitle(this.title);
+  this._serArr(book);
+  e.preventDefault();
+  // console.log('inside saveEditedBook');
+  // console.log(this.tempBook)
+  this.updateEditedbook(this.tempBook);
+}
 
 $(function(){
   window.gEditUI = new EditUI(); //creates new instance on library

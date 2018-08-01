@@ -50,10 +50,9 @@ ShowAuthorsUI.prototype._createUlOfAuthors = function(authors) {
       ul.append(li);
     }
   }
-    console.log(ul);
+    // console.log(ul);
     return ul;
 };
-
 //set up document ready
 $(function(){
   window.gShowAuthorsUI = new ShowAuthorsUI($('#allAuthorsModal')); //creates new instance on library

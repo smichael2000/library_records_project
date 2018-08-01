@@ -34,8 +34,7 @@ SearchUI.prototype._handleSearch = function(e) {
 };
 
 SearchUI.prototype._handleReset = function () {
-  this.$container.find('#search-btn').reset()
-
+  $('.searchForm')[0].reset()
 };
 
 $(function(){
