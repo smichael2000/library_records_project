@@ -331,27 +331,33 @@
             <div class="modal-body">
               <form class="editBkForm" role="form">
               <div class="form-group">
+                <!-- <label for="inputEmail3" class="col-sm-5 control-label">Book ID</label> -->
+                <div class="col-sm-10">
+                  <input type="hidden" class="form-control" id="editId" name="edit-id">
+                </div>
+              </div>
+              <div class="form-group">
                 <label for="inputEmail3" class="col-sm-5 control-label editTitle">Edit Title</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" name="edit-title">
+                  <input type="text" class="form-control" id="editTitle" name="edit-title">
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputPassword3" class="col-sm-5 control-label editAuthor">Edit Author</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" name="edit-author">
+                  <input type="text" class="form-control" id="editAuthor" name="edit-author">
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputEmail3" class="col-sm-5 control-label">Edit Number of Pages</label>
                 <div class="col-sm-10">
-                  <input type="number" class="form-control" name="edit-numPages">
+                  <input type="number" class="form-control" id="editNumPages" name="edit-numPages">
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputEmail3" class="col-sm-5 control-label">Edit Publication Date</label>
                 <div class="col-sm-10">
-                  <input type="number" class="form-control" name="edit-pubDate">
+                  <input type="number" class="form-control editPubDate" id="editPubDate" name="edit-pubDate">
                 </div>
               </div>
               <div class = "col-sm-6">
@@ -359,7 +365,7 @@
                   <div class="input-group-prepend">
                     <label class="input-group-text">Genre</label>
                   </div>
-                  <select class="custom-select" name="edit-genre" onchange="">
+                  <select class="custom-select" name="edit-genre" id="editGenre" onchange="">
                     <option value="fiction">Fiction</option>
                     <option value="nonfiction">Nonfiction</option>
                   </select>
@@ -401,7 +407,7 @@
   <script src="js/randomauthorsUI.js" charset="utf-8"></script>
   <script src="js/randombookUI.js" charset="utf-8"></script>
   <script src="js/searchUI.js" charset="utf-8"></script>
-    <script src="js/showallbooksUI.js" charset="utf-8"></script>
+  <script src="js/showallbooksUI.js" charset="utf-8"></script>
   <script src="js/editUI.js" charset="utf-8"></script>
   <script src="js/util.js" charset="utf-8"></script>
 

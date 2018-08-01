@@ -5,152 +5,152 @@ var Library = function(){
 };
 
 //**************** Functions **************
-Library.prototype.addBook = function (book) {
-  // console.log(book, "book in addBook");
+Library.prototype.addobject = function (object) {
+  // console.log(object, "object in addobject");
 
-  if (noDups(book)){// noDups fuxn in util.js
+  if (noDups(object)){// noDups fuxn in util.js
     $.ajax({
     url: window.libraryURL,
     dataType: 'json',
     method: 'POST',
-    data: book,
+    data: object,
     success: data => {
       // console.log(data, "response data");
-      var myBook = new Book(data);
-      window._bookShelf.push(myBook);
-      // console.log(myBook, "myBook");
-      this._handleEventTrigger("searchEvent", window._bookShelf);
+      var myobject = new object(data);
+      window._objectShelf.push(myobject);
+      // console.log(myobject, "myobject");
+      this._handleEventTrigger("searchEvent", window._objectShelf);
     }
     })
   }
 };
 
-Library.prototype.removeBookByTitle = function (title) {
-  //Purpose: Remove book from from the books array by its title.
+Library.prototype.removeobjectByTitle = function (title) {
+  //Purpose: Remove object from from the objects array by its title.
   // console.log(title);
-  var originalLength = window._bookShelf.length;
-  for(var i = 0; i<window._bookShelf.length; i++){
+  var originalLength = window._objectShelf.length;
+  for(var i = 0; i<window._objectShelf.length; i++){
     // console.log('inside for loop');
-    // console.log(window._bookShelf[i].title);
-    if (window._bookShelf[i].title === title) {
-      // alert(window._bookShelf[i].title, + " has been deleted")
-      var id = window._bookShelf[i]._id;
-    // if (window._bookShelf[i].title.indexOf(title) > -1) {
-      window._bookShelf.splice(i,1);
+    // console.log(window._objectShelf[i].title);
+    if (window._objectShelf[i].title === title) {
+      // alert(window._objectShelf[i].title, + " has been deleted")
+      var id = window._objectShelf[i]._id;
+    // if (window._objectShelf[i].title.indexOf(title) > -1) {
+      window._objectShelf.splice(i,1);
       // --i; // Correct the index value due to splice()
       // console.log(id);
-      this._handleEventTrigger("objUpdate", window._bookShelf);
-      this.deleteBook(id);
+      this._handleEventTrigger("objUpdate", window._objectShelf);
+      this.deleteobject(id);
     }
   }
 };
 
-Library.prototype.removeBookByAuthor = function (author) {
-  //Remove a specific book from your books array by the author name.
-  //Return: boolean true if the book(s) were removed, false if no books match
-  // console.log(' made it to removeBookByAuthor fuxn');
-  var originalLength = window._bookShelf.length;
-  for(var i = 0; i < window._bookShelf.length; i++){
-    if (window._bookShelf[i].author === author) {
-    // if (window._bookShelf[i].author.indexOf(authorName >-1)) {
-      var id = window._bookShelf[i]._id;
-      window._bookShelf.splice(i,1);
+Library.prototype.removeobjectByAuthor = function (author) {
+  //Remove a specific object from your objects array by the author name.
+  //Return: boolean true if the object(s) were removed, false if no objects match
+  // console.log(' made it to removeobjectByAuthor fuxn');
+  var originalLength = window._objectShelf.length;
+  for(var i = 0; i < window._objectShelf.length; i++){
+    if (window._objectShelf[i].author === author) {
+    // if (window._objectShelf[i].author.indexOf(authorName >-1)) {
+      var id = window._objectShelf[i]._id;
+      window._objectShelf.splice(i,1);
       --i; // Correct the index value due to splice()
-      this.deleteBook(id);
+      this.deleteobject(id);
     }
   }
-  if (originalLength != window._bookShelf.length) {
-    // console.log (originalLength - window._bookShelf.length + " books by the author, " + authorName + ", were removed from the library.");
-    // alert("All the books by " + window._bookShelf[i].author + " have been deleted")
+  if (originalLength != window._objectShelf.length) {
+    // console.log (originalLength - window._objectShelf.length + " objects by the author, " + authorName + ", were removed from the library.");
+    // alert("All the objects by " + window._objectShelf[i].author + " have been deleted")
     return true;
-  } else {alert("There are no books by that author in the library.")}
+  } else {alert("There are no objects by that author in the library.")}
   return false;
 };
 
-Library.prototype.getRandomBook = function () {
-  //Purpose: Return a random book object from your books array
-  //Return: book object if you find a book, null if there are no books
-  if (window._bookShelf.length == 0) {return null;}
-  var ranBk = window._bookShelf[Math.floor(Math.random() * window._bookShelf.length)]._id;
+Library.prototype.getRandomobject = function () {
+  //Purpose: Return a random object object from your objects array
+  //Return: object object if you find a object, null if there are no objects
+  if (window._objectShelf.length == 0) {return null;}
+  var ranBk = window._objectShelf[Math.floor(Math.random() * window._objectShelf.length)]._id;
   // console.log(ranBk, 'randomBk');
   return ranBk;
 };
 
-Library.prototype.getBookByTitle = function (title) {
-  //Purpose: Return all books that completely or partially matches the string title passed into the function
-  //Return: array of book objects if you find books with matching titles, empty array if no books are found
-  var booksByTitle = [];
-  for(var i = 0; i<window._bookShelf.length; i++){
-    // if (window._bookShelf[i].title.search(title)>= -1) {
-    if (window._bookShelf[i].title === title) {
-      // console.log(window._bookShelf[i].title, 'getBookByTitle');
-      booksByTitle.push(window._bookShelf[i]);
+Library.prototype.getobjectByTitle = function (title) {
+  //Purpose: Return all objects that completely or partially matches the string title passed into the function
+  //Return: array of object objects if you find objects with matching titles, empty array if no objects are found
+  var objectsByTitle = [];
+  for(var i = 0; i<window._objectShelf.length; i++){
+    // if (window._objectShelf[i].title.search(title)>= -1) {
+    if (window._objectShelf[i].title === title) {
+      // console.log(window._objectShelf[i].title, 'getobjectByTitle');
+      objectsByTitle.push(window._objectShelf[i]);
     }
   }
 
-  console.log(booksByTitle);
-  return booksByTitle;
+  console.log(objectsByTitle);
+  return objectsByTitle;
 };
 
-Library.prototype.getOneBookByTitle = function (title) {
-  //Purpose: Return all books that completely or partially matches the string title passed into the function
-  //Return: array of book objects if you find books with matching titles, empty array if no books are found
-  var booksByTitle = {};
-  for(var i = 0; i<window._bookShelf.length; i++){
-    // if (window._bookShelf[i].title.search(title)>= -1) {
-    if (window._bookShelf[i].title === title) {
-      // console.log(window._bookShelf[i].title, 'getOneBookByTitle');
-      booksByTitle = window._bookShelf[i];
+Library.prototype.getOneobjectByTitle = function (title) {
+  //Purpose: Return all objects that completely or partially matches the string title passed into the function
+  //Return: array of object objects if you find objects with matching titles, empty array if no objects are found
+  var objectsByTitle = {};
+  for(var i = 0; i<window._objectShelf.length; i++){
+    // if (window._objectShelf[i].title.search(title)>= -1) {
+    if (window._objectShelf[i].title === title) {
+      // console.log(window._objectShelf[i].title, 'getOneobjectByTitle');
+      objectsByTitle = window._objectShelf[i];
     }
   }
-  console.log(booksByTitle);
-  return booksByTitle;
+  console.log(objectsByTitle);
+  return objectsByTitle;
 };
 
-Library.prototype.getBooksByAuthor = function (authorName) {
-//Purpose: Finds all books where the author’s name partially or completely matches the authorName argument passed
+Library.prototype.getobjectsByAuthor = function (authorName) {
+//Purpose: Finds all objects where the author’s name partially or completely matches the authorName argument passed
 //to the function.
-  var booksByAuthor = [];
-  for(var i = 0; i<window._bookShelf.length; i++){
-    // if (window._bookShelf[i].author.search(authorName>=0)){
-    if (window._bookShelf[i].author === authorName) {
-      // console.log(window._bookShelf[i]);
-      booksByAuthor.push(window._bookShelf[i]);
+  var objectsByAuthor = [];
+  for(var i = 0; i<window._objectShelf.length; i++){
+    // if (window._objectShelf[i].author.search(authorName>=0)){
+    if (window._objectShelf[i].author === authorName) {
+      // console.log(window._objectShelf[i]);
+      objectsByAuthor.push(window._objectShelf[i]);
     }
   }
 
-  // if (booksByAuthor.length <= 0) {
-  //   console.log("There are no books by " + authorName);
+  // if (objectsByAuthor.length <= 0) {
+  //   console.log("There are no objects by " + authorName);
   //
   // }
-  // console.log(booksByAuthor);
-  return booksByAuthor;
+  // console.log(objectsByAuthor);
+  return objectsByAuthor;
 };
 
-Library.prototype.addBooks = function (books) {
-  //Purpose: Takes multiple books, in the form of an array of book objects, and adds the objects to your books array.
-  //Return: number number of books successfully added, 0 if no books were added
-  // console.log("i am in addBooks");
-  var originalLength = window._bookShelf.length;
-  // console.log(typeof books);
-  // console.log(books);
-  if (Array.isArray(books)) {
-    for (var i = 0; i < books.length; i++) {
-        this.addBook(books[i]);
+Library.prototype.addobjects = function (objects) {
+  //Purpose: Takes multiple objects, in the form of an array of object objects, and adds the objects to your objects array.
+  //Return: number number of objects successfully added, 0 if no objects were added
+  // console.log("i am in addobjects");
+  var originalLength = window._objectShelf.length;
+  // console.log(typeof objects);
+  // console.log(objects);
+  if (Array.isArray(objects)) {
+    for (var i = 0; i < objects.length; i++) {
+        this.addobject(objects[i]);
     }
   }
-  // console.log('addBooks works');
-  var numAddedBks = window._bookShelf.length - originalLength;
-  // console.log(numAddedBks + " books were added to the library.");
-  return (window._bookShelf, numAddedBks);
+  // console.log('addobjects works');
+  var numAddedBks = window._objectShelf.length - originalLength;
+  // console.log(numAddedBks + " objects were added to the library.");
+  return (window._objectShelf, numAddedBks);
 };
 
 Library.prototype.getDistinctAuthors = function () {
-  //Purpose: Find the distinct authors’ names from all books in your library
-  //Return: array of strings the names of all distinct authors, empty array if no books exist or if no authors exist
+  //Purpose: Find the distinct authors’ names from all objects in your library
+  //Return: array of strings the names of all distinct authors, empty array if no objects exist or if no authors exist
   var authors = [];
-  for(var i = 0; i<window._bookShelf.length; i++){
-    authors.push(window._bookShelf[i].author);
+  for(var i = 0; i<window._objectShelf.length; i++){
+    authors.push(window._objectShelf[i].author);
   }
   // console.log(authors);
   var uniqueAuthors = Array.from(new Set(authors));
@@ -159,61 +159,89 @@ Library.prototype.getDistinctAuthors = function () {
 };
 
 Library.prototype.getRandomAuthorNames = function () {
-  //Purpose: Retrieves a random author name from your books collection
-  //Return: string author name, null if no books exist
-  if (window._bookShelf.length == 0) {return ("Null");}
-  return this.getRandomBook();
+  //Purpose: Retrieves a random author name from your objects collection
+  //Return: string author name, null if no objects exist
+  if (window._objectShelf.length == 0) {return ("Null");}
+  return this.getRandomobject();
 
 };
 
-Library.prototype.editBook = function (title,args) {
-  console.log('inside edit book function');
-  for (var i = 0; i < window._bookShelf.length; i++) { //loop over bookshelf
-    if(window._bookShelf[i].title === title){ //matches title on bookshelf with title given to function
-       window._bookShelf[i].title = args.title; //reassigns values on the selected book
-       window._bookShelf[i].author = args.author;
-       window._bookShelf[i].numPages = args.numPages;
-       window._bookShelf[i].yearPublished = args.yearPublished;
-        window._bookShelf[i].genre = args.genre;
-       // console.log(window.bookShelf[i]);
-       // this.editBookByMongoId(window._bookShelf[i]._id,window._bookShelf[i]) // gives id of edited book and the book object
-       //this.setStorage()
-    }
-  }
-  this._handleEventTrigger('objUpdate'); //this updates my table yours might be different
+Library.prototype.saveEditedobject = function (object) {
+
+  console.log('inside edit object function');
+  console.log(object._id);
+  object._id = object['edit-id']
+  console.log(object._id);
+  object.title=$("#editTitle").val()
+  object.author=$("#editAuthor").val()
+  object.numPages=$("#editNumPages").val()
+  object.yearPublished=object['edit-pubDate']
+  object.genre=object['edit-genre']
+  object.cover=$("#editCover").val()
+
+  var book=new Book(object);
+  console.log(book);
+
+  // delete object['edit-id']
+  // delete object['edit-title']
+  // delete object['edit-author']
+  // delete object['edit-pubDate']
+  // delete object['edit-numPages']
+  // delete object['edit-genre']
+
+  // console.log(object);
+
+  this.updateEditedobject(book);
+
+// this._handleEventTrigger('objUpdate'); //this updates my table yours might be different
 };
 
-Library.prototype.getBkById = function (id) {
-    var randomBook = $.ajax({
+Library.prototype.getBkById = function (object) {
+    var randomobject = $.ajax({
         url: window.libraryURL + '/' + id,
         dataType: "json",
         method: 'GET',
         // data: id,
         success: data => {
-        // console.log(data, "response data")
-        var book = new Book(data);
-        // console.log(book, 'book in getBkById');
-        return book;
+        console.log(data, "response data")
+        // var object = new object(data);
+        // console.log(object, 'object in getBkById');
+        return object;
         }
     })
-    return randomBook;
+    return randomobject;
   };
 
-Library.prototype.updateBook = function (book) {
+Library.prototype.updateobject = function (object) {
   $.ajax({
   url: window.libraryURL,
   dataType: 'json',
   method: 'PUT',
-  data: book,
+  data: object,
   success: data => {
     console.log(data, "response data");
-    this._handleEventTrigger("searchEvent", window._bookShelf);
+    this._handleEventTrigger("searchEvent", window._objectShelf);
     }
   })
 };
 
-Library.prototype.deleteBook = function (id) {
-    // console.log('inside deleteBook');
+Library.prototype.updateEditedobject = function (object) {
+  console.log("in updateEDITEDobject");
+  console.log(object);
+  $.ajax({
+  url: window.libraryURL +'/' + object._id,
+  dataType: 'json',
+  method: 'PUT',
+  data: object,
+  success: data => {
+    console.log(data, "response data");
+    this._handleEventTrigger("searchEvent", window._objectShelf);
+    }
+  })
+};
+
+Library.prototype.deleteobject = function (id) {
+    // console.log('inside deleteobject');
     $.ajax({
         url: window.libraryURL + "/" + id,
         dataType: "text",
@@ -221,7 +249,7 @@ Library.prototype.deleteBook = function (id) {
         data: id,
         success: data => {
           // console.log(data, "response data");
-          this._handleEventTrigger("searchEvent", window._bookShelf);
+          this._handleEventTrigger("searchEvent", window._objectShelf);
         }
     })
   };
@@ -229,10 +257,10 @@ Library.prototype.deleteBook = function (id) {
 
 
 //*******************Search Function*********************
-//Purpose: Add a more robust search function to your app to allow you to filter by one or more book properties ○n the search function
-//Return: an array of book instances
+//Purpose: Add a more robust search function to your app to allow you to filter by one or more object properties ○n the search function
+//Return: an array of object instances
 Library.prototype.search = function (string) {
-  var result = (this.getBookByTitle(string)).concat(this.getBooksByAuthor(string));
+  var result = (this.getobjectByTitle(string)).concat(this.getobjectsByAuthor(string));
   // console.log(result, 'result');
   return result;
 };
@@ -251,17 +279,17 @@ Library.prototype._handleEventTrigger = function(sEvent, oData) {
 //*******************Local Storage**********************
 //Stores data as strings - need to parse to convert back to objects when retrieve
 //Purpose: Use localstorage and JSON.stringify to save the state of your library
-// Library.prototype.saveBooks = function () {
-//   // console.log(window._bookShelf, 'save books');
+// Library.prototype.saveobjects = function () {
+//   // console.log(window._objectShelf, 'save objects');
 //   console.log("setting storage");
-//   localStorage.setItem('books', JSON.stringify(window._bookShelf));
+//   localStorage.setItem('objects', JSON.stringify(window._objectShelf));
 // };
 //
-// Library.prototype.retrieveBooks = function () {
-//   var books = JSON.parse(localStorage.getItem('books'));
-//   // console.log(books, 'booksStorage');
-//   window._bookShelf = books || [];
-//   return window._bookShelf;
+// Library.prototype.retrieveobjects = function () {
+//   var objects = JSON.parse(localStorage.getItem('objects'));
+//   // console.log(objects, 'objectsStorage');
+//   window._objectShelf = objects || [];
+//   return window._objectShelf;
 // };
 
 Library.prototype.retrieveBksDb = function (){
@@ -272,19 +300,19 @@ Library.prototype.retrieveBksDb = function (){
     method: 'GET',
     success: (data) => {
       // console.log(data, "data");
-      window._bookShelf=bookify(data);
-      // console.log('_bookShelf, retrieveBksDb');
-      // console.log(window._bookShelf);
+      window._objectShelf=objectify(data);
+      // console.log('_objectShelf, retrieveBksDb');
+      // console.log(window._objectShelf);
       // console.log("i am here");
-      // this._handleEventTrigger('searchEvent',window._bookShelf);
-      _self._handleEventTrigger('searchEvent',window._bookShelf);
+      // this._handleEventTrigger('searchEvent',window._objectShelf);
+      _self._handleEventTrigger('searchEvent',window._objectShelf);
     }
   })
 };
 
 //*******************Singleton****************************
 //Purpose: Make your library a singleton
-//Note: A prototyped book class should also be made, with each ‘book’ in your library being an instance of the book class.
+//Note: A prototyped object class should also be made, with each ‘object’ in your library being an instance of the object class.
 
 // function Singleton() {
 //     // instance stores as reference to Singleton
@@ -297,5 +325,5 @@ Library.prototype.retrieveBksDb = function (){
 //
 //     instance = this;
 //
-//     this._bookShelf = [];
+//     this._objectShelf = [];
 //    };

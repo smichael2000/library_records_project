@@ -4,11 +4,11 @@ var Book = function(args){
   // console.log(args, "beg bk construct");
   this._id = args._id;
   this.cover = args.cover || "cover image";
-  this.genre = args.genre;
   this.title = args.title;
   this.author = args.author;
   this.numPages = args.numPages;
   this.yearPublished = new Date(args.yearPublished).getUTCFullYear();
+  this.genre = args.genre;
   return false;
 };
 

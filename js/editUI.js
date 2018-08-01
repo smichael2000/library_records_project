@@ -20,49 +20,50 @@ EditUI.prototype.init = function() {
 };
 
 EditUI.prototype._bindEvents = function() {
-  $(document).on('click', '.editBtn', $.proxy(this._handleEdit, this));
+  $(document).on('click', '#editBtn', $.proxy(this._handleEdit, this));
 
 };
 
 EditUI.prototype._handleEdit = function(e) {
-  // console.log(e);
-  // console.log($(e.currentTarget).parent().parent());
+  // console.log(e.type);
+  // console.log($(e.currentTarget).parent().parent().children());
   //better to loop over and serach for 'title' in td
-  var td=$(e.currentTarget).parent().parent().children()[2];
+  var td=$(e.currentTarget).parent().parent().children()[1];
   this.title = $(td).data('title');
-  //console.log(td);
+  // console.log($(td).data('title'));
   // console.log(this.title, 'this.title');
   var book = this.getOneBookByTitle(this.title);
-  // console.log(book, 'book after getBookByTitle');
-  this.$container.find('#edit-title').attr('value',book.title);
-  this.$container.find('#edit-author').attr('value',book.author);
-  this.$container.find('#edit-pubDate').attr('value',book.yearPublished);
-  this.$container.find('#edit-numPages').attr('value',book.numPages);
-  this.$container.find('#edit-genre').attr('value',book.genre);
+  console.log(book, 'book after getBookByTitle');
+  this.$container.find('#editId').attr('value',book._id);
+  this.$container.find('#editTitle').attr('value',book.title);
+  this.$container.find('#editAuthor').attr('value',book.author);
+  this.$container.find('#editPubDate').attr('value',book.yearPublished);
+  this.$container.find('#editNumPages').attr('value',book.numPages);
+  this.$container.find('#editGenre').attr('value',book.genre);
   // console.log(book, 'book after .finds');
   this.$container.modal('show');
   this._serArr(book);
 };
 
 EditUI.prototype._serArr = function (book) {
-  console.log(book, 'beginning _serArr');
-  // console.log(this.$container.find("form"));
-  var sForm = this.$container.find("form").serializeArray();
-  // console.log(this.$container.find("form"));
-  // var sForm = $('.editBkForm').serializeArray();
+  // console.log(book, 'beginning _serArr');
+  var sForm = this.$container.find(".editBkForm").serializeArray();
   console.log(sForm, 'sForm');
-  var obj = new Object();
-  // console.log(obj);
+  var obj = new Object()
   $.each(sForm , function(index, kvp) {
     // console.log(kvp.value, 'value');
     if (kvp.value) {
       obj[kvp.name]=kvp.value;
-      console.log(kvp.value);
+      console.log(kvp.name, kvp.value);
     } return;
   })
-    var book = new Book(obj);
-    console.log(book, 'book after new Book & serArr');
-  // this.editBook(this.title,book);
+  console.log(obj, "obj");
+
+
+  // var book = new Book(obj);
+  // console.log(book, 'book after new Book & serArr');
+  this.saveEditedBook(obj);
+
 };
 
 $(function(){

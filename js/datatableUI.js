@@ -78,7 +78,7 @@ var tr = document.createElement('tr');
   var trEditText = document.createTextNode("Edit");
   editBtn.setAttribute("name",name);
   editBtn.appendChild(trEditText);
-  $(editBtn).attr("class", "editBtn")
+  $(editBtn).attr("id", "editBtn")
   tr.append(tdEdit);
   return tr;
 };
