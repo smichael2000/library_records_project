@@ -62,24 +62,21 @@ var tr = document.createElement('tr');
     }
   }
 //adds delete & edit buttons to td in tr
-  var tdDelete = document.createElement('td');
+  var tdXEd = document.createElement('td');
   var deleteBtn = document.createElement('input');
-  tdDelete.append(deleteBtn);
-  $(tdDelete).data('data-title', book.title);
+  tdXEd.append(deleteBtn);
+  $(tdXEd).data('data-title', book.title);
   deleteBtn.setAttribute('type','button');
   deleteBtn.setAttribute('value','X');
-  deleteBtn.setAttribute('class','deleteBtn')
-  tr.append(tdDelete);
+  deleteBtn.setAttribute('class','deleteBtn');
 
-//adds edit button to td in tr
-  var tdEdit= document.createElement('td');
   var editBtn = document.createElement('button');
-  tdEdit.append(editBtn);
+  tdXEd.append(editBtn);
   var trEditText = document.createTextNode("Edit");
   editBtn.setAttribute("name",name);
   editBtn.appendChild(trEditText);
   $(editBtn).attr("id", "editBtn")
-  tr.append(tdEdit);
+  tr.append(tdXEd);
   return tr;
 };
 
@@ -99,23 +96,18 @@ DataTable.prototype._createHeader = function (book) {
     }
   }
 
-  var deleteBook = document.createElement('th');
-  thr.append(deleteBook);
-  $(deleteBook).text('delete');
-
-  var edit = document.createElement('th');
-  thr.append(edit);
-  $(edit).text('edit');
+  var delEdit = document.createElement('th');
+  thr.append(delEdit);
+  $(delEdit).text('Delete/Edit')
   return theader;
 };
 
 DataTable.prototype._deleteRow = function (e) {
   // console.log("delete button worked");
-  console.log($(e.currentTarget).closest('tr').children()[2]);
-  var deleteTr = $(e.currentTarget).closest('tr').children()[2];
+  // console.log($(e.currentTarget).closest('tr').children()[1]);
+  var deleteTr = $(e.currentTarget).closest('tr').children()[1];
   var title = $(deleteTr).data('title');
-  // var title = $(deleteTr).text();
-  // console.log(title);
+  console.log(title);
   this.removeBookByTitle(title)
 };
 

@@ -72,7 +72,7 @@ EditUI.prototype._saveEditedBook = function (e) {
   e.preventDefault();
   // console.log('inside saveEditedBook');
   // console.log(this.tempBook)
-  this.updateEditedbook(this.tempBook);
+  this.updateEditedBook(this.tempBook);
 }
 
 $(function(){

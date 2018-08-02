@@ -3,7 +3,6 @@
 //**************** Constructor*************
 var Library = function(){
 };
-
 //**************** Functions **************
 Library.prototype.addBook = function (book) {
   // console.log(book, "book in addbook");
@@ -16,7 +15,7 @@ Library.prototype.addBook = function (book) {
     data: book,
     success: data => {
       // console.log(data, "response data");
-      var mybook = new book(data);
+      var mybook = new Book(data);
       window._bookShelf.push(mybook);
       // console.log(mybook, "mybook");
       this._handleEventTrigger("searchEvent", window._bookShelf);
@@ -103,7 +102,7 @@ Library.prototype.getOneBookByTitle = function (title) {
       booksByTitle = window._bookShelf[i];
     }
   }
-  console.log(booksByTitle);
+  // console.log(booksByTitle);
   return booksByTitle;
 };
 
@@ -136,7 +135,7 @@ Library.prototype.addBooks = function (books) {
   // console.log(books);
   if (Array.isArray(books)) {
     for (var i = 0; i < books.length; i++) {
-        this.addbook(books[i]);
+        this.addBook(books[i]);
     }
   }
   // console.log('addbooks works');
@@ -181,22 +180,9 @@ Library.prototype.getBkById = function (id) {
     return randombook;
   };
 
-// Library.prototype.updateBook = function (book) {
-//   $.ajax({
-//   url: window.libraryURL,
-//   dataType: 'json',
-//   method: 'PUT',
-//   data: book,
-//   success: data => {
-//     console.log(data, "response data");
-//     // this._handleEventTrigger('objUpdate')
-//     }
-//   })
-// };
-
 Library.prototype.updateEditedBook = function (book) {
-  console.log("in updateEDITEDbook");
-  console.log(book);
+  // console.log("in updateEDITEDbook");
+  // console.log(book);
   $.ajax({
   url: window.libraryURL + book._id,
   dataType: 'json',
@@ -205,7 +191,6 @@ Library.prototype.updateEditedBook = function (book) {
   success: data => {
     console.log(data, "response data");
     this.retrieveBksDb()
-    //this._handleEventTrigger('objUpdate')
     }
   })
 };
@@ -246,21 +231,6 @@ Library.prototype._handleEventTrigger = function(sEvent, oData) {
    // console.log(document.dispatchEvent(event), "dispatch");
  }
 };
-//*******************Local Storage**********************
-//Stores data as strings - need to parse to convert back to books when retrieve
-//Purpose: Use localstorage and JSON.stringify to save the state of your library
-// Library.prototype.savebooks = function () {
-//   // console.log(window._bookShelf, 'save books');
-//   console.log("setting storage");
-//   localStorage.setItem('books', JSON.stringify(window._bookShelf));
-// };
-//
-// Library.prototype.retrievebooks = function () {
-//   var books = JSON.parse(localStorage.getItem('books'));
-//   // console.log(books, 'booksStorage');
-//   window._bookShelf = books || [];
-//   return window._bookShelf;
-// };
 
 Library.prototype.retrieveBksDb = function (){
   var _self=this;
@@ -279,21 +249,3 @@ Library.prototype.retrieveBksDb = function (){
     }
   })
 };
-
-//*******************Singleton****************************
-//Purpose: Make your library a singleton
-//Note: A prototyped book class should also be made, with each ‘book’ in your library being an instance of the book class.
-
-// function Singleton() {
-//     // instance stores as reference to Singleton
-//     var instance;
-//
-//     // Singleton
-//     window.Singleton = function() {  // Added window. during code reviews
-//         return instance;
-//     };
-//
-//     instance = this;
-//
-//     this._bookShelf = [];
-//    };
