@@ -8,17 +8,17 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/style.css">
 
 
   </head>
   <body>
-    <div class = "container-fluid allover">
+    <div class = "container-fluid">
       <header class="header-wrapper">
         <nav class = "navbar navbar-expand-sm col-md-12" role="navigation">
-            <button class="btn btn-default btn-sm btn-no-outline" data-toggle="modal" data-target="#createModal">New to TLP</button>
-            <button class="btn btn-default btn-sm btn-no-outline" data-toggle="modal" data-target="#contactModal">CONTACT US</button>
-            <button class="btn btn-default btn-sm btn-no-outline" data-toggle="modal" data-target="#myAccountModal">MY ACCOUNT</button>
+          <button class="btn btn-default btn-sm btn-no-outline" data-toggle="modal" data-target="#createModal">New to TLP</button>
+          <button class="btn btn-default btn-sm btn-no-outline" data-toggle="modal" data-target="#contactModal">CONTACT US</button>
+          <button class="btn btn-default btn-sm btn-no-outline" data-toggle="modal" data-target="#myAccountModal">MY ACCOUNT</button>
         </nav>
         <section class = "row main-header">
           <div class="col word">
@@ -26,23 +26,11 @@
           </div>
           <section class="col dummy"></section>
           <form role="search" class="col" id= "searchForm" method="get" action>
-              <div class = "row search-bar">
-                    <div class="col-sm-3 sradio">
-                      <div class= "form-link word">
-                        <input class="form-check-input" type="radio" id="mylibrary" value="option1" checked>
-                        <label class="form-check-label" for="mylibrary">My Library</label>
-                      </div>
-                      <div class="form-link word">
-                        <input class="form-check-input" type="radio" id="amazon" value="option2">
-                        <label class="form-check-label" for="amazon">Amazon</label>
-                      </div>
-                    </div>
-                    <div class="col-sm-6 sbox">
-                      <input class="sbox-input" type="search" id="search-field" placeholder="Search by Exact Title or Author">
-                    </div>
-                    <div class ="col-sm-1 btn-go col">
-                      <button class="go" id="search-btn">Go!</button>
-                    </div>
+            <div class = "row search-bar">
+              <input class="sbox-input" type="search" id="search-field" placeholder="Search by Exact Title or Author">
+            </div>
+            <div class ="col-sm-1 btn-go col">
+              <button class="go" id="search-btn">Go!</button>
             </div>
           </form>
           <section class="col dummy"></section>
@@ -54,27 +42,17 @@
     </header>
       <section>
         <div class = "row btn-group d-flex justify-content-around show-books" role="group">
-          <!-- <button class="btn btn-default btn-sm" type="submit"> Show All Books</button> -->
           <button class="btn btn-default btn-sm btn-help" type="button" id="all-books"> Show All Books</button>
           <button class="btn btn-default btn-sm btn-help" type="button" id="suggested-book"> Book Suggestion</button>
           <button class="btn btn-default btn-sm btn-help" type="button" id="distinct-authors"> Show All Authors</button>
           <button class="btn btn-default btn-sm btn-help" type="button" id="random-author"> Author Suggestion</button>
         </div>
       </section>
-
     <main>
       <div class="row">
         <table class="table table-responsive-sm" id="dataTable">
-        <!-- <table class="table" id="dataTable"> -->
           <thead class="thead-light" id="tHead"></thead>
           <tbody>
-            <td>
-              <input type="button" id="edit-btn" value="editBkBtn" class="edit" onclick="edit_row('1')">
-            </td>
-            <td>
-              <input type="button" id="delete-btn" value="DeleteBkBtn" class="delete" onclick="delete_row('1')">
-            </td>
-            </td>
           </tbody>
         </table>
       </div>
@@ -99,7 +77,7 @@
               <div class="col"></div>
               </aside>
         </section>
-        </section class="modals">
+        <section class="modals">
         <!-- Modal for New to TLP-->
         <div class="modal" id="createModal">
           <div class="modal-dialog">
@@ -225,9 +203,9 @@
               <div class = "col-sm-6">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
-                    <label class="input-group-text" for="inputGroupSelect01">Genre</label>
+                    <label class="input-group-text">Genre</label>
                   </div>
-                  <select class="custom-select" id="genre-option" name="genre" onchange="">
+                  <select id="genre-option" name="genre" onchange="">
                     <option selected>Genre</option>
                     <option value="fiction">Fiction</option>
                     <option value="nonfiction">Nonfiction</option>
@@ -237,11 +215,11 @@
             </div>
           </div>
           <div>
-            <label class="col-sm-10 control-label book-cover validate" id="cover">Book Cover</label>
+            <label class="col-sm-10 book-cover validate" id="cover">Book Cover</label>
             <div class="col-sm-5">
               <button type="button" name = "cover" class="btn btn-sm btn-outline-secondary dropdown-toggle dropdown-toggle-split">Choose File</button>
             </div>
-            <div class="row modal-footer">
+            <div class="row">
               <div class="col">
                 <button type="button" id="btn-queue" class="btn btn-outline-primary">Queue Book To Add</button>
               </div>
@@ -257,123 +235,89 @@
   </div>
 </div>
       <!-- The Remove Book Modal -->
-    <div class="modal fade" id="removeModal" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">Remove Book</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          </div>
-          <div class="modal-body">
-            <form id="removeBkForm" role="form">
-            <div class="form-group">
-              <label for="inputEmail3" class="col-sm-5 control-label">Remove by Title</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="titleRemove" placeholder="Title">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="inputPassword3" class="col-sm-5 control-label">Remove by Author</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="authorRemove" placeholder="Author">
-              </div>
-            </div>
-            <div>
-              <button type="button" class="btn btn-primary remove-bks"><i class="fas fa-minus"></i>Remove Books From Library</button>
-            </div>
-          </div>
-        </div>
+<div class="modal fade" id="removeModal" tabindex="-1" role="dialog">
+  <div class="modal-header">
+    <h4 class="modal-title">Remove Book</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  </div>
+  <div class="modal-body">
+    <form id="removeBkForm" role="form">
+    <div class="form-group">
+      <label class="col-sm-5 control-label">Remove by Title</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="titleRemove" placeholder="Title">
       </div>
     </div>
+    <div class="form-group">
+      <label class="col-sm-5 control-label">Remove by Author</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="authorRemove" placeholder="Author">
+      </div>
+    </div>
+    <div>
+      <button type="button" class="btn btn-primary remove-bks"><i class="fas fa-minus"></i>Remove Books From Library</button>
+    </div>
+  </div>
+</div>
   <!-- Modal for All Books-->
   <div class="modal" id="allBooksModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">List of Books in Library</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <div class="modal-header">
+      <h4 class="modal-title">List of Books in Library</h4>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+  </div>
+  <!-- Modal for Random Book-->
+  <div class="modal" id="suggestedBookModal">
+    <div class="modal-header">
+      <h4 class="modal-title">Book Recommended for You</h4>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-input text-center">The Big Short by Michael Lewis</div>
+  </div>
+  <!-- Modal for All Authors-->
+  <div class="modal" id="allAuthorsModal">
+    <div class="modal-header">
+      <h4 class="modal-title">List of Authors in Library</h4>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+  </div>
+  <!-- Modal for Random Author-->
+  <div class="modal" id="randomAuthorModal">
+    <div class="modal-header">
+      <h3 class="text-center modal-title">Recommended Author for You</h4>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body">
+      <h4 class="text-center suggestedAuthor">Author</h4>
+      <h6 class="text-center listOfBooks">Books</h5>
+      <h6 class="text-center booksByAuthor">Books</h5>
+    </div>
+  </div>
+  <!-- Edit Modal -->
+  <div class="modal fade" id="editModal" tabindex="-1" role="dialog">
+    <div class="modal-header">
+      <h4 class="modal-title">Edit Book Title or Author</h4>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body">
+      <form class="ediForm" role="form">
+      <div class="form-group">
+        <label class="col-sm-5 control-label">Edit Title</label>
+        <div class="col-sm-10">
+          <input type="email" id="" placeholder="Edit Title">
         </div>
-        <div class="modal-input">
-          <!-- <img class="cover-img" src="https://upload.wikimedia.org/wikipedia/en/3/32/Rye_catcher.jpg"></img>
-          <img class="cover-img" src="https://upload.wikimedia.org/wikipedia/commons/4/49/Blinkgla.jpg"></img>
-          <img class="cover-img" src="assets/The Undoing Projecxt.jpg"></img>
-          <img class="cover-img" src="https://upload.wikimedia.org/wikipedia/en/2/2f/Big-short-inside-the-doomsday-machine.jpg"></img> -->
+      </div>
+      <div class="form-group">
+        <label for="inputPassword3" class="col-sm-5 control-label">Edit Author</label>
+        <div class="col-sm-10">
+          <input type="password" class="form-control" id="" placeholder="Edit Author">
         </div>
+      </div>
+      <div>
+        <button type="button" class="btn btn-primary">Edit Book in Library</button>
       </div>
     </div>
   </div>
-        <!-- Modal for Random Book-->
-        <div class="modal" id="suggestedBookModal">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h4 class="modal-title">Book Recommended for You</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              </div>
-              <div class="modal-input text-center">The Big Short by Michael Lewis</div>
-              <!-- <img class="cover-img" src="https://upload.wikimedia.org/wikipedia/en/2/2f/Big-short-inside-the-doomsday-machine.jpg"></img> -->
-            </div>
-          </div>
-        </div>
-        <!-- Modal for All Authors-->
-        <div class="modal" id="allAuthorsModal">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h4 class="modal-title">List of Authors in Library</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              </div>
-              <div class="modal-body"></div>
-            </div>
-          </div>
-        </div>
-        <!-- Modal for Random Author-->
-        <div class="modal" id="randomAuthorModal">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h3 class="text-center modal-title">Recommended Author for You</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              </div>
-              <div class="modal-body">
-                <h4 class="text-center suggestedAuthor">Author</h4>
-                <h6 class="text-center listOfBooks">Books</h5>
-                <h6 class="text-center booksByAuthor">Books</h5>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Edit Modal -->
-      <div class="modal fade" id="editModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Edit Book Title or Author</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body">
-              <form class="form-horizontal" role="form">
-              <div class="form-group">
-                <label for="inputEmail3" class="col-sm-5 control-label">Edit Title</label>
-                <div class="col-sm-10">
-                  <input type="email" class="form-control" id="" placeholder="Edit Title">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputPassword3" class="col-sm-5 control-label">Edit Author</label>
-                <div class="col-sm-10">
-                  <input type="password" class="form-control" id="" placeholder="Edit Author">
-                </div>
-              </div>
-              <div>
-                <button type="button" class="btn btn-primary">Edit Book in Library</button>
-              </div>
-            </div>
-          </div>
-        </div>
-       </div>
-    <!-- </div>
-  </div> -->
   <!--Delete Modal-->
   <div class="modal" id="deleteModal">
     <div class="modal-dialog">
@@ -386,7 +330,7 @@
       </div>
     </div>
   </div>
-    </section>
+  </section>
   </main>
 </div>
   <script src="js/jquery.js" charset="utf-8"></script>

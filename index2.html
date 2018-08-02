@@ -3,18 +3,78 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <link rel="stylesheet" href="css/style.css">
   </head>
-  <body class="bg">
-    <section>
-      <div>
-          <h1>Your World. Your Library</h1>
-          <h3>Build Your Dreams</h3>
-          <button>Get Started</button>
+  <body>
+    <div class="container-fluid">
+      <header>
+        <div class="nav-btns">
+            <input type="text" class="search-input" id="search-btn" placeholder="Search by Title or Author" aria-label="Search">
+            <button class="go-btn" id="search-btn">Go!</button>
+        </div>
+        <div class="page">
+            <h1 class="title">Your World. Your Library.</h1>
+            <h2 class="sub-title">Imagine Your Ideas</h2>
+            <button class="btn btn-md">Get Started</button>
+            <button class="btn btn-md">Login</button>
+        </div>
+    </header>
+    <main>
+      <div class = "row btn-group d-flex justify-content-around" role="group">
+        <div class="btn-group" role="group" aria-label="First group">
+          <button class="btn btn-sm btn-axns" id="addBkBtn">Add Book</button>
+          <button class="btn btn-sm btn-axns" id="removeBkBtn">Remove Book</button>
+        </div>
+        <div class="btn-group" role="group" aria-label="Second group">
+          <button class="btn btn-sm btn-axns" type="button" id="all-books"> Show All Books</button>
+          <button class="btn btn-sm btn-axns" type="button" id="distinct-authors"> Show All Authors</button>
+        </div>
+        <div class="btn-group" role="group" aria-label="Second group">
+          <button class="btn btn-sm btn-axns" type="button" id="suggested-book"> Book Suggestion</button>
+          <button class="btn btn-sm btn-axns" type="button" id="random-author"> Author Suggestion</button>
+        </div>
       </div>
-    </section>
+      <div class="row">
+          <table class="table table-responsive-sm table-striped table-dark" id="dataTable">
+            <thead class="thead-light" id="tHead"></thead>
+            <tbody></tbody>
+          </table>
+      </div>
+    </main>
+    <footer>
+      <h3><em>What Others Are Reading<em></h3>
+        <aside class="row">
+          <div class="col"></div>
+            <div class="col grbox">
+              <img class="grImage" alt="goodreads" src="https://s.gr-assets.com/assets/home/header_logo-8d96d7078a3d63f9f31d92282fd67cf4.png"></img>
+              <p class="grBookClub">For a list of online goodreads book clubs, click <a href="https://www.goodreads.com/group/show_tag/bookclub">here</a></p>
+          </div>
+          <div class="col nybox">
+              <img class="nytimesImage" alt="nytimes" src="assets/nytimes.png"></img>
+              <p class="">For a list of books on the New York Times best sellers lists, click <a href="https://www.nytimes.com/books/best-sellers/">here</a></p>
+            </a>
+          </div>
+          <div class="col rgbox">
+              <img class="rgz" alt="rgz" src="http://www.readergirlz.com/rgzicon.jpg"></img>
+              <p class="rgzBkClub">For an online book club that engages young men and women, click <a href="http://www.readergirlz.com/issue.html">here</a></p>
+            </a>
+          </div>
+          <div class="col"></div>
+        </aside>
+    </footer>
+  </div>
+  <script src="js/jquery.js" charset="utf-8"></script>
+  <script src="js/bootstrap.bundle.js" charset="utf-8"></script>
+  <script src="js/script.js" charset="utf-8"></script>
+  <script src="js/newBooks.js" charset="utf-8"></script>
+  <script src="js/addbooksUI.js" charset="utf-8"></script>
+  <script src="js/removeBooksUI.js" charset="utf-8"></script>
+  <script src="js/datatableUI.js" charset="utf-8"></script>
+  <script src="js/showauthorsUI.js" charset="utf-8"></script>
+  <script src="js/randomauthorsUI.js" charset="utf-8"></script>
+  <script src="js/randombookUI.js" charset="utf-8"></script>
+  <script src="js/searchUI.js" charset="utf-8"></script>
+  <script src="js/util.js" charset="utf-8"></script>
   </body>
 </html>

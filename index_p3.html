@@ -3,7 +3,7 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script> -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
@@ -195,12 +195,12 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           </div>
           <div class="modal-body">
-            <form id="addBkForm">
+            <form class="form-horizontal" id="addBkForm">
             <div class="form-group">
               <label class="col-sm-2 control-label">Title*</label>
               <div class="col-sm-10">
                 <input type="text" id="title" class="form-control validate" name="title" placeholder="Title">
-              </div>
+            </div>
             </div>
             <div class="form-group">
               <label class="col-sm-2 control-label">Author*</label>
@@ -211,7 +211,7 @@
             <div class="form-group">
               <label class="col-sm-10 control-label">Number of Pages</label>
               <div class="col-sm-10">
-                <input type="number" class="form-control validate" id="numberOfPages" name="numPages" placeholder="Number of Pages">
+                <input type="number" class="form-control validate" id="numberOfPages" name="numberOfPages" placeholder="Number of Pages">
               </div>
             </div>
             <div class="form-group">
@@ -265,7 +265,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           </div>
           <div class="modal-body">
-            <form id="removeBkForm" role="form">
+            <form class="form-horizontal" role="form">
             <div class="form-group">
               <label for="inputEmail3" class="col-sm-5 control-label">Remove by Title</label>
               <div class="col-sm-10">
@@ -294,10 +294,10 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
         <div class="modal-input">
-          <!-- <img class="cover-img" src="https://upload.wikimedia.org/wikipedia/en/3/32/Rye_catcher.jpg"></img>
+          <img class="cover-img" src="https://upload.wikimedia.org/wikipedia/en/3/32/Rye_catcher.jpg"></img>
           <img class="cover-img" src="https://upload.wikimedia.org/wikipedia/commons/4/49/Blinkgla.jpg"></img>
           <img class="cover-img" src="assets/The Undoing Projecxt.jpg"></img>
-          <img class="cover-img" src="https://upload.wikimedia.org/wikipedia/en/2/2f/Big-short-inside-the-doomsday-machine.jpg"></img> -->
+          <img class="cover-img" src="https://upload.wikimedia.org/wikipedia/en/2/2f/Big-short-inside-the-doomsday-machine.jpg"></img>
         </div>
       </div>
     </div>
@@ -372,8 +372,7 @@
           </div>
         </div>
        </div>
-    <!-- </div>
-  </div> -->
+
   <!--Delete Modal-->
   <div class="modal" id="deleteModal">
     <div class="modal-dialog">
@@ -389,9 +388,10 @@
     </section>
   </main>
 </div>
+  </body>
   <script src="js/jquery.js" charset="utf-8"></script>
   <script src="js/bootstrap.bundle.js" charset="utf-8"></script>
-  <script src="js/script.js" charset="utf-8"></script>
+  <script src="js/library_fuxns.js" charset="utf-8"></script>
   <script src="js/newBooks.js" charset="utf-8"></script>
   <script src="js/addbooksUI.js" charset="utf-8"></script>
   <script src="js/removeBooksUI.js" charset="utf-8"></script>
@@ -401,5 +401,5 @@
   <script src="js/randombookUI.js" charset="utf-8"></script>
   <script src="js/searchUI.js" charset="utf-8"></script>
   <script src="js/util.js" charset="utf-8"></script>
-  </body>
+
 </html>

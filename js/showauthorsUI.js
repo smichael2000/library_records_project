@@ -11,8 +11,8 @@ ShowAuthorsUI.prototype = Object.create(Library.prototype);
 
 //create method fire off everything need from get go
 ShowAuthorsUI.prototype.init = function() {
-  window.bookShelf = this.retrieveBooks();
-  // console.log(window.bookShelf);
+  // window._bookShelf = this.retrieveBooks();
+  // console.log(window._bookShelf);
   this._bindEvents();
   return false;
 };
@@ -50,10 +50,9 @@ ShowAuthorsUI.prototype._createUlOfAuthors = function(authors) {
       ul.append(li);
     }
   }
-    console.log(ul);
+    // console.log(ul);
     return ul;
 };
-
 //set up document ready
 $(function(){
   window.gShowAuthorsUI = new ShowAuthorsUI($('#allAuthorsModal')); //creates new instance on library
