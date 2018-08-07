@@ -31,7 +31,7 @@ DataTable.prototype._updateTable = function (e) {
   // console.log($tbody);
   if(window._bookShelf){
 
-  this.$container.find('#tHead').replaceWith(this._createHeader(e[0]));
+  this.$container.find('#tHead').replaceWith(this._createHeader());
     $.each(e, function(index, book){
       $tbody.append(_self._createRow(book));
     })
@@ -80,7 +80,7 @@ var tr = document.createElement('tr');
   return tr;
 };
 
-DataTable.prototype._createHeader = function (book) {
+DataTable.prototype._createHeader = function () {
   // console.log('made it to _createHeader');
   var theader = document.createElement('thead');
   $(theader).attr("id","tHead");

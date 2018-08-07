@@ -28,9 +28,9 @@ SearchUI.prototype._handleSearch = function(e) {
   // console.log("_handleSearch");
   var query = this.$container.find('#search-field').val();
   // console.log(query);
-  var searchResult = this.search(query);
+  this.search(query);
   // console.log(searchResult);
-  this._handleEventTrigger('searchEvent', searchResult);
+  // this._handleEventTrigger('searchEvent', searchResult);
 };
 
 SearchUI.prototype._handleReset = function () {

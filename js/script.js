@@ -1,5 +1,4 @@
 
-
 //**************** Constructor*************
 var Library = function(){
 };
@@ -44,27 +43,42 @@ Library.prototype.removeBookByTitle = function (title) {
   }
 };
 
-Library.prototype.removeBookByAuthor = function (author) {
-  //Remove a specific book from your books array by the author name.
-  //Return: boolean true if the book(s) were removed, false if no books match
-  // console.log(' made it to removebookByAuthor fuxn');
-  var originalLength = window._bookShelf.length;
-  for(var i = 0; i < window._bookShelf.length; i++){
-    if (window._bookShelf[i].author === author) {
-    // if (window._bookShelf[i].author.indexOf(authorName >-1)) {
-      var id = window._bookShelf[i]._id;
-      window._bookShelf.splice(i,1);
-      --i; // Correct the index value due to splice()
-      this.deleteBook(id);
-    }
-  }
-  if (originalLength != window._bookShelf.length) {
-    // console.log (originalLength - window._bookShelf.length + " books by the author, " + authorName + ", were removed from the library.");
-    // alert("All the books by " + window._bookShelf[i].author + " have been deleted")
-    return true;
-  } else {alert("There are no books by that author in the library.")}
-  return false;
+//fRemove book search from local library
+// Library.prototype.removeBookByAuthor = function (author) {
+//   //Remove a specific book from your books array by the author name.
+//   //Return: boolean true if the book(s) were removed, false if no books match
+//   // console.log(' made it to removebookByAuthor fuxn');
+//   var originalLength = window._bookShelf.length;
+//   for(var i = 0; i < window._bookShelf.length; i++){
+//     if (window._bookShelf[i].author === author) {
+//     // if (window._bookShelf[i].author.indexOf(authorName >-1)) {
+//       var id = window._bookShelf[i]._id;
+//       window._bookShelf.splice(i,1);
+//       --i; // Correct the index value due to splice()
+//       this.deleteBook(id);
+//     }
+//   }
+//   if (originalLength != window._bookShelf.length) {
+//     // console.log (originalLength - window._bookShelf.length + " books by the author, " + authorName + ", were removed from the library.");
+//     // alert("All the books by " + window._bookShelf[i].author + " have been deleted")
+//     return true;
+//   } else {alert("There are no books by that author in the library.")}
+//   return false;
+// };
+
+//remove book search from database
+Library.prototype.removeBookByTitleOrAuthor = function (string) {
+  $.ajax({
+      url: window.libraryURL + "removeBk/" + string,
+      dataType: "text",
+      method: 'DELETE',
+      success: data => {
+        console.log(data, "response data");
+        this._handleEventTrigger("objUpdate");
+      }
+  })
 };
+
 
 Library.prototype.getRandomBook = function () {
   //Purpose: Return a random book book from your books array
@@ -215,9 +229,19 @@ Library.prototype.deleteBook = function (id) {
 //Purpose: Add a more robust search function to your app to allow you to filter by one or more book properties ○n the search function
 //Return: an array of book instances
 Library.prototype.search = function (string) {
-  var result = (this.getBookByTitle(string)).concat(this.getBooksByAuthor(string));
-  // console.log(result, 'result');
-  return result;
+  // var result = (this.getBookByTitle(string)).concat(this.getBooksByAuthor(string));
+  // // console.log(result, 'result');
+  // return result;
+$.ajax ({
+    url: window.libraryURL + "search/" + string,
+    dataType: 'json',
+    type: 'GET',
+    success:(data) => {
+      var searchResult = bookify(data);
+      console.log(searchResult);
+      this._handleEventTrigger('searchEvent', searchResult);
+    }
+  })
 };
 
 //************************ Creating event "" *****************************

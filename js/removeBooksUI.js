@@ -21,30 +21,36 @@ RemoveBooksUI.prototype._openModal = function () {
 };
 
 RemoveBooksUI.prototype._handleRemoveBooks = function() {
-  var title = $('#titleRemove').val();
-  var author =$ ('#authorRemove').val();
+  var removeBk = $('#removeBk').val();
+  this.removeBookByTitleOrAuthor(removeBk);
+  this.$container.find('#removeBkForm')[0].reset();
+}
 
-  // console.log(title, 'titleRemove', author, 'authorRemove');
-  if (title) {
-    this.removeBookByTitle(title);
-    alert('The book, ' + title + ', was removed.');
-    this._handleResetForm();
-
-  }
-  else if (author) {
-    // console.log('made it to author');
-    this.removeBookByAuthor(author);
-    // alert('The book(s) by the author, '  author + ', was/were removed.');
-    this._handleResetForm();
-  }
-  else {
-    alert('The book is not in the library.');
-  }
-};
-RemoveBooksUI.prototype._handleResetForm = function () {
-  this.$container.find('#removeBkForm')[0].reset()
-  // console.log($('#addBkForm'))
-};
+// RemoveBooksUI.prototype._handleRemoveBooks = function() {
+//   var title = $('#titleRemove').val();
+//   var author =$ ('#authorRemove').val();
+//
+//   // console.log(title, 'titleRemove', author, 'authorRemove');
+//   if (title) {
+//     this.removeBookByTitle(title);
+//     alert('The book, ' + title + ', was removed.');
+//     this._handleResetForm();
+//
+//   }
+//   else if (author) {
+//     // console.log('made it to author');
+//     this.removeBookByAuthor(author);
+//     // alert('The book(s) by the author, '  author + ', was/were removed.');
+//     this._handleResetForm();
+//   }
+//   else {
+//     alert('The book is not in the library.');
+//   }
+// };
+// RemoveBooksUI.prototype._handleResetForm = function () {
+//   this.$container.find('#removeBkForm')[0].reset()
+//   // console.log($('#addBkForm'))
+// };
 
 $(function(){
   // console.log('here');
