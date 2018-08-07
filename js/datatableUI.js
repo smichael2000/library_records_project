@@ -14,6 +14,8 @@ DataTable.prototype.init = function() {
 DataTable.prototype._bindEvents = function () {
   // $('.editBtn').on('click', $.proxy(this._editModal, this));
   $('#dataTable').on('click','.deleteBtn', $.proxy(this._deleteRow, this));
+  // $('#deleteModal').find('.btn-delete').on('click', $.proxy(this._deleteForever, this));
+
 
 };
 
@@ -103,13 +105,17 @@ DataTable.prototype._createHeader = function () {
 };
 
 DataTable.prototype._deleteRow = function (e) {
-  // console.log("delete button worked");
-  // console.log($(e.currentTarget).closest('tr').children()[1]);
+  console.log("delete button worked");
+  console.log($(e.currentTarget).closest('tr').children()[1]);
   var deleteTr = $(e.currentTarget).closest('tr').children()[1];
   var title = $(deleteTr).data('title');
   console.log(title);
-  this.removeBookByTitle(title)
+  $("#deleteModal").modal('show');
 };
+
+DataTable.prototype._deleteForever = function (e) {
+   // this.deleteBook(id);
+}
 
 $(function(){
   window.gDataTable = new DataTable();
